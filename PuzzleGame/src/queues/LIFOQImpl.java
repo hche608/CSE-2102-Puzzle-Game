@@ -44,19 +44,16 @@ public class LIFOQImpl<E> implements LIFOQ<E>{//This instance of a queue is impl
 		_llist.clear();
 	}
 
-	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public E top() throws EmptyQueueException {
 		// TODO Auto-generated method stub
 		return null;

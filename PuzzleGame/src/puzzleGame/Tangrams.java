@@ -6,7 +6,7 @@ public class Tangrams extends JFrame {
 	private Label _label;
 	
 	
-	public void Tangrams() {
+	public Tangrams() {
 		this.setSize(300, 300);
 		this.setVisible(true);
 		
