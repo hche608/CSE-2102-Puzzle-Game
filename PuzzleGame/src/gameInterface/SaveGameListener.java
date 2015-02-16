@@ -1,4 +1,4 @@
-package puzzleGame;
+package gameInterface;
 
 public interface SaveGameListener {
 	
