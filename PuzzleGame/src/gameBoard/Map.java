@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Map 
 {
 	private boolean[][] map;
-	
+	private int _size;
 	/**
 	 * Constructs map object that keeps track of completion of puzzle
 	 * @param shapes
@@ -14,7 +14,8 @@ public class Map
 	 */
 	public Map(ArrayList<Shape> shapes, int size)
 	{
-		//create map of appropriate size and fill with shapes
+		_size = size;
+		map = new boolean[size][size];
 	}
 	
 	/**
@@ -51,9 +52,9 @@ public class Map
 	 */
 	public boolean complete()
 	{
-		for(int count = 0; count < map.length; count++)
+		for(int count = 0; count < _size; count++)
 		{
-			for(int x = 0; x < map[count].length; count++)
+			for(int x = 0; x < _size; x++)
 			{
 				if(!map[count][x])
 				{
@@ -62,6 +63,20 @@ public class Map
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Fills every location in the map with true
+	 */
+	public void fill() 
+	{
+		for(int count = 0; count < _size; count++)
+		{
+			for(int x = 0; x < _size; x++)
+			{
+				map[count][x] = true;
+			}
+		}		
 	}
 
 }
