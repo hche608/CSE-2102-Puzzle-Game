@@ -1,6 +1,6 @@
 package puzzleGame;
 
-public interface newGameListener {
+public interface NewGameListener {
 	
 	public void creatTheGame();
 	

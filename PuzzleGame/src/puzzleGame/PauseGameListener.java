@@ -1,6 +1,6 @@
 package puzzleGame;
 
-public interface pauseGameListener {
+public interface PauseGameListener {
 	
 	public void pauseTheGame();
 	
