@@ -12,7 +12,7 @@ public class Map
 	 * @param shapes
 	 * @param size
 	 */
-	public Map(int size)
+	public Map(ArrayList<Shape> shapes, int size)
 	{
 		_size = size;
 		map = new boolean[size][size];
@@ -67,7 +67,6 @@ public class Map
 	
 	/**
 	 * Fills every location in the map with true
-	 * For testing purposes only
 	 */
 	public void fill() 
 	{
@@ -78,30 +77,6 @@ public class Map
 				map[count][x] = true;
 			}
 		}		
-	}
-	/**
-	 * Adds given triangle shape to the map
-	 * @param tri
-	 */
-	private boolean putTriangle(Shape tri)
-	{
-		boolean successful = true;
-		if (successful)
-			return true;
-		return false;
-	}
-	
-	/**
-	 * Adds given rectangle to the map
-	 * @param rect
-	 * @return true if successful
-	 */
-	private boolean putRectangle(Shape rect)
-	{
-		boolean successful = true;
-		if (successful)
-			return true;
-		return false;
 	}
 
 }
