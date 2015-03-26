@@ -9,10 +9,9 @@ public class Map
 	private int _size;
 	/**
 	 * Constructs map object that keeps track of completion of puzzle
-	 * @param shapes
 	 * @param size
 	 */
-	public Map(ArrayList<Shape> shapes, int size)
+	public Map(int size)
 	{
 		_size = size;
 		map = new boolean[size][size];
@@ -25,17 +24,16 @@ public class Map
 	 * @param piece
 	 * @return success?
 	 */
-	public boolean put(Shape piece)
+	public boolean put(BasicTriangle piece)
 	{
-		boolean successful = true;
-		if (successful)
-			return true;
-		return false;
+		Coordinate[] coords = piece.getVertices();
+		
+		return true;
 	}
 	
 	/**
 	 * Given a piece to remove it will take it out of the map.
-	 * Returns false if it is not in the map
+	 * Returns false if it is not in the map or if operation fails
 	 * @param piece
 	 * @return success?
 	 */

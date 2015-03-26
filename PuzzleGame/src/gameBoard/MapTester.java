@@ -8,7 +8,7 @@ public class MapTester
 {
 	public static void main(String[] args)
 	{
-		Map map = new Map(null, 50);
+		Map map = new Map(50);
 		assertEquals(false, map.complete());
 		assertEquals(true, map.put(null));
 		assertEquals(true, map.take(null));
