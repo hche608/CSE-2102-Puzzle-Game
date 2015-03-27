@@ -2,6 +2,7 @@ package gameButtons;
 
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -65,6 +66,7 @@ public class InGamePanel extends JPanel implements Observer{
 			final JPanel buttonsPanel = new JPanel();
 			buttonsPanel.setBorder(new EtchedBorder());
 			buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+			Component newGameButton = null;
 			buttonsPanel.add(newGameButton);
 			buttonsPanel.add(quitButton);
 			setLayout(new GridBagLayout());

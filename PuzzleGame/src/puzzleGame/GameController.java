@@ -3,6 +3,7 @@ package puzzleGame;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.Graphics;
+import java.awt.TextArea;
 
 public class GameController implements MouseListener {
 	public void mousePressed(MouseEvent e) {
@@ -27,8 +28,8 @@ public class GameController implements MouseListener {
 	}
 
 	void saySomething(String eventDescription, MouseEvent e) {
-		textArea.append(eventDescription + " detected on "
-				+ e.getComponent().getClass().getName() + "." + newline);
+		//TextArea.append(eventDescription + " detected on "
+			//	+ e.getComponent().getClass().getName() + "." + "/n");
 	}
 	
 	public void update(){
