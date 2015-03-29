@@ -1,0 +1,36 @@
+Main Menu:
+1. Files:
+	Main menu is composed by 5 elements, 13 png files and 1 sample file.
+	one background img <main.png>
+	four buttons <start> <level select> <score> and <exit>
+
+	All the files:
+	<main_Sample.png>
+
+	<main.png>
+
+	<start.png>
+	<start_hover.png>
+	<start_click.png>
+
+	<levelselect.png>
+	<levelselect_hover.png>
+	<levelselect_click.png>
+
+	<score.png>
+	<score_hover.png>
+	<score_click.png>
+
+	<exit.png>
+	<exit_hover.png>
+	<exit_click.png>
+
+	each of the buttons includes three states: common, hoverd, click.
+	So for each button. They remain brown in common. When mouse hover on them, they change their colors. And when 	mouse is clicking on it. Its frame change to white.
+
+2. Reference parameters:
+	The main menu is 800 * 600
+	each of ther button is 300 * 75
+	so four buttons together is 300 * 300
+	The position of the first button is (250,200) 
+	which means button's left-top point is 250 from the top and 200 from the left.
