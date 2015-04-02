@@ -1,9 +1,10 @@
 package test;
 
-import puzzleGame.Player;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import application.Player;
 
 public class testPlayer {
 

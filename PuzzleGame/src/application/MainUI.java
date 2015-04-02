@@ -19,32 +19,34 @@ import javafx.stage.Stage;
 public class MainUI {
 	Resourses res;
 	Stage primaryStage;
+	boolean disable;
 	
 	public MainUI(Stage primaryStage, Resourses res) {
 		this.res = res;
 		this.primaryStage = primaryStage;
+		disable = false;
 	}
 	
 	public void show(){
 		try {
 			
-			final Group background = new Group(res.backgroundImage);
+			final Group background = new Group(res.mainUI_background_Image);
 				
 			// start btn			
 			final Button btn = new Button();
-			btn.setGraphic(res.startImage);
+			btn.setGraphic(res.mainUI_start_Image);
 			btn.setBorder(null);
 			btn.setBackground(null);
 			btn.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn.setGraphic(res.startImage1);
+	            	btn.setGraphic(res.mainUI_start_Image1);
 	            }
 	        });
 			btn.setOnMouseExited(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn.setGraphic(res.startImage);
+	            	btn.setGraphic(res.mainUI_start_Image);
 
 	            }
 	        });
@@ -53,26 +55,25 @@ public class MainUI {
 		          @Override public void handle(ActionEvent e) {
 		        	  Main.gamePanelUI.show();
 		        	  
-		        	  //startNewGame(primaryStage);
 		          }
 		      });
 	
 			// level select btn			
 			final Button btn1 = new Button();
-			btn1.setGraphic(res.levelImage);
+			btn1.setGraphic(res.mainUI_level_Image);
 			btn1.setBorder(null);
 			btn1.setBackground(null);
 			btn1.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn1.setGraphic(res.levelImage1);
+	            	btn1.setGraphic(res.mainUI_level_Image1);
 
 	            }
 	        });
 			btn1.setOnMouseExited(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn1.setGraphic(res.levelImage);
+	            	btn1.setGraphic(res.mainUI_level_Image);
 
 	            }
 	        });
@@ -88,44 +89,44 @@ public class MainUI {
 			final Button btn2 = new Button();
 			btn2.setBorder(null);
 			btn2.setBackground(null);
-			btn2.setGraphic(res.scoresImage);
+			btn2.setGraphic(res.mainUI_scores_Image);
 			
 			btn2.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn2.setGraphic(res.scoresImage1);
+	            	btn2.setGraphic(res.mainUI_scores_Image1);
 	            }
 	        });
 			btn2.setOnMouseExited(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn2.setGraphic(res.scoresImage);
+	            	btn2.setGraphic(res.mainUI_scores_Image);
 	            }
 	        });
 			
 			btn2.setOnAction(new EventHandler<ActionEvent>() {
 		          @Override public void handle(ActionEvent e) {
-		        	  Main.scores.show();
+		        	  Main.scoresUI.show();
 		          }
 		      });
 			
 			// exit btn
 			
 			final Button btn3 = new Button();
-			btn3.setGraphic(res.exitImage);
+			btn3.setGraphic(res.mainUI_exit_Image);
 			btn3.setBorder(null);
 			btn3.setBackground(null);
 			btn3.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn3.setGraphic(res.exitImage1);
+	            	btn3.setGraphic(res.mainUI_exit_Image1);
 
 	            }
 	        });
 			btn3.setOnMouseExited(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent mouseEvent) {
-	            	btn3.setGraphic(res.exitImage);
+	            	btn3.setGraphic(res.mainUI_exit_Image);
 
 	            }
 	        });			
@@ -154,7 +155,6 @@ public class MainUI {
 			
 
 			final Group root = new Group(background,btns);
-			
 		    Scene scene = new Scene(root,res.FRAME_WIDTH,res.FRAME_HEIGHT);
 			primaryStage.setResizable(false);
 	        primaryStage.setTitle("Tangram Game");
