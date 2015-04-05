@@ -28,19 +28,88 @@ public class Map
 	{
 		Coordinate[] coords = piece.getVertices();
 		int[] lengths = piece.getSides();
-		int vertical = coords[0].YCoord() - coords[1].YCoord();
-		for (int yOffset = 0; yOffset <= Math.abs(vertical); yOffset++)
+		int vertical = coords[0].YCoord();
+		for (int yOffset = coords[1].YCoord(); yOffset <= Math.abs(vertical); yOffset++)
 		{
-			int horizontal = (int)((yOffset * Math.tan(Math.atan(lengths[0]/((double)lengths[1])))) + .5);
-			for(int xOffset = 0; xOffset <= Math.abs(horizontal); xOffset++)
+			int horizontal = (int)((yOffset * Math.tan(Math.atan(lengths[0]/((double)lengths[1])))) + .5) + coords[1].XCoord();
+			for(int xOffset = coords[1].XCoord(); xOffset <= Math.abs(horizontal); xOffset++)
 			{
-				if (!map[yOffset + coords[1].YCoord()][xOffset + coords[1].XCoord()])
-					map[yOffset + coords[1].YCoord()][xOffset + coords[1].XCoord()] = true;  //Works as long as a and b have same x coordinate
+				if (!map[yOffset][xOffset])
+					map[yOffset][xOffset] = true;  //Works as long as a and b have same x coordinate
 				else
+				{
+					cleanUp(piece, xOffset, yOffset);
 					return false;
+				}
+					
+								
 			}
 		}
 		return true;
+	}
+	
+	public void cleanUp(BasicTriangle removeThis, int x, int y)
+	{
+		Coordinate[] coords = removeThis.getVertices();
+		int[] lengths = removeThis.getSides();
+		int vertical = coords[0].YCoord();
+		for (int yOffset = coords[1].YCoord(); yOffset <= Math.abs(vertical); yOffset++)
+		{
+			int horizontal = (int)((yOffset * Math.tan(Math.atan(lengths[0]/((double)lengths[1])))) + .5) + coords[1].XCoord();
+			for(int xOffset = coords[1].XCoord(); xOffset <= Math.abs(horizontal); xOffset++)
+			{
+				if (map[yOffset][xOffset] && !(x == xOffset && y == yOffset))
+					map[yOffset][xOffset] = false;  //Works as long as a and b have same x coordinate
+				else
+					return;
+								
+			}
+		}
+		
+	}
+	
+	public boolean put(DrawableShape rect)
+	{
+		Coordinate[] coords = rect.getVertices();
+		int[] sides = rect.getSides();
+		int startY = coords[0].YCoord();
+		int startX = coords[0].XCoord();
+		int bottomLeft = startY + sides[0];
+		int rightBound = startX + sides[1];
+		for (int YOffset = startY; YOffset < bottomLeft; YOffset++)
+		{
+			for (int XOffset = startX; XOffset < rightBound - 1; XOffset++)
+			{
+				if (!map[YOffset][XOffset])
+					map[YOffset][XOffset] = true;
+				else
+				{
+					cleanUp(rect, XOffset, YOffset);
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public void cleanUp(DrawableShape removeThis, int x, int y)
+	{
+		Coordinate[] coords = removeThis.getVertices();
+		int[] sides = removeThis.getSides();
+		int startY = coords[0].YCoord();
+		int startX = coords[0].XCoord();
+		int bottomLeft = startY + sides[0];
+		int rightBound = startX + sides[1];
+		for (int YOffset = startY; YOffset < bottomLeft; YOffset++)
+		{
+			for (int XOffset = startX; XOffset < rightBound - 1; XOffset++)
+			{
+				if (map[YOffset][XOffset] && !(XOffset == x && YOffset == y))
+					map[YOffset][XOffset] = false;
+				else
+					return;
+			}
+		}
 	}
 	
 	/**

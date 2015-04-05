@@ -7,7 +7,7 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class BasicTriangle implements Shape 
+public class BasicTriangle implements DrawableShape
 {
 	private final int _A;		//Shortest side length  
 	private final int _B;		//Second longest length side

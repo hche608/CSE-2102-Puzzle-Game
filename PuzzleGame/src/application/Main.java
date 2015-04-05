@@ -2,14 +2,14 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
-import application.scoresList.ScoresListUI;
 
 
 public class Main extends Application {
 	static Resourses res = new Resourses();
+	GameController controller = new GameController();
 	static MainUI mainUI;
 	static LevelUI levelUI;
-	static ScoresListUI scores;
+	static ScoresListUI scoresUI;
 	static GamePanelUI gamePanelUI;
 			
 	@Override
@@ -17,7 +17,7 @@ public class Main extends Application {
 		//initial all UIs
 		mainUI = new MainUI(primaryStage,res);	
 		levelUI = new LevelUI(primaryStage,res);
-		scores = new ScoresListUI(primaryStage,res,true);
+		scoresUI = new ScoresListUI(primaryStage,res);
 		gamePanelUI = new GamePanelUI(primaryStage,res);	
 		
 		// test Main UI			
@@ -25,6 +25,7 @@ public class Main extends Application {
 		
 		//Level UI
 		//levelUI.show();
+		
 		// test Scores UI				
 		//scores.show();
 		
@@ -32,7 +33,7 @@ public class Main extends Application {
 		//gamePanelUI.show();
 		
 	}
-		
+			
 	public static void main(String[] args) {
 		launch(args);
 	}

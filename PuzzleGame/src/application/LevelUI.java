@@ -21,7 +21,7 @@ public class LevelUI {
 	}
 	
 	public void show(){
-		final Group background = new Group(res.backgroundImage);
+		final Group background = new Group(res.gamePanelUI_background_Image);
 		
 		GridPane level_btns = new GridPane();
 		level_btns.setHgap(30);
