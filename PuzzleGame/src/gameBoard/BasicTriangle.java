@@ -100,6 +100,12 @@ public class BasicTriangle implements DrawableShape
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public int getAngleFromVertical() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }
