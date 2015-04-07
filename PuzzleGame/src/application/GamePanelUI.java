@@ -70,7 +70,7 @@ public class GamePanelUI {
 	
 	public void show(){
 		
-		final Group background = new Group(res.gamePanelUI_background_Image);
+		final Group background = new Group(res.background_Image);
 		
 		timerLabel.textProperty().bind(timeSeconds.asString());
 		timerLabel.setTextFill(Color.RED);
