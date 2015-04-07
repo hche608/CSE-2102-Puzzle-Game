@@ -10,7 +10,7 @@ public class DynamicMap extends Map
 		super(size);
 		for(int i = 0; i < shapes.size(); i++)
 		{
-			super.put(shapes.get(i));
+			super.put((BasicTriangle) shapes.get(i));
 		}
 	}
 
