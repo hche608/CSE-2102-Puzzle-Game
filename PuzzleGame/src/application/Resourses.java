@@ -12,7 +12,8 @@ public class Resourses {
 	
 	public final int BTN_MINWIDTH = 70;
 	public final int BTN_MINHEIGHT = 50;
-
+	
+	public Image background_image;
 	
 	/*
 	 * Resources for main UI 
@@ -30,6 +31,7 @@ public class Resourses {
 	public Image mainUI_exit_image;
 	public Image mainUI_exit_image1;
 
+	public ImageView background_Image;
 	public ImageView mainUI_background_Image;
 	public ImageView mainUI_start_Image;
 	public ImageView mainUI_start_Image1;
@@ -40,13 +42,11 @@ public class Resourses {
 	public ImageView mainUI_exit_Image;
 	public ImageView mainUI_exit_Image1;
 	
+	
 	/*
 	 * Resources for main UI 
 	 */
-	public Image gamePanelUI_background_image;
 
-
-	public ImageView gamePanelUI_background_Image;
 
 	
 	
@@ -58,6 +58,8 @@ public class Resourses {
 	public Resourses() {
 
 		try{
+			background_image = new Image(Main.class.getResource("resourses/background.png").toString());
+			
 			mainUI_background_image = new Image(Main.class.getResource("resourses/mainUI/main.png").toString());
 			
 			mainUI_start_image = new Image(Main.class.getResource("resourses/mainUI/start.png").toString());
@@ -73,7 +75,6 @@ public class Resourses {
 			mainUI_exit_image1 = new Image(Main.class.getResource("resourses/mainUI/exit_hover.png").toString());
 
 			// 
-			gamePanelUI_background_image = new Image(Main.class.getResource("resourses/GamePanelUI/background.png").toString());
 			
 			
 			
@@ -82,6 +83,8 @@ public class Resourses {
 		}
 		
 		try{
+
+			background_Image = new ImageView(background_image);
 			
 			mainUI_background_Image = new ImageView(mainUI_background_image);
 			mainUI_start_Image = new ImageView(mainUI_start_image);
@@ -93,7 +96,6 @@ public class Resourses {
 			mainUI_exit_Image = new ImageView(mainUI_exit_image);
 			mainUI_exit_Image1 = new ImageView(mainUI_exit_image1);
 			
-			gamePanelUI_background_Image = new ImageView(gamePanelUI_background_image);
 			
 			
 		} catch (Exception e){

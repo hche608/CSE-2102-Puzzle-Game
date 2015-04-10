@@ -21,7 +21,7 @@ public class ScoresListUI {
 	
 	public void show(){
 		
-		final Group background = new Group(res.gamePanelUI_background_Image);
+		final Group background = new Group(res.background_Image);
 		//final VBox scoresList = new VBox();
 		final Button btn = new Button("Return Previous View");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
