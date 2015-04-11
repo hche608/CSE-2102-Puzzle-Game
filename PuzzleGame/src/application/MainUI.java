@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -14,44 +15,52 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainUI {
 	Resourses res;
 	Stage primaryStage;
-	boolean disable;
 
 	public MainUI(Stage primaryStage, Resourses res) {
 		this.res = res;
 		this.primaryStage = primaryStage;
-		disable = false;
+
 	}
 
 	public void show() {
 		try {
 
-			final Group background = new Group(res.mainUI_background_Image);
+			final Group background = new Group(res.background_Image);
 
+			Text title = new Text("Tangram Puzzle");
+
+			title.setFont(res.minecrafter_font_title);
+			title.setLayoutX(160);
+			title.setLayoutY(70);
+			title.setFill(Color.BLACK);
 			// start btn
-			final Button btn = new Button();
-			btn.setGraphic(res.mainUI_start_Image);
-			btn.setBorder(null);
-			btn.setBackground(null);
-			btn.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			final Button btn_Start = new Button();
+			btn_Start.setGraphic(res.mainUI_start_Image);
+			btn_Start.setBorder(null);
+			btn_Start.setBackground(null);
+			btn_Start.setCursor(Cursor.HAND);
+			btn_Start.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn.setGraphic(res.mainUI_start_Image1);
+					btn_Start.setGraphic(res.mainUI_start_Image1);
 				}
 			});
-			btn.setOnMouseExited(new EventHandler<MouseEvent>() {
+			btn_Start.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn.setGraphic(res.mainUI_start_Image);
+					btn_Start.setGraphic(res.mainUI_start_Image);
 
 				}
 			});
 
-			btn.setOnAction(new EventHandler<ActionEvent>() {
+			btn_Start.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					Main.gamePanelUI.show();
@@ -60,26 +69,27 @@ public class MainUI {
 			});
 
 			// level select btn
-			final Button btn1 = new Button();
-			btn1.setGraphic(res.mainUI_level_Image);
-			btn1.setBorder(null);
-			btn1.setBackground(null);
-			btn1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			final Button btn_Level = new Button();
+			btn_Level.setGraphic(res.mainUI_level_Image);
+			btn_Level.setBorder(null);
+			btn_Level.setBackground(null);
+			btn_Level.setCursor(Cursor.HAND);
+			btn_Level.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn1.setGraphic(res.mainUI_level_Image1);
+					btn_Level.setGraphic(res.mainUI_level_Image1);
 
 				}
 			});
-			btn1.setOnMouseExited(new EventHandler<MouseEvent>() {
+			btn_Level.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn1.setGraphic(res.mainUI_level_Image);
+					btn_Level.setGraphic(res.mainUI_level_Image);
 
 				}
 			});
 
-			btn1.setOnAction(new EventHandler<ActionEvent>() {
+			btn_Level.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					Main.levelUI.show();
@@ -87,26 +97,25 @@ public class MainUI {
 			});
 
 			// scores btn
-
-			final Button btn2 = new Button();
-			btn2.setBorder(null);
-			btn2.setBackground(null);
-			btn2.setGraphic(res.mainUI_scores_Image);
-
-			btn2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			final Button btn_Scores = new Button();
+			btn_Scores.setBorder(null);
+			btn_Scores.setBackground(null);
+			btn_Scores.setGraphic(res.mainUI_scores_Image);
+			btn_Scores.setCursor(Cursor.HAND);
+			btn_Scores.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn2.setGraphic(res.mainUI_scores_Image1);
+					btn_Scores.setGraphic(res.mainUI_scores_Image1);
 				}
 			});
-			btn2.setOnMouseExited(new EventHandler<MouseEvent>() {
+			btn_Scores.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn2.setGraphic(res.mainUI_scores_Image);
+					btn_Scores.setGraphic(res.mainUI_scores_Image);
 				}
 			});
 
-			btn2.setOnAction(new EventHandler<ActionEvent>() {
+			btn_Scores.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					Main.scoresUI.show();
@@ -114,26 +123,26 @@ public class MainUI {
 			});
 
 			// exit btn
-
-			final Button btn3 = new Button();
-			btn3.setGraphic(res.mainUI_exit_Image);
-			btn3.setBorder(null);
-			btn3.setBackground(null);
-			btn3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			final Button btn_Exit = new Button();
+			btn_Exit.setGraphic(res.mainUI_exit_Image);
+			btn_Exit.setBorder(null);
+			btn_Exit.setBackground(null);
+			btn_Exit.setCursor(Cursor.HAND);
+			btn_Exit.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn3.setGraphic(res.mainUI_exit_Image1);
+					btn_Exit.setGraphic(res.mainUI_exit_Image1);
 
 				}
 			});
-			btn3.setOnMouseExited(new EventHandler<MouseEvent>() {
+			btn_Exit.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn3.setGraphic(res.mainUI_exit_Image);
+					btn_Exit.setGraphic(res.mainUI_exit_Image);
 
 				}
 			});
-			btn3.setOnAction(new EventHandler<ActionEvent>() {
+			btn_Exit.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -151,13 +160,14 @@ public class MainUI {
 				}
 			});
 
-			final VBox btns = new VBox(btn, btn1, btn2, btn3);
-			btns.alignmentProperty();
+			final VBox btns = new VBox(btn_Start, btn_Level, btn_Scores,
+					btn_Exit);
+			// btns.alignmentProperty();
 			btns.setAlignment(Pos.CENTER);
 			btns.setLayoutX((res.FRAME_WIDTH - res.BTNS_WIDTH) / 2);
 			btns.setLayoutY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 2);
 
-			final Group root = new Group(background, btns);
+			final Group root = new Group(background, title, btns);
 			Scene scene = new Scene(root, res.FRAME_WIDTH, res.FRAME_HEIGHT);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("Tangram Game");
