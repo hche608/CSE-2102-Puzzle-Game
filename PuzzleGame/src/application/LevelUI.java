@@ -14,10 +14,12 @@ import javafx.stage.Stage;
 public class LevelUI {
 	Resourses res;
 	Stage primaryStage;
+	boolean disable;
 	
 	public LevelUI(Stage primaryStage, Resourses res) {
 		this.res = res;
 		this.primaryStage = primaryStage;
+		disable = false;
 	}
 	
 	public void show(){
@@ -28,45 +30,49 @@ public class LevelUI {
 		level_btns.setVgap(30);
 		level_btns.setPadding(new Insets(0, 10, 0, 10));
 
-		final Button btn = new Button("1");
+		final Button btn = new Button();
+		btn.setBorder(null);
+		btn.setBackground(null);
+		btn.setGraphic(res.LevelUI_1_Image);
 		level_btns.add(btn, 1, 0);
-		btn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
+
 		
 		final Button btn2 = new Button("2");
 		level_btns.add(btn2, 2, 0);
-		btn2.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn2.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn3 = new Button("3");
 		level_btns.add(btn3, 3, 0);
-		btn3.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn3.setMinSize(res.BTN_LEVEL,res.BTN_LEVEL);
 		
 		final Button btn4 = new Button("4");
 		level_btns.add(btn4, 4, 0);
-		btn4.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn4.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn5 = new Button("5");
 		level_btns.add(btn5, 5, 0);
-		btn5.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn5.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn6 = new Button("6");
 		level_btns.add(btn6, 1, 1);
-		btn6.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn6.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn7 = new Button("7");
 		level_btns.add(btn7, 2, 1);
-		btn7.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn7.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn8 = new Button("8");
 		level_btns.add(btn8, 3, 1);
-		btn8.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn8.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn9 = new Button("9");
 		level_btns.add(btn9, 4, 1);
-		btn9.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn9.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 		final Button btn10 = new Button("10");
 		level_btns.add(btn10, 5, 1);
-		btn10.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+		btn10.setMinSize(res.BTN_LEVEL, res.BTN_LEVEL);
 		
 						
 		final VBox btns = new VBox(level_btns);
@@ -101,5 +107,6 @@ public class LevelUI {
 		primaryStage.show();
 		primaryStage.centerOnScreen();
 	}
+	
 
 }

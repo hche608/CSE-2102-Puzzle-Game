@@ -13,6 +13,8 @@ public class Resourses {
 	public final int BTN_MINWIDTH = 70;
 	public final int BTN_MINHEIGHT = 50;
 	
+	public final int BTN_LEVEL = 60;
+	
 	public Image background_image;
 	
 	/*
@@ -30,6 +32,15 @@ public class Resourses {
 	
 	public Image mainUI_exit_image;
 	public Image mainUI_exit_image1;
+	
+	/*
+	 * Resources for Level_Selevt UI 
+	 */
+	public Image LevelUI_1_image;
+	
+	/*
+	 * Resources for main UI 
+	 */
 
 	public ImageView background_Image;
 	public ImageView mainUI_background_Image;
@@ -42,13 +53,13 @@ public class Resourses {
 	public ImageView mainUI_exit_Image;
 	public ImageView mainUI_exit_Image1;
 	
+
 	
+
 	/*
-	 * Resources for main UI 
+	 * Resources for Level_Selevt UI 
 	 */
-
-
-	
+	public ImageView LevelUI_1_Image;
 	
 	/*
 	 * Resources for GamePanel UI 
@@ -74,6 +85,8 @@ public class Resourses {
 			mainUI_exit_image = new Image(Main.class.getResource("resourses/mainUI/exit.png").toString());
 			mainUI_exit_image1 = new Image(Main.class.getResource("resourses/mainUI/exit_hover.png").toString());
 
+			LevelUI_1_image = new Image(Main.class.getResource("resourses/LevelUI/1_normal.png").toString());
+			
 			// 
 			
 			
@@ -95,6 +108,8 @@ public class Resourses {
 			mainUI_scores_Image1 = new ImageView(mainUI_scores_image1);
 			mainUI_exit_Image = new ImageView(mainUI_exit_image);
 			mainUI_exit_Image1 = new ImageView(mainUI_exit_image1);
+			
+			LevelUI_1_Image = new ImageView(LevelUI_1_image);
 			
 			
 			
