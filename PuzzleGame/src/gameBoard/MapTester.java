@@ -1,5 +1,6 @@
 package gameBoard;
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -8,16 +9,22 @@ public class MapTester
 {
 	public static void main(String[] args)
 	{
+		/**
 		Map map = new Map(50);
-		//assertEquals(false, map.complete());
-		BasicTriangle tri = new BasicTriangle(50, 50, 17);
-		tri.setCoords(new Coordinate(0,49), new Coordinate(0,0), new Coordinate(49,49));
+		assertEquals(false, map.complete())
+		Vector[] vectors = new Vector[3];
+		vectors[0] = new Vector( 0, 0, 0, 49);
+		vectors[1] = new Vector(0, 49, 49, 49);
+		vectors[2] = new Vector(49, 49, 0, 0);
+		BasicShape tri = new BasicShape(vectors);
+		System.out.println("Polygon? " + tri.isPolygon());
+		System.out.println("Triangle? " + tri.isTriangle());
 		map.put(tri);
 		map.printState();
-		map.cleanUp(tri, -1, -1);
-		map.printState();
-		//assertEquals(true, map.put(null));
-		//assertEquals(true, map.take(null));
-		//assertEquals(true, map.complete());
+		assertEquals(true, map.put(null));
+		assertEquals(true, map.take(null));
+		assertEquals(true, map.complete());
+		 * 
+		 */
 	}
 }

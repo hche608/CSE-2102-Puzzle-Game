@@ -1,14 +1,12 @@
 package gameBoard;
 
-import java.awt.geom.Point2D;
-
 /**
  * This class used to represent coordinates within the game board
  * Meant to make drawing, removal and references easier.
  * @author Chris_000
  *
  */
-public class Coordinate extends Point2D
+public class Coordinate 
 {
 	private int _x;
 	private int _y;
@@ -19,30 +17,19 @@ public class Coordinate extends Point2D
 		_y = y;
 	}
 	
-	public double getX()
+	public int getX()
 	{
 		return _x;
 	}
 	
-	public double getY()
-	{
-		return _y;
-	}
-	
-	public int XCoord()
-	{
-		return _x;
-	}
-	
-	public int YCoord()
+	public int getY()
 	{
 		return _y;
 	}
 
-	@Override
-	public void setLocation(double x, double y) 
+	
+	public boolean isEqual(Coordinate coord)
 	{
-		_x = (int) x;
-		_y = (int) y;
+		return _x == coord.getX() && _y == coord.getY();
 	}
 }
