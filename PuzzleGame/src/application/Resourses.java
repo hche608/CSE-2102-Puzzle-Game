@@ -98,7 +98,7 @@ public class Resourses {
 							"/application/resourses/Minecraftia2.ttf"),
 					label_size);
 
-			//System.out.println("load font OK!!");
+			// System.out.println("load font OK!!");
 
 		} catch (Exception e) {
 			System.out.println("Load Font error");

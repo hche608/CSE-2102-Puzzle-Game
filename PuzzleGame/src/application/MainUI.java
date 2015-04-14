@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -17,22 +16,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class MainUI {
-	Resourses res;
-	Stage primaryStage;
+	Resourses res = Main.res;
+	Group root;
 
-	public MainUI(Stage primaryStage, Resourses res) {
-		this.res = res;
-		this.primaryStage = primaryStage;
-
-	}
-
-	public void show() {
+	public MainUI(GameController controller) {
+		root = new Group();
 		try {
-
-			final Group background = new Group(res.background_Image);
 
 			Text title = new Text("Tangram Puzzle");
 
@@ -63,8 +54,7 @@ public class MainUI {
 			btn_Start.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					Main.gamePanelUI.show();
-
+					controller.loadGamePanelUI();
 				}
 			});
 
@@ -92,7 +82,7 @@ public class MainUI {
 			btn_Level.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					Main.levelUI.show();
+					controller.loadLevelUI();
 				}
 			});
 
@@ -118,7 +108,7 @@ public class MainUI {
 			btn_Scores.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					Main.scoresUI.show();
+					controller.loadScoresUI();
 				}
 			});
 
@@ -167,16 +157,15 @@ public class MainUI {
 			btns.setLayoutX((res.FRAME_WIDTH - res.BTNS_WIDTH) / 2);
 			btns.setLayoutY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 2);
 
-			final Group root = new Group(background, title, btns);
-			Scene scene = new Scene(root, res.FRAME_WIDTH, res.FRAME_HEIGHT);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Tangram Game");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			primaryStage.centerOnScreen();
+			root.getChildren().addAll(title, btns);
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Initial Main UI error: " + e);
 		}
+	}
+
+	public Group getMainUI() {
+		return root;
 	}
 
 }

@@ -13,8 +13,9 @@ import javafx.util.Duration;
 public class Timer {
 	private Timeline timeline;
 	private Label timerLabel;
+	Resourses res = Main.res;
 
-	public Timer(Resourses res) {
+	public Timer(GameController controller) {
 		setTimerLabel(new Label());
 		IntegerProperty timeSeconds = new SimpleIntegerProperty(res.countdown);
 		timeSeconds.set(res.countdown);
