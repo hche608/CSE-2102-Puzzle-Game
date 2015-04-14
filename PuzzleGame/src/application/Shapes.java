@@ -14,13 +14,22 @@ public class Shapes {
 	double orgTranslateX, orgTranslateY;
 	ArrayList<Polygon> polygons;
 	Polygon triangle_One_L, triangle_Two_L, triangle_One_M, triangle_One_S,
-			triangle_Two_S, square_One_S, rhombus_One_S;
+			triangle_Two_S, square_One_S, rhombus_One_S, map;
 	GameController controller;
 	
 	public Shapes(GameController controller) {
 		this.controller = controller;
 		polygons = new ArrayList<Polygon>();
 		try {
+			map = new Polygon();
+			map.getPoints().addAll(
+					new Double[] {0.0,0.0, 
+							res.Cube_Size,0.0, 
+							res.Cube_Size,res.Cube_Size,
+							0.0,res.Cube_Size});
+			map.setLayoutX(res.O_pointX + 400);
+			map.setLayoutY(res.O_pointY - 100);
+			map.setFill(Color.WHITE);
 			/*
 			 * 
 			 * RED TRIANGLE
@@ -134,6 +143,7 @@ public class Shapes {
 			rhombus_One_S.setOnMousePressed(polygonOnMousePressedEventHandler);
 			rhombus_One_S.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 
+			polygons.add(map);
 			polygons.add(triangle_One_L);
 			polygons.add(triangle_Two_L);
 			polygons.add(triangle_One_M);
