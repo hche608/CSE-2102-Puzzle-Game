@@ -3,30 +3,30 @@ package application;
 public class Player {
 	private String playerName;
 	private int score;
-	
-	public Player(){
+
+	public Player() {
 		this.playerName = "Alex";
 		this.score = 0;
 	}
-	
-	public Player(String playerName){
+
+	public Player(String playerName) {
 		this.playerName = playerName;
 		this.score = 0;
 	}
-	
-	public void setScore(int score){
+
+	public void setScore(int score) {
 		this.score = score;
 	}
-	
-	public void setPlayerName(String playerName){
+
+	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
-	
-	public int getScore(){
+
+	public int getScore() {
 		return score;
 	}
-	
-	public String getPlayerName(){
+
+	public String getPlayerName() {
 		return playerName;
 	}
 }

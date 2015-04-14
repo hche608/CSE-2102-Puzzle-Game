@@ -1,39 +1,36 @@
 package application;
-	
+
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
-	static Resourses res = new Resourses();
-	GameController controller = new GameController();
-	static MainUI mainUI;
-	static LevelUI levelUI;
-	static ScoresListUI scoresUI;
-	static GamePanelUI gamePanelUI;
-			
+	public static Resourses res = new Resourses();
+	GameController controller;
+
 	@Override
-	public void start(Stage primaryStage) {		
-		//initial all UIs
-		mainUI = new MainUI(primaryStage,res);	
-		levelUI = new LevelUI(primaryStage,res);
-		scoresUI = new ScoresListUI(primaryStage,res);
-		gamePanelUI = new GamePanelUI(primaryStage,res);	
-		
-		// test Main UI			
-		mainUI.show();
-		
-		//Level UI
-		//levelUI.show();
-		
-		// test Scores UI				
-		//scores.show();
-		
-		// test Game Panel UI 		
-		//gamePanelUI.show();
-		
+	public void start(Stage primaryStage) {
+		// initial all UIs
+		try {
+			Group root = new Group();
+			GameController controller = new GameController(root);
+			controller.loadInitial();
+			Scene scene = new Scene(root, res.FRAME_WIDTH, res.FRAME_HEIGHT);
+			primaryStage.setResizable(false);
+			primaryStage.centerOnScreen();
+			primaryStage.setTitle("Tangram Game");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+
+		} catch (Exception e) {
+			System.out.println("Initial error: " + e);
+			System.out.println("Crash");
+			System.exit(0);
+		}
+
 	}
-			
+
 	public static void main(String[] args) {
 		launch(args);
 	}
