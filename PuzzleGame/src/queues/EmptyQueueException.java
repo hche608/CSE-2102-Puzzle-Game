@@ -2,10 +2,11 @@ package queues;
 
 public class EmptyQueueException extends Exception {
 
-	public EmptyQueueException(){
+	public EmptyQueueException() {
 		this("no message");
 	}
-	public EmptyQueueException(String s){
-		System.err.println("EmptyQueueException "+s);
+
+	public EmptyQueueException(String s) {
+		System.err.println("EmptyQueueException " + s);
 	}
 }

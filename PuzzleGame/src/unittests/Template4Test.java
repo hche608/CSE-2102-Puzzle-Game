@@ -1,12 +1,7 @@
 package unittests;
 
-import static org.junit.Assert.assertEquals; 
-
-import org.junit.Test;
 import org.junit.Ignore;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-//Do not use any classes in junit.framework or junit.extensions
+import org.junit.Test;
 
 /**
  * Tests for {@link Foo}.
@@ -14,15 +9,15 @@ import org.junit.runners.JUnit4;
  * @author user@example.com (John Doe)
  */
 public class Template4Test {
-//Usually, tests with JUnit4 do not need to extend anything
+	// Usually, tests with JUnit4 do not need to extend anything
 
-    @Test
-    public void thisAlwaysPasses() {
+	@Test
+	public void thisAlwaysPasses() {
 
-    }
+	}
 
-    @Test
-    @Ignore
-    public void thisIsIgnored() {
-    }
+	@Test
+	@Ignore
+	public void thisIsIgnored() {
+	}
 }

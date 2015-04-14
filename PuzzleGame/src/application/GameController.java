@@ -2,8 +2,10 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 
 public class GameController {
@@ -16,9 +18,9 @@ public class GameController {
 	Shapes shapes;
 	ArrayList<Polygon> polygons;
 	Label timerLabel;
-	
-	ArrayList<Player> players = new ArrayList<Player>();
+	Group gameBoard;
 
+	ArrayList<Player> players = new ArrayList<Player>();
 
 	Timer timer;
 
@@ -30,7 +32,7 @@ public class GameController {
 		gamePanelUI = new GamePanelUI(this);
 		timer = new Timer(this);
 		shapes = new Shapes(this);
-				
+
 	}
 
 	public void loadInitial() {
@@ -57,20 +59,21 @@ public class GameController {
 		timerLabel = timer.getTimerLabel();
 		timerLabel.setLayoutX(100);
 		timerLabel.setLayoutY(res.FRAME_HEIGHT - 50);
-		root.getChildren().addAll(res.background_Image,gamePanelUI.getGamePanelUI(),timerLabel);
+		root.getChildren().addAll(res.background_Image,
+				gamePanelUI.getGamePanelUI(), timerLabel);
 	}
 
 	public void loadGame(int level_num) {
-		root.getChildren().clear();	
-		
-		//Set Timer
+		root.getChildren().clear();
+
+		// Set Timer
 		timerLabel = timer.getTimerLabel();
 		timerLabel.setLayoutX(100);
 		timerLabel.setLayoutY(res.FRAME_HEIGHT - 50);
-		
-		Group gameBoard = new Group();
+
+		gameBoard = new Group();
 		try {
-			
+
 			polygons = new ArrayList<Polygon>();
 			polygons = shapes.getCube();
 			gameBoard.getChildren().addAll(polygons);
@@ -78,21 +81,24 @@ public class GameController {
 			System.out.println("Initial game board error: " + e);
 		}
 		root.getChildren().addAll(res.background_Image,
-				gamePanelUI.getGamePanelUI(),timerLabel);
+				gamePanelUI.getGamePanelUI(), timerLabel);
 		if (gameBoard != null)
 			root.getChildren().add(gameBoard);
-
+		//gameBoard.setOnMouseClicked(polygonOnMouseClickedEventHandler);
 	}
-	
+
+	public void reOrderShapes() {
+		gameBoard.getChildren().remove(1);
+	}
+
 	public void playTimer() {
 		timer.playTimer();
 	}
 
 	public void updatePieces() {
-		root.getChildren().remove(1);
-		
+
 	}
-	
+
 	public void redo() {
 
 	}
@@ -114,6 +120,15 @@ public class GameController {
 
 	}
 
+	EventHandler<MouseEvent> polygonOnMouseClickedEventHandler = new EventHandler<MouseEvent>() {
 
+		@Override
+		public void handle(MouseEvent t) {
+			System.out.println("X: " + t.getSceneX() + " ,Y: " + t.getSceneY());
+			System.out.println("?: " + t.getSource());
+			gameBoard.getChildren().remove(t.getSource());
+			gameBoard.getChildren().add((Polygon) t.getSource());
+		}
+	};
 
 }

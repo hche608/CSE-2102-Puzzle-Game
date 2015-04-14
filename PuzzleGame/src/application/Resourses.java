@@ -1,28 +1,18 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 
 public class Resourses {
-<<<<<<< HEAD
-	
-	public final int FRAME_WIDTH = 800;	
-	public final int FRAME_HEIGHT = 600;
-	public final int BTNS_WIDTH = 300;
-	public final int BTNS_HEIGHT = 250;
-	
-	public final int BTN_MINWIDTH = 70;
-	public final int BTN_MINHEIGHT = 50;
-	
-	public final int BTN_LEVEL = 60;
-	
-=======
 
 	public final double FRAME_WIDTH = 800.0;
 	public final double FRAME_HEIGHT = 600.0;
 	public final double BTNS_WIDTH = 300.0;
 	public final double BTNS_HEIGHT = 250.0;
+	public final double BTN_LEVEL = 60;
 
 	public final double BTN_MINWIDTH = 70.0;
 	public final double BTN_MINHEIGHT = 50.0;
@@ -33,44 +23,30 @@ public class Resourses {
 	public final double Cube_Size = 150.0;
 
 	public final int countdown = 50;
+	final int numOfLevel = 3;
 	public final double title_size = 50.0;
 	public final double label_size = 25.0;
 
 	/*
 	 * Resources for common area
 	 */
-	// public Font embed_Fonts;
->>>>>>> e380323f9a28c69455e69772b7ee7d4fd93f122d
 	public Image background_image;
+	public ImageView background_Image;
 	public Font minecrafter_font_title;
 	public Font minecrafter_font_label;
 	/*
 	 * Resources for main UI
 	 */
-	public Image mainUI_background_image;
+
 	public Image mainUI_start_image;
 	public Image mainUI_start_image1;
-
 	public Image mainUI_level_image;
 	public Image mainUI_level_image1;
-
 	public Image mainUI_scores_image;
 	public Image mainUI_scores_image1;
-
 	public Image mainUI_exit_image;
 	public Image mainUI_exit_image1;
-	
-	/*
-	 * Resources for Level_Selevt UI 
-	 */
-	public Image LevelUI_1_image;
-	
-	/*
-	 * Resources for main UI 
-	 */
 
-	public ImageView background_Image;
-	public ImageView mainUI_background_Image;
 	public ImageView mainUI_start_Image;
 	public ImageView mainUI_start_Image1;
 	public ImageView mainUI_level_Image;
@@ -79,23 +55,14 @@ public class Resourses {
 	public ImageView mainUI_scores_Image1;
 	public ImageView mainUI_exit_Image;
 	public ImageView mainUI_exit_Image1;
-<<<<<<< HEAD
-	
-
-	
 
 	/*
-	 * Resources for Level_Selevt UI 
+	 * Resources for Level_Selevt UI
 	 */
-	public ImageView LevelUI_1_Image;
-	
-=======
+	public ArrayList<Image> LevelUI_images;
 
-	/*
-	 * Resources for main UI
-	 */
+	public ArrayList<ImageView> LevelUI_Images;
 
->>>>>>> e380323f9a28c69455e69772b7ee7d4fd93f122d
 	/*
 	 * Resources for GamePanel UI
 	 */
@@ -122,34 +89,6 @@ public class Resourses {
 	public ImageView gamePanelUI_pause_Image;
 
 	public Resourses() {
-
-<<<<<<< HEAD
-		try{
-			background_image = new Image(Main.class.getResource("resourses/background.png").toString());
-			
-			mainUI_background_image = new Image(Main.class.getResource("resourses/mainUI/main.png").toString());
-			
-			mainUI_start_image = new Image(Main.class.getResource("resourses/mainUI/start.png").toString());
-			mainUI_start_image1 = new Image(Main.class.getResource("resourses/mainUI/start_hover.png").toString());
-
-			mainUI_level_image = new Image(Main.class.getResource("resourses/mainUI/levelselect.png").toString());
-			mainUI_level_image1 = new Image(Main.class.getResource("resourses/mainUI/levelselect_hover.png").toString());
-
-			mainUI_scores_image = new Image(Main.class.getResource("resourses/mainUI/score.png").toString());
-			mainUI_scores_image1 = new Image(Main.class.getResource("resourses/mainUI/score_hover.png").toString());
-			
-			mainUI_exit_image = new Image(Main.class.getResource("resourses/mainUI/exit.png").toString());
-			mainUI_exit_image1 = new Image(Main.class.getResource("resourses/mainUI/exit_hover.png").toString());
-
-			LevelUI_1_image = new Image(Main.class.getResource("resourses/LevelUI/1_normal.png").toString());
-			
-			// 
-			
-			
-			
-		} catch (Exception e){
-			System.out.println("Loading resourses error");
-=======
 		try {
 			minecrafter_font_title = Font.loadFont(
 					getClass().getResourceAsStream(
@@ -168,9 +107,6 @@ public class Resourses {
 		try {
 			background_image = new Image(Main.class.getResource(
 					"resourses/background.png").toString());
-
-			mainUI_background_image = new Image(Main.class.getResource(
-					"resourses/mainUI/main.png").toString());
 
 			mainUI_start_image = new Image(Main.class.getResource(
 					"resourses/mainUI/start.png").toString());
@@ -191,6 +127,14 @@ public class Resourses {
 					"resourses/mainUI/exit.png").toString());
 			mainUI_exit_image1 = new Image(Main.class.getResource(
 					"resourses/mainUI/exit_hover.png").toString());
+
+			LevelUI_images = new ArrayList<Image>();
+
+			for (int i = 0; i < numOfLevel; i++) {
+				LevelUI_images.add(new Image(Main.class.getResource(
+						"resourses/LevelUI/" + (i + 1) + "_normal.png")
+						.toString()));
+			}
 
 			//
 			gamePanelUI_undo_image = new Image(Main.class.getResource(
@@ -225,14 +169,13 @@ public class Resourses {
 
 		} catch (Exception e) {
 			System.out.println("Loading resourses error" + e);
->>>>>>> e380323f9a28c69455e69772b7ee7d4fd93f122d
+
 		}
 
 		try {
 
 			background_Image = new ImageView(background_image);
 
-			mainUI_background_Image = new ImageView(mainUI_background_image);
 			mainUI_start_Image = new ImageView(mainUI_start_image);
 			mainUI_start_Image1 = new ImageView(mainUI_start_image1);
 			mainUI_level_Image = new ImageView(mainUI_level_image);
@@ -241,15 +184,12 @@ public class Resourses {
 			mainUI_scores_Image1 = new ImageView(mainUI_scores_image1);
 			mainUI_exit_Image = new ImageView(mainUI_exit_image);
 			mainUI_exit_Image1 = new ImageView(mainUI_exit_image1);
-<<<<<<< HEAD
-			
-			LevelUI_1_Image = new ImageView(LevelUI_1_image);
-			
-			
-			
-		} catch (Exception e){
-			
-=======
+
+			LevelUI_Images = new ArrayList<ImageView>();
+			for (int i = 0; i < numOfLevel; i++) {
+				ImageView temp = new ImageView(LevelUI_images.get(i));
+				LevelUI_Images.add(temp);
+			}
 
 			/*
 			 * 
@@ -270,7 +210,7 @@ public class Resourses {
 
 		} catch (Exception e) {
 			System.out.println("Loading content error" + e);
->>>>>>> e380323f9a28c69455e69772b7ee7d4fd93f122d
+
 		}
 	}
 
