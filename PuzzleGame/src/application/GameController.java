@@ -2,10 +2,8 @@ package application;
 
 import java.util.ArrayList;
 
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 
 public class GameController {
@@ -22,7 +20,7 @@ public class GameController {
 
 	ArrayList<Player> players = new ArrayList<Player>();
 
-	Timer timer;
+	GameTimer timer;
 
 	public GameController(Group root) throws Exception {
 		this.root = root;
@@ -30,7 +28,7 @@ public class GameController {
 		levelUI = new LevelUI(this);
 		scoresUI = new ScoresListUI(this);
 		gamePanelUI = new GamePanelUI(this);
-		timer = new Timer(this);
+		timer = new GameTimer(res.countdown);
 		shapes = new Shapes(this);
 
 	}
@@ -84,17 +82,20 @@ public class GameController {
 				gamePanelUI.getGamePanelUI(), timerLabel);
 		if (gameBoard != null)
 			root.getChildren().add(gameBoard);
-		//gameBoard.setOnMouseClicked(polygonOnMouseClickedEventHandler);
-	}
-
-	public void reOrderShapes() {
-		gameBoard.getChildren().remove(1);
 	}
 
 	public void playTimer() {
 		timer.playTimer();
 	}
+	
+	public void pauseORresumeTimer(){
+		timer.pauseORresumeTimer();
+	}
 
+	public void setCountDown(int countdown){
+		timer.setCountDown(countdown);
+	}
+	
 	public void updatePieces() {
 
 	}
@@ -119,16 +120,5 @@ public class GameController {
 		return null;
 
 	}
-
-	EventHandler<MouseEvent> polygonOnMouseClickedEventHandler = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent t) {
-			System.out.println("X: " + t.getSceneX() + " ,Y: " + t.getSceneY());
-			System.out.println("?: " + t.getSource());
-			gameBoard.getChildren().remove(t.getSource());
-			gameBoard.getChildren().add((Polygon) t.getSource());
-		}
-	};
 
 }

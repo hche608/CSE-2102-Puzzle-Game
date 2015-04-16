@@ -79,6 +79,13 @@ public class GamePanelUI {
 			btn_pause.setLayoutX(385);
 			btn_pause.setLayoutY(res.FRAME_HEIGHT - 55);
 			btn_pause.setCursor(Cursor.HAND);
+			btn_pause.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					controller.pauseORresumeTimer();
+				}
+			});
 
 			final Button btn_next = new Button();
 			btn_next.setGraphic(res.gamePanelUI_next_Image);
@@ -91,7 +98,7 @@ public class GamePanelUI {
 
 				@Override
 				public void handle(ActionEvent event) {
-
+					controller.setCountDown(40);;
 				}
 			});
 

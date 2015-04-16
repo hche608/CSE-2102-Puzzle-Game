@@ -17,6 +17,7 @@ public class Shapes {
 			triangle_Two_S, square_One_S, rhombus_One_S, map;
 	GameController controller;
 
+
 	public Shapes(GameController controller) {
 		this.controller = controller;
 		polygons = new ArrayList<Polygon>();
@@ -51,6 +52,7 @@ public class Shapes {
 			triangle_One_L.setOnMousePressed(polygonOnMousePressedEventHandler);
 			triangle_One_L.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			triangle_One_L.setOnMouseClicked(polygonOnMouseClickedEventHandler);
+			triangle_One_L.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
 
 			/*
 			 * BLUE TRIANGLE
@@ -67,7 +69,8 @@ public class Shapes {
 			triangle_Two_L.setOnMousePressed(polygonOnMousePressedEventHandler);
 			triangle_Two_L.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			triangle_Two_L.setOnMouseClicked(polygonOnMouseClickedEventHandler);
-
+			triangle_Two_L.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+			
 			/*
 			 * 
 			 */
@@ -84,6 +87,8 @@ public class Shapes {
 			triangle_One_M.setOnMousePressed(polygonOnMousePressedEventHandler);
 			triangle_One_M.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			triangle_One_M.setOnMouseClicked(polygonOnMouseClickedEventHandler);
+			triangle_One_M.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+			
 			/*
 			 * 
 			 */
@@ -100,6 +105,8 @@ public class Shapes {
 			triangle_One_S.setOnMousePressed(polygonOnMousePressedEventHandler);
 			triangle_One_S.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			triangle_One_S.setOnMouseClicked(polygonOnMouseClickedEventHandler);
+			triangle_One_S.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+			
 			/*
 			 * 
 			 */
@@ -116,6 +123,8 @@ public class Shapes {
 			triangle_Two_S.setOnMousePressed(polygonOnMousePressedEventHandler);
 			triangle_Two_S.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			triangle_Two_S.setOnMouseClicked(polygonOnMouseClickedEventHandler);
+			triangle_Two_S.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+			
 			/*
 			 * 
 			 */
@@ -133,7 +142,8 @@ public class Shapes {
 			square_One_S.setOnMousePressed(polygonOnMousePressedEventHandler);
 			square_One_S.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			square_One_S.setOnMouseClicked(polygonOnMouseClickedEventHandler);
-
+			square_One_S.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+			
 			/*
 			 * 
 			 */
@@ -151,7 +161,9 @@ public class Shapes {
 			rhombus_One_S.setOnMousePressed(polygonOnMousePressedEventHandler);
 			rhombus_One_S.setOnMouseDragged(polygonOnMouseDraggedEventHandler);
 			rhombus_One_S.setOnMouseClicked(polygonOnMouseClickedEventHandler);
-
+			rhombus_One_S.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+			
+			
 			polygons.add(map);
 			polygons.add(triangle_One_L);
 			polygons.add(triangle_Two_L);
@@ -185,11 +197,15 @@ public class Shapes {
 
 		@Override
 		public void handle(MouseEvent t) {
+
 			System.out.println("X: " + t.getSceneX() + " ,Y: " + t.getSceneY());
-			double offset = ((Polygon) (t.getSource())).getRotate();
-			offset = (offset + 45.0) % 360;
-			((Polygon) (t.getSource())).setRotate(offset);
-			((Polygon) (t.getSource())).toFront();;
+			if(t.getClickCount() >= 2){
+				double offset = ((Polygon) (t.getSource())).getRotate();
+				offset = (offset + 45.0) % 360;
+				((Polygon) (t.getSource())).setRotate(offset);
+				((Polygon) (t.getSource())).toFront();
+			}
+
 		}
 	};
 
@@ -205,6 +221,18 @@ public class Shapes {
 
 			((Polygon) (t.getSource())).setTranslateX(newTranslateX);
 			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
+		}
+	};
+	
+	EventHandler<MouseEvent> polygonOnMouseEnteredEventHandler = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent t) {
+			((Polygon) (t.getSource())).toFront();
+			//orgSceneX = t.getSceneX();
+			//orgSceneY = t.getSceneY();
+			//orgTranslateX = ((Polygon) (t.getSource())).getTranslateX();
+			//orgTranslateY = ((Polygon) (t.getSource())).getTranslateY();
 		}
 	};
 

@@ -10,18 +10,20 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class Timer {
+public class GameTimer {
 	private Timeline timeline;
 	private Label timerLabel;
 	Resourses res = Main.res;
+	int countdown;
 
-	public Timer(GameController controller) {
+	public GameTimer(int countdown) {
+		this.countdown = countdown;
 		setTimerLabel(new Label());
-		IntegerProperty timeSeconds = new SimpleIntegerProperty(res.countdown);
-		timeSeconds.set(res.countdown);
+		IntegerProperty timeSeconds = new SimpleIntegerProperty(countdown);
+		timeSeconds.set(countdown);
 		timeline = new Timeline();
 		timeline.getKeyFrames().add(
-				new KeyFrame(Duration.seconds(res.countdown + 1), new KeyValue(
+				new KeyFrame(Duration.seconds(countdown + 1), new KeyValue(
 						timeSeconds, 0)));
 
 		timerLabel.textProperty().bind(timeSeconds.asString());
@@ -45,6 +47,9 @@ public class Timer {
 		} else {
 			timeline.play();
 		}
+	}
+	
+	public void setCountDown(int countdown){
 
 	}
 
