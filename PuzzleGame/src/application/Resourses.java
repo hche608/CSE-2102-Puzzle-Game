@@ -26,7 +26,20 @@ public class Resourses {
 	final int numOfLevel = 3;
 	public final double title_size = 50.0;
 	public final double label_size = 25.0;
-
+	
+	public final double[] Triangle_L = { 0.0, 0.0, 0.0, Cube_Size, Cube_Size / 2, Cube_Size / 2 };
+	public final double[] Triangle_M = { 0.0, 0.0, 0.0, Cube_Size, Cube_Size / 2, Cube_Size / 2 };
+	public final double[] Triangle_S = { 0.0, 0.0, 0.0, Cube_Size / 2, Cube_Size / 4, Cube_Size / 4 };
+	
+	public final double[] Square_S = { Cube_Size * 3 / 4, Cube_Size / 4,
+			Cube_Size, Cube_Size / 2,
+			Cube_Size * 3 / 4, Cube_Size * 3 / 4,
+			Cube_Size / 2, Cube_Size / 2 };
+	public final double[] Rhombus_S = { 0.0, Cube_Size, Cube_Size / 4,
+			Cube_Size * 3 / 4, Cube_Size * 3 / 4,
+			Cube_Size * 3 / 4, Cube_Size / 2,
+			Cube_Size };
+	
 	/*
 	 * Resources for common area
 	 */

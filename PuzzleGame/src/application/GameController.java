@@ -1,10 +1,8 @@
 package application;
 
 import java.util.ArrayList;
-
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.shape.Polygon;
 
 public class GameController {
 	public MainUI mainUI;
@@ -13,8 +11,8 @@ public class GameController {
 	public GamePanelUI gamePanelUI;
 	Resourses res = Main.res;
 	Group root;
-	Shapes shapes;
-	ArrayList<Polygon> polygons;
+	ShapesManger shapesManger;
+	ArrayList<Piece> polygons, maps;
 	Label timerLabel;
 	Group gameBoard;
 
@@ -29,7 +27,7 @@ public class GameController {
 		scoresUI = new ScoresListUI(this);
 		gamePanelUI = new GamePanelUI(this);
 		timer = new GameTimer(res.countdown);
-		shapes = new Shapes(this);
+		shapesManger = new ShapesManger(this);
 
 	}
 
@@ -72,9 +70,12 @@ public class GameController {
 		gameBoard = new Group();
 		try {
 
-			polygons = new ArrayList<Polygon>();
-			polygons = shapes.getCube();
+			polygons = new ArrayList<Piece>();
+			polygons = shapesManger.getCube();
+			maps = new ArrayList<Piece>();
+			maps = shapesManger.getMaps();
 			gameBoard.getChildren().addAll(polygons);
+			gameBoard.getChildren().addAll(maps);
 		} catch (Exception e) {
 			System.out.println("Initial game board error: " + e);
 		}

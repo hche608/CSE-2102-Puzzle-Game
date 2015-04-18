@@ -3,16 +3,12 @@
  */
 package application;
 
-import java.awt.Point;
-
 /**
  * @author hche608
  *
  */
 public interface PieceInfo {
-	public int getState();
+	public void setPolygonInfo(String PolygonInfo);
 
 	public String getPolygonInfo();
-
-	public Point getPoint();
 }
