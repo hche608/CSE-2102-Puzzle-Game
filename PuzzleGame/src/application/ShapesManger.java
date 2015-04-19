@@ -1,7 +1,6 @@
 package application;
 
 import java.util.ArrayList;
-
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -32,33 +31,38 @@ public class ShapesManger {
 			 * 
 			 * RED TRIANGLE
 			 */
-			triangle_One_L = new Piece(res.Triangle_L, "Triangle_L", 0.0, Color.RED);
+			triangle_One_L = new Piece(res.Triangle_L, "Triangle_L", 0.0,
+					Color.RED);
 
 			/*
 			 * BLUE TRIANGLE
 			 */
-			triangle_Two_L = new Piece(res.Triangle_L, "Triangle_L", 90.0, Color.BLUE);
+			triangle_Two_L = new Piece(res.Triangle_L, "Triangle_L", 90.0,
+					Color.BLUE);
 			triangle_Two_L.setTranslateX(40);
 			triangle_Two_L.setTranslateY(-40);
 
 			/*
 			 * 
 			 */
-			triangle_One_M = new Piece(res.Triangle_M, "Triangle_M", 0.0, Color.YELLOW);
+			triangle_One_M = new Piece(res.Triangle_M, "Triangle_M", 0.0,
+					Color.YELLOW);
 			triangle_One_M.setTranslateX(0);
 			triangle_One_M.setTranslateY(0);
 
 			/*
 			 * 
 			 */
-			triangle_One_S = new Piece(res.Triangle_S, "Triangle_S", 180.0, Color.PINK);
+			triangle_One_S = new Piece(res.Triangle_S, "Triangle_S", 180.0,
+					Color.PINK);
 			triangle_One_S.setTranslateX(0);
 			triangle_One_S.setTranslateY(0);
 
 			/*
 			 * 
 			 */
-			triangle_Two_S = new Piece(res.Triangle_S, "Triangle_S", 270.0, Color.CORNFLOWERBLUE);
+			triangle_Two_S = new Piece(res.Triangle_S, "Triangle_S", 270.0,
+					Color.CORNFLOWERBLUE);
 			triangle_Two_S.setTranslateX(40);
 			triangle_Two_S.setTranslateY(-40);
 
@@ -70,9 +74,9 @@ public class ShapesManger {
 			/*
 			 * 
 			 */
-			rhombus_One_S = new Piece(res.Rhombus_S, "Rhombus_S", 0.0, Color.BROWN);
+			rhombus_One_S = new Piece(res.Rhombus_S, "Rhombus_S", 0.0,
+					Color.BROWN);
 
-			
 			polygons.add(triangle_One_L);
 			polygons.add(triangle_Two_L);
 			polygons.add(triangle_One_M);
@@ -81,13 +85,15 @@ public class ShapesManger {
 			polygons.add(square_One_S);
 			polygons.add(rhombus_One_S);
 			maps.add(map);
-			
-			for (int i = 0; i < 7; i++){
-				polygons.get(i).setOnMousePressed(polygonOnMousePressedEventHandler);
-				polygons.get(i).setOnMouseDragged(polygonOnMouseDraggedEventHandler);
-				polygons.get(i).setOnMouseReleased(polygonOnMouseReleasedEventHandler);
-			}
 
+			for (int i = 0; i < 7; i++) {
+				polygons.get(i).setOnMousePressed(
+						polygonOnMousePressedEventHandler);
+				polygons.get(i).setOnMouseDragged(
+						polygonOnMouseDraggedEventHandler);
+				polygons.get(i).setOnMouseReleased(
+						polygonOnMouseReleasedEventHandler);
+			}
 		} catch (Exception e) {
 			System.out.println("Initial Shapes error: " + e);
 		}
@@ -100,7 +106,7 @@ public class ShapesManger {
 	public ArrayList<Piece> getMaps() {
 		return maps;
 	}
-	
+
 	EventHandler<MouseEvent> polygonOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
@@ -126,41 +132,55 @@ public class ShapesManger {
 			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
 		}
 	};
-	
+
 	EventHandler<MouseEvent> polygonOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent t) {
 			// collision Detection
-			int MatchedIndex = checkPieceIntersection((Piece) (t.getSource()), maps);
-			if (MatchedIndex != -1){
-				System.out.println(MatchedIndex);
-				matchedPieces((Piece) (t.getSource()), maps.get(MatchedIndex));
-				maps.remove(MatchedIndex);
+			int MatchedIndex = checkPieceIntersection((Piece) (t.getSource()),
+					maps);
+			if (MatchedIndex != -1) {
+				boolean isTaken = false;
+				for (int i = 0; i < polygons.size(); i++) {
+					if (polygons.get(i).getMatchedIndex() == MatchedIndex) {
+						isTaken = true;
+					}
 				}
+				if (isTaken == false || ((Piece) (t.getSource())).getMatchedIndex() == MatchedIndex) {
+					matchedPieces((Piece) (t.getSource()),
+							maps.get(MatchedIndex));
+					((Piece) (t.getSource())).setMatchedIndex(MatchedIndex);
+				}
+			} else {
+				((Piece) (t.getSource())).setMatchedIndex(-1);
+			}
 		}
 	};
 
 	private int checkPieceIntersection(Piece test_polygon,
 			ArrayList<Piece> target_polygons) {
 		int collisionDetected = -1;
-		for (int i = 0; i < target_polygons.size(); i++){
-			Shape intersect = Shape.intersect(test_polygon, target_polygons.get(i));
+		for (int i = 0; i < target_polygons.size(); i++) {
+			Shape intersect = Shape.intersect(test_polygon,
+					target_polygons.get(i));
 			if (intersect.getBoundsInLocal().getWidth() != -1) {
 				if (test_polygon.getPolygonInfo().equals(
 						target_polygons.get(i).getPolygonInfo()))
-					if (test_polygon.getRotate() == target_polygons.get(i).getRotate())
+					if (test_polygon.getRotate() == target_polygons.get(i)
+							.getRotate()) {
 						collisionDetected = i;
 						break;
+					}
 			}
 		}
-
 		return collisionDetected;
 	}
-	
-	private void matchedPieces(Piece test_polygon,
-			Piece target_polygon){
-		test_polygon.setTranslateX(target_polygon.getLayoutX() - test_polygon.getLayoutX());
-		test_polygon.setTranslateY(target_polygon.getLayoutY() - test_polygon.getLayoutY());
+
+	private void matchedPieces(Piece test_polygon, Piece target_polygon) {
+		test_polygon.setTranslateX(target_polygon.getLayoutX()
+				- test_polygon.getLayoutX());
+		test_polygon.setTranslateY(target_polygon.getLayoutY()
+				- test_polygon.getLayoutY());
 	}
 }

@@ -98,7 +98,8 @@ public class GamePanelUI {
 
 				@Override
 				public void handle(ActionEvent event) {
-					controller.setCountDown(40);;
+					controller.setCountDown(40);
+					;
 				}
 			});
 

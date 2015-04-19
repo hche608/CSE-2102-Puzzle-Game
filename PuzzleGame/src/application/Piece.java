@@ -11,13 +11,14 @@ public class Piece extends Polygon implements PieceInfo {
 	String PolygonInfo;
 	double orgSceneX, orgSceneY;
 	double orgTranslateX, orgTranslateY;
+	int MatchedIndex = -1;
 
 	public Piece() {
 		super();
 		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
 		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
 	}
-	
+
 	public Piece(double[] points, String PolygonInfo, double rotate_value) {
 		super(points);
 		this.PolygonInfo = PolygonInfo;
@@ -26,7 +27,8 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setRotate(rotate_value);
 	}
 
-	public Piece(double[] points, String PolygonInfo, double rotate_value, javafx.scene.paint.Color color) {
+	public Piece(double[] points, String PolygonInfo, double rotate_value,
+			javafx.scene.paint.Color color) {
 		super(points);
 		this.PolygonInfo = PolygonInfo;
 		this.setStroke(Color.BLACK);
@@ -37,6 +39,14 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setCursor(Cursor.HAND);
 		this.setLayoutX(res.O_pointX);
 		this.setLayoutY(res.O_pointY);
+	}
+
+	public void setMatchedIndex(int MatchedIndex) {
+		this.MatchedIndex = MatchedIndex;
+	}
+
+	public int getMatchedIndex() {
+		return MatchedIndex;
 	}
 
 	@Override

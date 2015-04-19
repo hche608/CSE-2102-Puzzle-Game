@@ -88,15 +88,15 @@ public class GameController {
 	public void playTimer() {
 		timer.playTimer();
 	}
-	
-	public void pauseORresumeTimer(){
+
+	public void pauseORresumeTimer() {
 		timer.pauseORresumeTimer();
 	}
 
-	public void setCountDown(int countdown){
+	public void setCountDown(int countdown) {
 		timer.setCountDown(countdown);
 	}
-	
+
 	public void updatePieces() {
 
 	}

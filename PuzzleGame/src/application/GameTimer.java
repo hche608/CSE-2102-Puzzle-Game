@@ -48,8 +48,8 @@ public class GameTimer {
 			timeline.play();
 		}
 	}
-	
-	public void setCountDown(int countdown){
+
+	public void setCountDown(int countdown) {
 
 	}
 
