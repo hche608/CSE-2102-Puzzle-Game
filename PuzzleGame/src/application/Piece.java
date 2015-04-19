@@ -13,6 +13,7 @@ public class Piece extends Polygon implements PieceInfo {
 	double orgTranslateX, orgTranslateY;
 	int MatchedIndex = -1;
 
+
 	public Piece() {
 		super();
 		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
@@ -25,6 +26,7 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setStroke(Color.BLACK);
 		this.setFill(Color.WHITE);
 		this.setRotate(rotate_value);
+		this.PolygonInfo = PolygonInfo;
 	}
 
 	public Piece(double[] points, String PolygonInfo, double rotate_value,
@@ -37,6 +39,7 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
 		this.setRotate(rotate_value);
 		this.setCursor(Cursor.HAND);
+		this.PolygonInfo = PolygonInfo;
 	}
 
 	public void setMatchedIndex(int MatchedIndex) {
@@ -74,7 +77,14 @@ public class Piece extends Polygon implements PieceInfo {
 		public void handle(MouseEvent t) {
 			if (t.getClickCount() >= 2) {
 				double offset = ((Polygon) (t.getSource())).getRotate();
-				offset = (offset + 45.0) % 360;
+				if (PolygonInfo.equals("Square_S")){
+					offset = (offset + 45.0) % 90;
+				} else if (PolygonInfo.equals("Rhombus_S")){
+					offset = (offset + 45.0) % 180;
+				} else {
+					offset = (offset + 45.0) % 360;
+				}
+				
 				((Polygon) (t.getSource())).setRotate(offset);
 				((Polygon) (t.getSource())).toFront();
 			}
