@@ -26,8 +26,7 @@ public class GameController {
 		levelUI = new LevelUI(this);
 		scoresUI = new ScoresListUI(this);
 		gamePanelUI = new GamePanelUI(this);
-		timer = new GameTimer(res.countdown);
-		shapesManger = new ShapesManger(this);
+		// shapesManger = new ShapesManger(this);
 
 	}
 
@@ -52,6 +51,7 @@ public class GameController {
 
 	public void loadGamePanelUI() {
 		root.getChildren().clear();
+
 		timerLabel = timer.getTimerLabel();
 		timerLabel.setLayoutX(100);
 		timerLabel.setLayoutY(res.FRAME_HEIGHT - 50);
@@ -61,12 +61,13 @@ public class GameController {
 
 	public void loadGame(int level_num) {
 		root.getChildren().clear();
+		shapesManger = new ShapesManger(this, level_num);
 
 		// Set Timer
+		timer = new GameTimer(res.countdown);
 		timerLabel = timer.getTimerLabel();
 		timerLabel.setLayoutX(100);
 		timerLabel.setLayoutY(res.FRAME_HEIGHT - 50);
-
 		gameBoard = new Group();
 		try {
 
@@ -110,7 +111,14 @@ public class GameController {
 	}
 
 	public void completed() {
+		timer.stopTimer();
 
+		System.out.println(timer.getCountDown());
+	}
+
+	public void reset() {
+		timer = new GameTimer(res.countdown);
+		shapesManger = new ShapesManger(this, 1);
 	}
 
 	/*

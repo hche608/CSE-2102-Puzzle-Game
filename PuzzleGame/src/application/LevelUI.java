@@ -23,7 +23,7 @@ public class LevelUI {
 			level_btns.setVgap(30);
 			level_btns.setPadding(new Insets(0, 10, 0, 10));
 
-			final Button btn = new Button("1");
+			final Button btn = new Button();
 			btn.setGraphic(res.LevelUI_Images.get(0));
 			level_btns.add(btn, 1, 0);
 			btn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);

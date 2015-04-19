@@ -37,8 +37,6 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
 		this.setRotate(rotate_value);
 		this.setCursor(Cursor.HAND);
-		this.setLayoutX(res.O_pointX);
-		this.setLayoutY(res.O_pointY);
 	}
 
 	public void setMatchedIndex(int MatchedIndex) {

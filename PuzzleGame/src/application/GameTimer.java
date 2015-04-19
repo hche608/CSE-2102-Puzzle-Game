@@ -15,11 +15,12 @@ public class GameTimer {
 	private Label timerLabel;
 	Resourses res = Main.res;
 	int countdown;
+	IntegerProperty timeSeconds;
 
 	public GameTimer(int countdown) {
 		this.countdown = countdown;
 		setTimerLabel(new Label());
-		IntegerProperty timeSeconds = new SimpleIntegerProperty(countdown);
+		timeSeconds = new SimpleIntegerProperty(countdown);
 		timeSeconds.set(countdown);
 		timeline = new Timeline();
 		timeline.getKeyFrames().add(
@@ -37,7 +38,8 @@ public class GameTimer {
 	}
 
 	public void playTimer() {
-		if (timeline.getStatus() != Status.RUNNING)
+		if (timeline.getStatus() != Status.RUNNING
+				&& timeline.getStatus() != Status.STOPPED)
 			timeline.play();
 	}
 
@@ -49,8 +51,18 @@ public class GameTimer {
 		}
 	}
 
-	public void setCountDown(int countdown) {
+	public void stopTimer() {
+		if (timeline.getStatus() == Status.RUNNING) {
+			timeline.stop();
+		}
+	}
 
+	public void setCountDown(int v) {
+		timeSeconds.setValue(v);
+	}
+
+	public int getCountDown() {
+		return timeSeconds.getValue();
 	}
 
 	public void setTimerLabel(Label timerLabel) {

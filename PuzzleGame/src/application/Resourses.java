@@ -29,8 +29,8 @@ public class Resourses {
 
 	public final double[] Triangle_L = { 0.0, 0.0, 0.0, Cube_Size,
 			Cube_Size / 2, Cube_Size / 2 };
-	public final double[] Triangle_M = { 0.0, 0.0, 0.0, Cube_Size,
-			Cube_Size / 2, Cube_Size / 2 };
+	public final double[] Triangle_M = { 0.0, 0.0, 0.0, Cube_Size / 2,
+			Cube_Size / 2, 0.0 };
 	public final double[] Triangle_S = { 0.0, 0.0, 0.0, Cube_Size / 2,
 			Cube_Size / 4, Cube_Size / 4 };
 
