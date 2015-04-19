@@ -71,6 +71,13 @@ public class GamePanelUI {
 			btn_pre.setLayoutX(250);
 			btn_pre.setLayoutY(res.FRAME_HEIGHT - 55);
 			btn_pre.setCursor(Cursor.HAND);
+			btn_pre.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					controller.previousLevel();;
+				}
+			});
 
 			final Button btn_pause = new Button();
 			btn_pause.setGraphic(res.gamePanelUI_pause_Image);
@@ -99,7 +106,7 @@ public class GamePanelUI {
 				@Override
 				public void handle(ActionEvent event) {
 					controller.setCountDown(40);
-					;
+					controller.nextLevel();
 				}
 			});
 

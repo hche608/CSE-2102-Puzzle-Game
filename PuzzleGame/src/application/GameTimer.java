@@ -38,8 +38,7 @@ public class GameTimer {
 	}
 
 	public void playTimer() {
-		if (timeline.getStatus() != Status.RUNNING
-				&& timeline.getStatus() != Status.STOPPED)
+		if (timeline.getStatus() != Status.RUNNING)
 			timeline.play();
 	}
 

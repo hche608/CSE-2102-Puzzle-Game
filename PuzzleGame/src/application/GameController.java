@@ -15,6 +15,7 @@ public class GameController {
 	ArrayList<Piece> polygons, maps;
 	Label timerLabel;
 	Group gameBoard;
+	int level_num = 1;
 
 	ArrayList<Player> players = new ArrayList<Player>();
 
@@ -60,6 +61,7 @@ public class GameController {
 	}
 
 	public void loadGame(int level_num) {
+		this.level_num = level_num;
 		root.getChildren().clear();
 		shapesManger = new ShapesManger(this, level_num);
 
@@ -98,6 +100,14 @@ public class GameController {
 		timer.setCountDown(countdown);
 	}
 
+	public void previousLevel(){
+		if (level_num > 2)
+			loadGame(level_num - 1);
+	}
+	public void nextLevel(){
+		if (level_num < 20)
+			loadGame(level_num + 1);
+	}
 	public void updatePieces() {
 
 	}

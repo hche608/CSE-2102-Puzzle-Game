@@ -120,66 +120,66 @@ public class Resourses {
 		}
 		try {
 			background_image = new Image(Main.class.getResource(
-					"resourses/background.png").toString());
+					"/application/resourses/background.png").toString());
 
 			mainUI_start_image = new Image(Main.class.getResource(
-					"resourses/mainUI/start.png").toString());
+					"/application/resourses/mainUI/start.png").toString());
 			mainUI_start_image1 = new Image(Main.class.getResource(
-					"resourses/mainUI/start_hover.png").toString());
+					"/application/resourses/mainUI/start_hover.png").toString());
 
 			mainUI_level_image = new Image(Main.class.getResource(
-					"resourses/mainUI/levelselect.png").toString());
+					"/application/resourses/mainUI/levelselect.png").toString());
 			mainUI_level_image1 = new Image(Main.class.getResource(
-					"resourses/mainUI/levelselect_hover.png").toString());
+					"/application/resourses/mainUI/levelselect_hover.png").toString());
 
 			mainUI_scores_image = new Image(Main.class.getResource(
-					"resourses/mainUI/score.png").toString());
+					"/application/resourses/mainUI/score.png").toString());
 			mainUI_scores_image1 = new Image(Main.class.getResource(
-					"resourses/mainUI/score_hover.png").toString());
+					"/application/resourses/mainUI/score_hover.png").toString());
 
 			mainUI_exit_image = new Image(Main.class.getResource(
-					"resourses/mainUI/exit.png").toString());
+					"/application/resourses/mainUI/exit.png").toString());
 			mainUI_exit_image1 = new Image(Main.class.getResource(
-					"resourses/mainUI/exit_hover.png").toString());
+					"/application/resourses/mainUI/exit_hover.png").toString());
 
 			LevelUI_images = new ArrayList<Image>();
 
 			for (int i = 0; i < numOfLevel; i++) {
 				LevelUI_images.add(new Image(Main.class.getResource(
-						"resourses/LevelUI/" + (i + 1) + "_normal.png")
+						"/application/resourses/LevelUI/" + (i + 1) + "_normal.png")
 						.toString()));
 			}
 
 			//
 			gamePanelUI_undo_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Function_Buttons/redo.png")
+					"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
 					.toString());
 			gamePanelUI_redo_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Function_Buttons/redo.png")
+					"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
 					.toString());
 			gamePanelUI_clockwise_rotate_image = new Image(
 					Main.class
 							.getResource(
-									"resourses/GamePanelUI/Function_Buttons/clockwise_rotate.png")
+									"/application/resourses/GamePanelUI/Function_Buttons/clockwise_rotate.png")
 							.toString());
 			gamePanelUI_counterclockwise_rotate_image = new Image(
 					Main.class
 							.getResource(
-									"resourses/GamePanelUI/Function_Buttons/counterclockwise_rotate.png")
+									"/application/resourses/GamePanelUI/Function_Buttons/counterclockwise_rotate.png")
 							.toString());
 			gamePanelUI_flip_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Function_Buttons/Flip.png")
+					"/application/resourses/GamePanelUI/Function_Buttons/Flip.png")
 					.toString());
 
 			gamePanelUI_mute_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Lower_Buttons/Mute.png").toString());
+					"/application/resourses/GamePanelUI/Lower_Buttons/Mute.png").toString());
 			gamePanelUI_next_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Lower_Buttons/Next.png").toString());
+					"/application/resourses/GamePanelUI/Lower_Buttons/Next.png").toString());
 			gamePanelUI_previous_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Lower_Buttons/Previous.png")
+					"/application/resourses/GamePanelUI/Lower_Buttons/Previous.png")
 					.toString());
 			gamePanelUI_pause_image = new Image(Main.class.getResource(
-					"resourses/GamePanelUI/Lower_Buttons/Pause.png").toString());
+					"/application/resourses/GamePanelUI/Lower_Buttons/Pause.png").toString());
 
 		} catch (Exception e) {
 			System.out.println("Loading resourses error" + e);
