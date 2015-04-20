@@ -1,13 +1,19 @@
+	/**
+	 * This is a interface of Game Panel
+	 * this class is controlled by GameController
+	 * 
+	 * this class only allocates all labels and buttons on the Panel
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -21,38 +27,6 @@ public class GamePanelUI {
 		try {
 
 			this.controller = controller;
-
-			final Button redo = new Button();
-			redo.setGraphic(res.gamePanelUI_redo_Image);
-			redo.setBorder(null);
-			redo.setBackground(null);
-			redo.setCursor(Cursor.HAND);
-
-			final Button flip = new Button();
-			flip.setGraphic(res.gamePanelUI_flip_Image);
-			flip.setBorder(null);
-			flip.setBackground(null);
-			flip.setCursor(Cursor.HAND);
-
-			final Button hbtn1 = new Button();
-			hbtn1.setGraphic(res.gamePanelUI_counterclockwise_rotate_Image);
-			hbtn1.setBorder(null);
-			hbtn1.setBackground(null);
-
-			final Button hbtn2 = new Button();
-			hbtn2.setGraphic(res.gamePanelUI_clockwise_rotate_Image);
-			hbtn2.setBorder(null);
-			hbtn2.setBackground(null);
-			hbtn2.setAlignment(Pos.BASELINE_RIGHT);
-
-			final HBox hbtns = new HBox(hbtn1, hbtn2);
-
-			final VBox topBTNs = new VBox(redo, flip, hbtns);
-			topBTNs.alignmentProperty();
-			// topBTNs.setAlignment(Pos.CENTER);
-			topBTNs.setLayoutX(50.0);
-			topBTNs.setLayoutY(50.0);
-
 			/*
 			 * Bottom Line
 			 */
@@ -127,7 +101,7 @@ public class GamePanelUI {
 			});
 
 			Group lowBTNs = new Group(btn_pre, btn_pause, btn_next, btn_mute);
-			root.getChildren().addAll(topBTNs, lowBTNs, counter);
+			root.getChildren().addAll(lowBTNs, counter);
 
 		} catch (Exception e) {
 			System.out.println("Initial game panel error: " + e);

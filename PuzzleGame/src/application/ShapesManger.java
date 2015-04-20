@@ -1,3 +1,14 @@
+	/**
+	 * This is polygon controller
+	 * this class is controlled by GameController
+	 * 
+	 * this class only allocates all pickable and unpickable polygons
+	 * 
+	 * this class is kind of simple level factory now.
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 import java.util.ArrayList;
@@ -149,7 +160,14 @@ public class ShapesManger {
 	public ArrayList<Piece> getMaps() {
 		return maps;
 	}
-
+	/**
+	 * if Mouse is Pressed
+	 * 
+	 * get coordinates of the current point
+	 * and store it for further use
+	 *  
+	 * 
+	 */
 	EventHandler<MouseEvent> polygonOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
@@ -161,6 +179,11 @@ public class ShapesManger {
 		}
 	};
 
+	/**
+	 * Dragged the polygon
+	 * 
+	 * 
+	 */
 	EventHandler<MouseEvent> polygonOnMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
@@ -175,7 +198,17 @@ public class ShapesManger {
 			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
 		}
 	};
-
+	
+	
+	/**
+	 * if Mouse is released
+	 * 
+	 * check if a pickable polygon moved
+	 * 
+	 * check is the game completed
+	 * 
+	 * 
+	 */
 	EventHandler<MouseEvent> polygonOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
@@ -192,7 +225,7 @@ public class ShapesManger {
 				}
 				if (isTaken == false
 						|| ((Piece) (t.getSource())).getMatchedIndex() == MatchedIndex) {
-					matchedPieces((Piece) (t.getSource()),
+					setMatchedPieces((Piece) (t.getSource()),
 							maps.get(MatchedIndex));
 					((Piece) (t.getSource())).setMatchedIndex(MatchedIndex);
 				}
@@ -206,6 +239,13 @@ public class ShapesManger {
 		}
 	};
 
+	/**
+	 * if a pickable polygon intersects a unpickable polygon
+	 * 
+	 * @return the index of the matched unpickable polygon
+	 * 
+	 */
+	
 	private int checkPieceIntersection(Piece test_polygon,
 			ArrayList<Piece> target_polygons) {
 		int collisionDetected = -1;
@@ -224,12 +264,24 @@ public class ShapesManger {
 		}
 		return collisionDetected;
 	}
+	
+	/**
+	 * if a pickable polygon is matched to a unpickable polygon
+	 * 
+	 * set the coordinates of the pickable polygon
+	 * 
+	 */
 
-	private void matchedPieces(Piece test_polygon, Piece target_polygon) {
+	private void setMatchedPieces(Piece test_polygon, Piece target_polygon) {
 		test_polygon.setTranslateX(target_polygon.getTranslateX());
 		test_polygon.setTranslateY(target_polygon.getTranslateY());
 	}
 
+	/**
+	 * Returns is all unpickable polygon 100% matched
+	 * 
+	 * @return isCompleted
+	 */
 	private boolean isCompleted() {
 		boolean isCompleted = true;
 		for (int i = 0; i < polygons.size(); i++) {

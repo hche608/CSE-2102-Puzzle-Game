@@ -1,3 +1,12 @@
+	/**
+	 * This is a interface of Main Panel
+	 * this class is controlled by GameController
+	 * 
+	 * this class only allocates all labels and buttons on the Panel
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 import java.util.Optional;
@@ -116,7 +125,8 @@ public class MainUI {
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == ButtonType.OK) {
 						// ... user chose OK
-						Platform.exit();
+						System.exit(0);
+						//Platform.exit();
 					} else {
 						// ... user chose CANCEL or closed the dialog
 					}

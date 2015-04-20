@@ -1,3 +1,12 @@
+	/**
+	 * This is the main class
+	 * this class is generate a stage which can display everything
+	 * 
+	 * the contents of the stage are controlled by Game Controller
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 import javafx.application.Application;
@@ -15,7 +24,7 @@ public class Main extends Application {
 		try {
 			Group root = new Group();
 			GameController controller = new GameController(root);
-			controller.loadInitial();
+			controller.loadMainUI();
 			Scene scene = new Scene(root, res.FRAME_WIDTH, res.FRAME_HEIGHT);
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();

@@ -1,3 +1,9 @@
+	/**
+	 * This class uses to store players' info
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 public class Player {

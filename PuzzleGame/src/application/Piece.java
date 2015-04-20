@@ -1,3 +1,14 @@
+	/**
+	 * This is a Piece class, which extends Polygon, and implements PieceInfo
+	 * 
+	 * This class generates Polygon.
+	 * 
+	 * this class is controlled by GameController
+	 * 
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 import javafx.event.EventHandler;
@@ -40,7 +51,11 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setCursor(Cursor.HAND);
 		this.PolygonInfo = PolygonInfo;
 	}
-
+	/**
+	 * Matched Index used to store info that tells 
+	 * which index of white(unpickable) polygon matches with the colorful(pickable) polygon
+	 * 
+	 */
 	public void setMatchedIndex(int MatchedIndex) {
 		this.MatchedIndex = MatchedIndex;
 	}
@@ -49,16 +64,30 @@ public class Piece extends Polygon implements PieceInfo {
 		return MatchedIndex;
 	}
 
+	/**
+	 * Store the size and what type of polygon
+	 * 
+	 */
 	@Override
 	public void setPolygonInfo(String PolygonInfo) {
 		this.PolygonInfo = PolygonInfo;
 	}
 
+	/**
+	 * return the size and what type of polygon
+	 * 
+	 * @param PolygonInfo
+	 */
 	@Override
 	public String getPolygonInfo() {
 		return PolygonInfo;
 	}
 
+	/**
+	 * get coordinates when Mouse Pressed
+	 * 
+	 * 
+	 */
 	EventHandler<MouseEvent> polygonOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
@@ -70,6 +99,12 @@ public class Piece extends Polygon implements PieceInfo {
 		}
 	};
 
+	
+	/**
+	 * rotate the polygon when double clicked
+	 * 
+	 * 
+	 */
 	EventHandler<MouseEvent> polygonOnMouseClickedEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override
@@ -90,6 +125,11 @@ public class Piece extends Polygon implements PieceInfo {
 		}
 	};
 
+	
+	/**
+	 * get the current polygon to front if it is covered by other polygon
+	 * 
+	 */
 	EventHandler<MouseEvent> polygonOnMouseEnteredEventHandler = new EventHandler<MouseEvent>() {
 
 		@Override

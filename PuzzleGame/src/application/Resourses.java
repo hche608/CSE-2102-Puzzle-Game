@@ -1,3 +1,9 @@
+	/**
+	 * This is a Resource class
+	 * 
+	 * @author hche608
+	 * 
+	 */
 package application;
 
 import java.util.ArrayList;

@@ -1,12 +1,12 @@
 /**
+ * store extra info for polygon
  * 
- */
-package application;
-
-/**
  * @author hche608
  *
  */
+package application;
+
+
 public interface PieceInfo {
 	public void setPolygonInfo(String PolygonInfo);
 
