@@ -38,6 +38,7 @@ public class GameController {
 	public void loadMainUI() {
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image, mainUI.getMainUI());
+		levelUI.unlock(1);
 	}
 
 	public void loadLevelUI() {
@@ -62,6 +63,7 @@ public class GameController {
 
 	public void loadGame(int level_num) {
 		this.level_num = level_num;
+		levelUI.unlock(level_num);
 		root.getChildren().clear();
 		shapesManger = new ShapesManger(this, level_num);
 
@@ -100,14 +102,16 @@ public class GameController {
 		timer.setCountDown(countdown);
 	}
 
-	public void previousLevel(){
+	public void previousLevel() {
 		if (level_num > 2)
 			loadGame(level_num - 1);
 	}
-	public void nextLevel(){
+
+	public void nextLevel() {
 		if (level_num < 20)
 			loadGame(level_num + 1);
 	}
+
 	public void updatePieces() {
 
 	}

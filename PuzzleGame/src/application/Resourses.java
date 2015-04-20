@@ -23,7 +23,7 @@ public class Resourses {
 	public final double Cube_Size = 150.0;
 
 	public final int countdown = 50;
-	final int numOfLevel = 3;
+	final int numOfLevel = 10;
 	public final double title_size = 50.0;
 	public final double label_size = 25.0;
 
@@ -74,8 +74,10 @@ public class Resourses {
 	 * Resources for Level_Selevt UI
 	 */
 	public ArrayList<Image> LevelUI_images;
+	public ArrayList<Image> LevelUI_images1;
 
 	public ArrayList<ImageView> LevelUI_Images;
+	public ArrayList<ImageView> LevelUI_Images1;
 
 	/*
 	 * Resources for GamePanel UI
@@ -130,7 +132,8 @@ public class Resourses {
 			mainUI_level_image = new Image(Main.class.getResource(
 					"/application/resourses/mainUI/levelselect.png").toString());
 			mainUI_level_image1 = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/levelselect_hover.png").toString());
+					"/application/resourses/mainUI/levelselect_hover.png")
+					.toString());
 
 			mainUI_scores_image = new Image(Main.class.getResource(
 					"/application/resourses/mainUI/score.png").toString());
@@ -143,20 +146,28 @@ public class Resourses {
 					"/application/resourses/mainUI/exit_hover.png").toString());
 
 			LevelUI_images = new ArrayList<Image>();
+			LevelUI_images1 = new ArrayList<Image>();
 
 			for (int i = 0; i < numOfLevel; i++) {
 				LevelUI_images.add(new Image(Main.class.getResource(
-						"/application/resourses/LevelUI/" + (i + 1) + "_normal.png")
-						.toString()));
+						"/application/resourses/LevelUI/" + (i + 1)
+								+ "_normal.png").toString()));
+				LevelUI_images1.add(new Image(Main.class.getResource(
+						"/application/resourses/LevelUI/" + (i + 1)
+								+ "_hover.png").toString()));
 			}
 
 			//
-			gamePanelUI_undo_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
-					.toString());
-			gamePanelUI_redo_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
-					.toString());
+			gamePanelUI_undo_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
+							.toString());
+			gamePanelUI_redo_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
+							.toString());
 			gamePanelUI_clockwise_rotate_image = new Image(
 					Main.class
 							.getResource(
@@ -167,19 +178,32 @@ public class Resourses {
 							.getResource(
 									"/application/resourses/GamePanelUI/Function_Buttons/counterclockwise_rotate.png")
 							.toString());
-			gamePanelUI_flip_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Function_Buttons/Flip.png")
-					.toString());
+			gamePanelUI_flip_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Function_Buttons/Flip.png")
+							.toString());
 
-			gamePanelUI_mute_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Lower_Buttons/Mute.png").toString());
-			gamePanelUI_next_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Lower_Buttons/Next.png").toString());
-			gamePanelUI_previous_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Lower_Buttons/Previous.png")
-					.toString());
-			gamePanelUI_pause_image = new Image(Main.class.getResource(
-					"/application/resourses/GamePanelUI/Lower_Buttons/Pause.png").toString());
+			gamePanelUI_mute_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Lower_Buttons/Mute.png")
+							.toString());
+			gamePanelUI_next_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Lower_Buttons/Next.png")
+							.toString());
+			gamePanelUI_previous_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Lower_Buttons/Previous.png")
+							.toString());
+			gamePanelUI_pause_image = new Image(
+					Main.class
+							.getResource(
+									"/application/resourses/GamePanelUI/Lower_Buttons/Pause.png")
+							.toString());
 
 		} catch (Exception e) {
 			System.out.println("Loading resourses error" + e);
@@ -200,9 +224,12 @@ public class Resourses {
 			mainUI_exit_Image1 = new ImageView(mainUI_exit_image1);
 
 			LevelUI_Images = new ArrayList<ImageView>();
+			LevelUI_Images1 = new ArrayList<ImageView>();
 			for (int i = 0; i < numOfLevel; i++) {
 				ImageView temp = new ImageView(LevelUI_images.get(i));
 				LevelUI_Images.add(temp);
+				ImageView temp1 = new ImageView(LevelUI_images1.get(i));
+				LevelUI_Images1.add(temp1);
 			}
 
 			/*

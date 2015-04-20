@@ -75,7 +75,8 @@ public class GamePanelUI {
 
 				@Override
 				public void handle(ActionEvent event) {
-					controller.previousLevel();;
+					controller.previousLevel();
+					;
 				}
 			});
 

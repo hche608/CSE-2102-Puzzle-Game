@@ -28,10 +28,11 @@ public class MainUI {
 			Text title = new Text("Tangram Puzzle");
 
 			title.setFont(res.minecrafter_font_title);
-			title.setLayoutX(160);
-			title.setLayoutY(70);
+			title.setTranslateX(160);
+			title.setTranslateY(175);
 			title.setFill(Color.BLACK);
 			// start btn
+
 			final Button btn_Start = new Button();
 			btn_Start.setGraphic(res.mainUI_start_Image);
 			btn_Start.setBorder(null);
@@ -52,34 +53,6 @@ public class MainUI {
 			});
 
 			btn_Start.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent e) {
-					controller.loadGamePanelUI();
-				}
-			});
-
-			// level select btn
-			final Button btn_Level = new Button();
-			btn_Level.setGraphic(res.mainUI_level_Image);
-			btn_Level.setBorder(null);
-			btn_Level.setBackground(null);
-			btn_Level.setCursor(Cursor.HAND);
-			btn_Level.setOnMouseEntered(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent mouseEvent) {
-					btn_Level.setGraphic(res.mainUI_level_Image1);
-
-				}
-			});
-			btn_Level.setOnMouseExited(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent mouseEvent) {
-					btn_Level.setGraphic(res.mainUI_level_Image);
-
-				}
-			});
-
-			btn_Level.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
 					controller.loadLevelUI();
@@ -150,12 +123,11 @@ public class MainUI {
 				}
 			});
 
-			final VBox btns = new VBox(btn_Start, btn_Level, btn_Scores,
-					btn_Exit);
+			final VBox btns = new VBox(btn_Start, btn_Scores, btn_Exit);
 			// btns.alignmentProperty();
 			btns.setAlignment(Pos.CENTER);
-			btns.setLayoutX((res.FRAME_WIDTH - res.BTNS_WIDTH) / 2);
-			btns.setLayoutY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 2);
+			btns.setTranslateX((res.FRAME_WIDTH - res.BTNS_WIDTH) / 2);
+			btns.setTranslateY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 10 * 7);
 
 			root.getChildren().addAll(title, btns);
 

@@ -1,11 +1,14 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -13,6 +16,7 @@ public class LevelUI {
 
 	Resourses res = Main.res;
 	Group root;
+	ArrayList<Button> btns_list;
 
 	public LevelUI(GameController controller) {
 		root = new Group();
@@ -23,52 +27,28 @@ public class LevelUI {
 			level_btns.setVgap(30);
 			level_btns.setPadding(new Insets(0, 10, 0, 10));
 
-			final Button btn = new Button();
-			btn.setGraphic(res.LevelUI_Images.get(0));
-			level_btns.add(btn, 1, 0);
-			btn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-			btn.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent e) {
-					controller.loadGame(1);
+			btns_list = new ArrayList<Button>();
+			int row = 0;
+			for (int i = 0; i < res.numOfLevel; i++) {
+				final Button btn = new Button();
+				btn.setGraphic(res.LevelUI_Images.get(i));
+				if (i > 0 && i % 4 == 0) {
+					row++;
 				}
-			});
-
-			final Button btn2 = new Button("2");
-			level_btns.add(btn2, 2, 0);
-			btn2.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn3 = new Button("3");
-			level_btns.add(btn3, 3, 0);
-			btn3.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn4 = new Button("4");
-			level_btns.add(btn4, 4, 0);
-			btn4.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn5 = new Button("5");
-			level_btns.add(btn5, 5, 0);
-			btn5.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn6 = new Button("6");
-			level_btns.add(btn6, 1, 1);
-			btn6.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn7 = new Button("7");
-			level_btns.add(btn7, 2, 1);
-			btn7.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn8 = new Button("8");
-			level_btns.add(btn8, 3, 1);
-			btn8.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn9 = new Button("9");
-			level_btns.add(btn9, 4, 1);
-			btn9.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
-
-			final Button btn10 = new Button("10");
-			level_btns.add(btn10, 5, 1);
-			btn10.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+				level_btns.add(btn, (i) % 4, row);
+				btns_list.add(btn);
+				btn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+				btn.setBorder(null);
+				btn.setBackground(null);
+				final int level = i;
+				btn.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent e) {
+						controller.loadGame(1 + level);
+						System.out.println("Level: " + (1 + level));
+					}
+				});
+			}
 
 			final VBox btns = new VBox(level_btns);
 			btns.setAlignment(Pos.CENTER);
@@ -100,7 +80,27 @@ public class LevelUI {
 
 	public Group getLevelUI() {
 		return root;
+	}
 
+	public void unlock(int level) {
+		for (int i = 0; i < level; i++) {
+			btns_list.get(i).setGraphic(res.LevelUI_Images.get(i));
+			final int btn_index = i;
+			btns_list.get(i).setOnMouseEntered(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					btns_list.get(btn_index).setGraphic(
+							res.LevelUI_Images1.get(btn_index));
+				}
+			});
+			btns_list.get(i).setOnMouseExited(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					btns_list.get(btn_index).setGraphic(
+							res.LevelUI_Images.get(btn_index));
+				}
+			});
+		}
 	}
 
 }
