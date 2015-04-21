@@ -1,17 +1,18 @@
-	/**
-	 * This is polygon controller
-	 * this class is controlled by GameController
-	 * 
-	 * this class only allocates all pickable and unpickable polygons
-	 * 
-	 * this class is kind of simple level factory now.
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is polygon controller
+ * this class is controlled by GameController
+ * 
+ * this class only allocates all pickable and unpickable polygons
+ * 
+ * this class is kind of simple level factory now.
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import java.util.ArrayList;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -160,12 +161,12 @@ public class ShapesManger {
 	public ArrayList<Piece> getMaps() {
 		return maps;
 	}
+
 	/**
 	 * if Mouse is Pressed
 	 * 
-	 * get coordinates of the current point
-	 * and store it for further use
-	 *  
+	 * get coordinates of the current point and store it for further use
+	 * 
 	 * 
 	 */
 	EventHandler<MouseEvent> polygonOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
@@ -198,8 +199,7 @@ public class ShapesManger {
 			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
 		}
 	};
-	
-	
+
 	/**
 	 * if Mouse is released
 	 * 
@@ -214,6 +214,10 @@ public class ShapesManger {
 		@Override
 		public void handle(MouseEvent t) {
 			// collision Detection
+			System.out.printf("X,Y : (%s,%s)\n",
+					((Piece) (t.getSource())).getTranslateX(),
+					((Piece) (t.getSource())).getTranslateY());
+			System.out.printf("X,Y : (%s,%s)\n", t.getSceneX(), t.getSceneY());
 			int MatchedIndex = checkPieceIntersection((Piece) (t.getSource()),
 					maps);
 			if (MatchedIndex != -1) {
@@ -242,10 +246,17 @@ public class ShapesManger {
 	/**
 	 * if a pickable polygon intersects a unpickable polygon
 	 * 
+	 * 1st test is checking if the two shapes are intersected 2nd test is
+	 * checking the area of intersected is large enough 3rd test is checking if
+	 * the two shapes are in the same type and size 4nd test is checking if the
+	 * two shapes are same rotated
+	 * 
+	 * if all matched then return
+	 * 
 	 * @return the index of the matched unpickable polygon
 	 * 
 	 */
-	
+
 	private int checkPieceIntersection(Piece test_polygon,
 			ArrayList<Piece> target_polygons) {
 		int collisionDetected = -1;
@@ -253,18 +264,23 @@ public class ShapesManger {
 			Shape intersect = Shape.intersect(test_polygon,
 					target_polygons.get(i));
 			if (intersect.getBoundsInLocal().getWidth() != -1) {
-				if (test_polygon.getPolygonInfo().equals(
-						target_polygons.get(i).getPolygonInfo()))
-					if (test_polygon.getRotate() == target_polygons.get(i)
-							.getRotate()) {
-						collisionDetected = i;
-						break;
-					}
+				if (Math.abs(test_polygon.getTranslateX()
+						- target_polygons.get(i).getTranslateX()) < 50.0
+						&& Math.abs((test_polygon.getTranslateY() - target_polygons
+								.get(i).getTranslateY())) < 50.0) {
+					if (test_polygon.getPolygonInfo().equals(
+							target_polygons.get(i).getPolygonInfo()))
+						if (test_polygon.getRotate() == target_polygons.get(i)
+								.getRotate()) {
+							collisionDetected = i;
+							break;
+						}
+				}
 			}
 		}
 		return collisionDetected;
 	}
-	
+
 	/**
 	 * if a pickable polygon is matched to a unpickable polygon
 	 * 
