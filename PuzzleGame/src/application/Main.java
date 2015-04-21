@@ -51,7 +51,7 @@ public class Main extends Application {
 		launch(args);
 	}	
 	
-	// Create a background Thread to play background Muisc
+	// Create a background Thread to play background Music
 	Task<Void> task = new Task<Void>() {
 		@Override
 		public Void call() {
