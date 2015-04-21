@@ -1,18 +1,22 @@
-	/**
-	 * This is a Resource class
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a Resource class
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 
 public class Resourses {
+
+	public final boolean debug = true;
 
 	public final double FRAME_WIDTH = 800.0;
 	public final double FRAME_HEIGHT = 600.0;
@@ -29,7 +33,9 @@ public class Resourses {
 	public final double Cube_Size = 150.0;
 
 	public final int countdown = 50;
-	final int numOfLevel = 10;
+	
+	final int numOfLevel = 12;
+	
 	public final double title_size = 50.0;
 	public final double label_size = 25.0;
 
@@ -50,27 +56,25 @@ public class Resourses {
 	/*
 	 * Resources for common area
 	 */
-	public Image background_image;
+
 	public ImageView background_Image;
+	public ImageView btn_OK_Image;
+	public ImageView btn_OK_Image1;
+	public ImageView btn_CANCEL_Image;
+	public ImageView btn_CANCEL_Image1;
+	public ImageView btn_Return_Image;
+	public ImageView btn_Return_Image1;
+	
 	public Font minecrafter_font_title;
 	public Font minecrafter_font_label;
 	/*
 	 * Resources for main UI
 	 */
 
-	public Image mainUI_start_image;
-	public Image mainUI_start_image1;
-	public Image mainUI_level_image;
-	public Image mainUI_level_image1;
-	public Image mainUI_scores_image;
-	public Image mainUI_scores_image1;
-	public Image mainUI_exit_image;
-	public Image mainUI_exit_image1;
-
 	public ImageView mainUI_start_Image;
 	public ImageView mainUI_start_Image1;
-	public ImageView mainUI_level_Image;
-	public ImageView mainUI_level_Image1;
+	public ImageView mainUI_about_Image;
+	public ImageView mainUI_about_Image1;
 	public ImageView mainUI_scores_Image;
 	public ImageView mainUI_scores_Image1;
 	public ImageView mainUI_exit_Image;
@@ -79,25 +83,13 @@ public class Resourses {
 	/*
 	 * Resources for Level_Selevt UI
 	 */
-	public ArrayList<Image> LevelUI_images;
-	public ArrayList<Image> LevelUI_images1;
-
+	public Image level_lock_image;
 	public ArrayList<ImageView> LevelUI_Images;
 	public ArrayList<ImageView> LevelUI_Images1;
 
 	/*
 	 * Resources for GamePanel UI
 	 */
-	public Image gamePanelUI_undo_image;
-	public Image gamePanelUI_redo_image;
-	public Image gamePanelUI_clockwise_rotate_image;
-	public Image gamePanelUI_counterclockwise_rotate_image;
-	public Image gamePanelUI_flip_image;
-
-	public Image gamePanelUI_mute_image;
-	public Image gamePanelUI_next_image;
-	public Image gamePanelUI_previous_image;
-	public Image gamePanelUI_pause_image;
 
 	public ImageView gamePanelUI_undo_Image;
 	public ImageView gamePanelUI_redo_Image;
@@ -110,7 +102,30 @@ public class Resourses {
 	public ImageView gamePanelUI_previous_Image;
 	public ImageView gamePanelUI_pause_Image;
 
+	// Background Music
+	MediaPlayer mediaPlayer;
+	MediaPlayer FXmediaPlayer;
+
 	public Resourses() {
+		// Background music
+		try {
+			MediaPlayer mediaPlayer = new MediaPlayer(new Media(Main.class
+					.getResource("/application/resourses/music/music.wav").toString()));
+			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		} catch (Exception e) {
+			System.out.println("Load background music error");
+		}
+		
+		// FX music
+		try {
+			MediaPlayer FXmediaPlayer = new MediaPlayer(new Media(Main.class
+					.getResource("/application/resourses/music/music.wav").toString()));
+			FXmediaPlayer.setCycleCount(1);
+		} catch (Exception e) {
+			System.out.println("Load FX music error");
+		}
+		
+		// Fonts
 		try {
 			minecrafter_font_title = Font.loadFont(
 					getClass().getResourceAsStream(
@@ -121,139 +136,111 @@ public class Resourses {
 							"/application/resourses/Minecraftia2.ttf"),
 					label_size);
 
-			// System.out.println("load font OK!!");
-
 		} catch (Exception e) {
 			System.out.println("Load Font error");
 		}
-		try {
-			background_image = new Image(Main.class.getResource(
-					"/application/resourses/background.png").toString());
-
-			mainUI_start_image = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/start.png").toString());
-			mainUI_start_image1 = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/start_hover.png").toString());
-
-			mainUI_level_image = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/levelselect.png").toString());
-			mainUI_level_image1 = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/levelselect_hover.png")
-					.toString());
-
-			mainUI_scores_image = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/score.png").toString());
-			mainUI_scores_image1 = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/score_hover.png").toString());
-
-			mainUI_exit_image = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/exit.png").toString());
-			mainUI_exit_image1 = new Image(Main.class.getResource(
-					"/application/resourses/mainUI/exit_hover.png").toString());
-
-			LevelUI_images = new ArrayList<Image>();
-			LevelUI_images1 = new ArrayList<Image>();
-
-			for (int i = 0; i < numOfLevel; i++) {
-				LevelUI_images.add(new Image(Main.class.getResource(
-						"/application/resourses/LevelUI/" + (i + 1)
-								+ "_normal.png").toString()));
-				LevelUI_images1.add(new Image(Main.class.getResource(
-						"/application/resourses/LevelUI/" + (i + 1)
-								+ "_hover.png").toString()));
-			}
-
-			//
-			gamePanelUI_undo_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
-							.toString());
-			gamePanelUI_redo_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Function_Buttons/redo.png")
-							.toString());
-			gamePanelUI_clockwise_rotate_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Function_Buttons/clockwise_rotate.png")
-							.toString());
-			gamePanelUI_counterclockwise_rotate_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Function_Buttons/counterclockwise_rotate.png")
-							.toString());
-			gamePanelUI_flip_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Function_Buttons/Flip.png")
-							.toString());
-
-			gamePanelUI_mute_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Lower_Buttons/Mute.png")
-							.toString());
-			gamePanelUI_next_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Lower_Buttons/Next.png")
-							.toString());
-			gamePanelUI_previous_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Lower_Buttons/Previous.png")
-							.toString());
-			gamePanelUI_pause_image = new Image(
-					Main.class
-							.getResource(
-									"/application/resourses/GamePanelUI/Lower_Buttons/Pause.png")
-							.toString());
-
-		} catch (Exception e) {
-			System.out.println("Loading resourses error" + e);
-
-		}
 
 		try {
 
-			background_Image = new ImageView(background_image);
+			background_Image = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/background.png").toString()));
+			
+			btn_OK_Image = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/OK.png").toString()));
+			
+			btn_OK_Image1 = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/OK_hover.png").toString()));
+			
+			btn_CANCEL_Image = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/Cancel.png").toString()));
+			
+			btn_CANCEL_Image1 = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/Cancel_hover.png").toString()));
 
-			mainUI_start_Image = new ImageView(mainUI_start_image);
-			mainUI_start_Image1 = new ImageView(mainUI_start_image1);
-			mainUI_level_Image = new ImageView(mainUI_level_image);
-			mainUI_level_Image1 = new ImageView(mainUI_level_image1);
-			mainUI_scores_Image = new ImageView(mainUI_scores_image);
-			mainUI_scores_Image1 = new ImageView(mainUI_scores_image1);
-			mainUI_exit_Image = new ImageView(mainUI_exit_image);
-			mainUI_exit_Image1 = new ImageView(mainUI_exit_image1);
+			btn_Return_Image = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/Return.png").toString()));
+			
+			btn_Return_Image1 = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/return_hover.png").toString()));
+			
+			
+			mainUI_start_Image = new ImageView(new Image(Main.class
+					.getResource("/application/resourses/mainUI/start.png")
+					.toString()));
+			mainUI_start_Image1 = new ImageView(new Image(Main.class
+					.getResource(
+							"/application/resourses/mainUI/start_hover.png")
+					.toString()));
+			mainUI_about_Image = new ImageView(new Image(Main.class
+					.getResource(
+							"/application/resourses/mainUI/levelselect.png")
+					.toString()));
+			mainUI_about_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/mainUI/levelselect_hover.png")
+									.toString()));
+			mainUI_scores_Image = new ImageView(new Image(Main.class
+					.getResource("/application/resourses/mainUI/score.png")
+					.toString()));
+			mainUI_scores_Image1 = new ImageView(new Image(Main.class
+					.getResource(
+							"/application/resourses/mainUI/score_hover.png")
+					.toString()));
+			mainUI_exit_Image = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/mainUI/exit.png").toString()));
+			mainUI_exit_Image1 = new ImageView(new Image(
+					Main.class.getResource(
+							"/application/resourses/mainUI/exit_hover.png")
+							.toString()));
 
+			level_lock_image = new Image(Main.class
+					.getResource(
+							"/application/resourses/LevelUI/level_lock.png").toString());
 			LevelUI_Images = new ArrayList<ImageView>();
 			LevelUI_Images1 = new ArrayList<ImageView>();
 			for (int i = 0; i < numOfLevel; i++) {
-				ImageView temp = new ImageView(LevelUI_images.get(i));
+				ImageView temp = new ImageView(new Image(Main.class
+						.getResource(
+								"/application/resourses/LevelUI/" + (i + 1)
+										+ "_normal.png").toString()));
 				LevelUI_Images.add(temp);
-				ImageView temp1 = new ImageView(LevelUI_images1.get(i));
+				ImageView temp1 = new ImageView(new Image(Main.class
+						.getResource(
+								"/application/resourses/LevelUI/" + (i + 1)
+										+ "_hover.png").toString()));
 				LevelUI_Images1.add(temp1);
 			}
 
 			/*
 			 * 
 			 */
-			gamePanelUI_undo_Image = new ImageView(gamePanelUI_undo_image);
-			gamePanelUI_redo_Image = new ImageView(gamePanelUI_redo_image);
-			gamePanelUI_clockwise_rotate_Image = new ImageView(
-					gamePanelUI_clockwise_rotate_image);
-			gamePanelUI_counterclockwise_rotate_Image = new ImageView(
-					gamePanelUI_counterclockwise_rotate_image);
-			gamePanelUI_flip_Image = new ImageView(gamePanelUI_flip_image);
 
-			gamePanelUI_mute_Image = new ImageView(gamePanelUI_mute_image);
-			gamePanelUI_next_Image = new ImageView(gamePanelUI_next_image);
+			gamePanelUI_mute_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/Mute.png")
+									.toString()));
+			gamePanelUI_next_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/Next.png")
+									.toString()));
 			gamePanelUI_previous_Image = new ImageView(
-					gamePanelUI_previous_image);
-			gamePanelUI_pause_Image = new ImageView(gamePanelUI_pause_image);
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/Previous.png")
+									.toString()));
+			gamePanelUI_pause_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/Pause.png")
+									.toString()));
 
 		} catch (Exception e) {
 			System.out.println("Loading content error" + e);

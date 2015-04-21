@@ -12,28 +12,28 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 
 public class GameController {
-	public MainUI mainUI;
-	public LevelUI levelUI;
-	public ScoresListUI scoresUI;
-	public GamePanelUI gamePanelUI;
-	Resourses res = Main.res;
-	Group root;
-	ShapesManger shapesManger;
-	ArrayList<Piece> polygons, maps;
-	Label timerLabel;
-	Group gameBoard;
-	int level_num = 1;
+	private MainUI mainUI;
+	private LevelUI levelUI;
+	private ScoresListUI scoresUI;
+	private AboutUSUI aboutUSUI;
+	private GamePanelUI gamePanelUI;
+	private ExitUI exitUI;
+	private NewPlayerUI newPlayerUI;
+	private CompletedGameUI completedGameUI;
+	private Resourses res = Main.res;
+	private Group root;
+	private ShapesManger shapesManger;
+	private ArrayList<Piece> polygons, maps;
+	private Label timerLabel;
+	private Group gameBoard;
 
-	ArrayList<Player> players = new ArrayList<Player>();
-
+	ArrayList<Player> players;
+	Player player;
 	GameTimer timer;
 
 	public GameController(Group root) throws Exception {
 		this.root = root;
-		mainUI = new MainUI(this);
-		levelUI = new LevelUI(this);
-		scoresUI = new ScoresListUI(this);
-		gamePanelUI = new GamePanelUI(this);
+		players = new ArrayList<Player>();		
 	}
 	
 	/**
@@ -42,6 +42,7 @@ public class GameController {
 	 * Display 
 	 */
 	public void loadMainUI() {
+		mainUI = new MainUI(this);
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image, mainUI.getMainUI());
 	}
@@ -53,9 +54,10 @@ public class GameController {
 	 * 
 	 */
 	public void loadLevelUI() {
+		levelUI = new LevelUI(this);
+		levelUI.unlock(getLastPlayer().getHighestLevel());
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image, levelUI.getLevelUI());
-		levelUI.unlock(1);
 	}
 
 	/**
@@ -63,32 +65,73 @@ public class GameController {
 	 * Load the ScoresUI into scene
 	 */
 	public void loadScoresUI() {
+		scoresUI = new ScoresListUI(this, players);
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image, scoresUI.getScoresUI());
 	}
+	
+	/**
+	 * remove previous object in the scene
+	 * Load the ScoresUI into scene
+	 */
+	public void loadAboutUI() {
+		aboutUSUI = new AboutUSUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, aboutUSUI.getAboutUSUI());
+	}
+	
+	/**
+	 * Initialed the new Player UI
+	 * Load MainUI into scene
+	 * Display 
+	 */
+	public void loadNewPlayerUI() {
+		newPlayerUI = new NewPlayerUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, newPlayerUI.getNewPlayerUI());
+	}
+
 
 	/**
 	 * remove previous object in the scene
-	 * Load the GameUI with para, then laod is into scene
+	 * Load the ExitUI into scene
+	 */
+	public void loadExitUI() {
+		exitUI = new ExitUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, exitUI.getExitUI());
+	}
+	
+	/**
+	 * remove previous object in the scene
+	 * Load the ScoresUI into scene
+	 */
+	public void loadCompletedGameUI() {
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, completedGameUI.getCompletedGameUI());
+	}
+	
+	/**
+	 * remove previous object in the scene
+	 * Load the GameUI with para, then load is into scene
 	 * 
 	 * @param level_num
 	 * 
 	 * initial a new timer and a new gameboard
 	 */
-	public void loadGame(int level_num) {
-		this.level_num = level_num;
-		levelUI.unlock(level_num);
+	public void loadGame(int current_level_num) {
+		gamePanelUI = new GamePanelUI(this);
+		levelUI.unlock(getLastPlayer().getHighestLevel());
 		root.getChildren().clear();
-		shapesManger = new ShapesManger(this, level_num);
+		shapesManger = new ShapesManger(this, current_level_num);
 
 		// Set Timer
 		timer = new GameTimer(res.countdown);
 		timerLabel = timer.getTimerLabel();
-		timerLabel.setLayoutX(100);
-		timerLabel.setLayoutY(res.FRAME_HEIGHT - 50);
+		timerLabel.setTranslateX(50);
+		timerLabel.setTranslateY(40);
 		gameBoard = new Group();
 		try {
-
 			polygons = new ArrayList<Piece>();
 			polygons = shapesManger.getCube();
 			maps = new ArrayList<Piece>();
@@ -98,6 +141,8 @@ public class GameController {
 		} catch (Exception e) {
 			System.out.println("Initial game board error: " + e);
 		}
+		
+		
 		root.getChildren().addAll(res.background_Image,
 				gamePanelUI.getGamePanelUI(), timerLabel);
 		if (gameBoard != null)
@@ -133,8 +178,13 @@ public class GameController {
 	 * 
 	 */
 	public void previousLevel() {
-		if (level_num > 2)
-			loadGame(level_num - 1);
+		if (getLastPlayer().getCurrentLevel() > 2){
+			loadGame(getLastPlayer().getCurrentLevel() - 1);
+			getLastPlayer().setCurrentLevel(getLastPlayer().getCurrentLevel() - 1);
+		}
+		if (res.debug)
+			System.out.println(getLastPlayer());
+			
 	}
 
 	/**
@@ -142,8 +192,12 @@ public class GameController {
 	 * 
 	 */
 	public void nextLevel() {
-		if (level_num < 20)
-			loadGame(level_num + 1);
+		if (getLastPlayer().getCurrentLevel() < getLastPlayer().getHighestLevel() && getLastPlayer().getCurrentLevel() < 20){
+			loadGame(getLastPlayer().getCurrentLevel() + 1);
+			getLastPlayer().setCurrentLevel(getLastPlayer().getCurrentLevel() + 1);
+		}
+		if (res.debug)
+			System.out.println(getLastPlayer());
 	}
 
 	/**
@@ -152,17 +206,19 @@ public class GameController {
 	 */
 	public void completed() {
 		timer.stopTimer();
-
 		System.out.println(timer.getCountDown());
-	}
-
-	/**
-	 * Reset UI
-	 * 
-	 */
-	public void reset() {
-		timer = new GameTimer(res.countdown);
-		shapesManger = new ShapesManger(this, 1);
+		if (timer.getCountDown() > 0){
+			getLastPlayer().setScore(timer.getCountDown());
+			getLastPlayer().setCurrentLevel(getLastPlayer().getCurrentLevel() + 1);
+			if (getLastPlayer().getCurrentLevel() >= getLastPlayer().getHighestLevel()){
+				getLastPlayer().setHighestLevel(getLastPlayer().getCurrentLevel());
+			}
+			
+		}
+		completedGameUI = new CompletedGameUI(this,getLastPlayer());
+		loadCompletedGameUI();
+		if (res.debug)
+			System.out.println(getLastPlayer());
 	}
 
 
@@ -171,10 +227,19 @@ public class GameController {
 	 * 
 	 * @return list
 	 */
-	public String[] showList() {
-
-		return null;
-
+	public Player getLastPlayer(){
+		if (players.size() > 0)
+			player = players.get((players.size() - 1));
+		return player;
+	}
+	
+	/**
+	 * Add a player to the list
+	 * 
+	 */
+	public void setNewPlayer(String name){
+		Player player = new Player(name);
+		players.add(player);
 	}
 
 }

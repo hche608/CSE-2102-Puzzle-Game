@@ -1,26 +1,20 @@
-	/**
-	 * This is a interface of Main Panel
-	 * this class is controlled by GameController
-	 * 
-	 * this class only allocates all labels and buttons on the Panel
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a interface of Main Panel
+ * this class is controlled by GameController
+ * 
+ * this class only allocates all labels and buttons on the Panel
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
-import java.util.Optional;
-
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -64,7 +58,8 @@ public class MainUI {
 			btn_Start.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					controller.loadLevelUI();
+					//controller.loadLevelUI();
+					controller.loadNewPlayerUI();;
 				}
 			});
 
@@ -93,6 +88,34 @@ public class MainUI {
 					controller.loadScoresUI();
 				}
 			});
+			
+			// about btn
+			final Button btn_About = new Button("About");
+			//btn_About.setGraphic(res.mainUI_exit_Image);
+			btn_About.setBorder(null);
+			btn_About.setBackground(null);
+			btn_About.setCursor(Cursor.HAND);
+			btn_About.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+			btn_About.setOnMouseEntered(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					//btn_About.setGraphic(res.mainUI_exit_Image1);
+
+				}
+			});
+			btn_About.setOnMouseExited(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					//btn_About.setGraphic(res.mainUI_exit_Image);
+
+				}
+			});
+			btn_About.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					controller.loadAboutUI();
+				}
+			});
 
 			// exit btn
 			final Button btn_Exit = new Button();
@@ -117,27 +140,15 @@ public class MainUI {
 			btn_Exit.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setTitle("Confirmation Dialog");
-					alert.setHeaderText("Look, a Confirmation Dialog");
-					alert.setContentText("Are you ok with this?");
-
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK) {
-						// ... user chose OK
-						System.exit(0);
-						//Platform.exit();
-					} else {
-						// ... user chose CANCEL or closed the dialog
-					}
+					controller.loadExitUI();
 				}
 			});
 
-			final VBox btns = new VBox(btn_Start, btn_Scores, btn_Exit);
+			final VBox btns = new VBox(btn_Start, btn_Scores, btn_About, btn_Exit);
 			// btns.alignmentProperty();
 			btns.setAlignment(Pos.CENTER);
 			btns.setTranslateX((res.FRAME_WIDTH - res.BTNS_WIDTH) / 2);
-			btns.setTranslateY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 10 * 7);
+			btns.setTranslateY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) * 3 / 5);
 
 			root.getChildren().addAll(title, btns);
 

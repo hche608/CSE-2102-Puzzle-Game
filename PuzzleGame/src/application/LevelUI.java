@@ -15,8 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -26,8 +28,10 @@ public class LevelUI {
 	Resourses res = Main.res;
 	Group root;
 	ArrayList<Button> btns_list;
+	final GameController controller;
 
 	public LevelUI(GameController controller) {
+		this.controller = controller;
 		root = new Group();
 		try {
 
@@ -40,7 +44,7 @@ public class LevelUI {
 			int row = 0;
 			for (int i = 0; i < res.numOfLevel; i++) {
 				final Button btn = new Button();
-				btn.setGraphic(res.LevelUI_Images.get(i));
+				btn.setGraphic(new ImageView(res.level_lock_image));
 				if (i > 0 && i % 4 == 0) {
 					row++;
 				}
@@ -49,14 +53,6 @@ public class LevelUI {
 				btn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
 				btn.setBorder(null);
 				btn.setBackground(null);
-				final int level = i;
-				btn.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent e) {
-						controller.loadGame(1 + level);
-						System.out.println("Level: " + (1 + level));
-					}
-				});
 			}
 
 			final VBox btns = new VBox(level_btns);
@@ -65,8 +61,26 @@ public class LevelUI {
 			btns.setLayoutY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 2);
 
 			// return btn
-			final Button rbtn = new Button("Return");
+			final Button rbtn = new Button();
+			rbtn.setBorder(null);
+			rbtn.setBackground(null);
+			rbtn.setCursor(Cursor.HAND);
 			rbtn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
+			rbtn.setGraphic(res.btn_Return_Image);
+			rbtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					rbtn.setGraphic(res.btn_Return_Image1);
+
+				}
+			});
+			rbtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					rbtn.setGraphic(res.btn_Return_Image);
+
+				}
+			});
 			rbtn.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
@@ -107,6 +121,14 @@ public class LevelUI {
 				public void handle(MouseEvent mouseEvent) {
 					btns_list.get(btn_index).setGraphic(
 							res.LevelUI_Images.get(btn_index));
+				}
+			});
+			btns_list.get(i).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					controller.loadGame(1 + btn_index);
+					if (res.debug)
+						System.out.println("Level: " + (1 + btn_index));
 				}
 			});
 		}

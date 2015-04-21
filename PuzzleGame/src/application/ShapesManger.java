@@ -214,10 +214,6 @@ public class ShapesManger {
 		@Override
 		public void handle(MouseEvent t) {
 			// collision Detection
-			System.out.printf("X,Y : (%s,%s)\n",
-					((Piece) (t.getSource())).getTranslateX(),
-					((Piece) (t.getSource())).getTranslateY());
-			System.out.printf("X,Y : (%s,%s)\n", t.getSceneX(), t.getSceneY());
 			int MatchedIndex = checkPieceIntersection((Piece) (t.getSource()),
 					maps);
 			if (MatchedIndex != -1) {
