@@ -1,12 +1,12 @@
-	/**
-	 * This is the main class
-	 * this class is generate a stage which can display everything
-	 * 
-	 * the contents of the stage are controlled by Game Controller
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is the main class
+ * this class is generate a stage which can display everything
+ * 
+ * the contents of the stage are controlled by Game Controller
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import javafx.application.Application;
@@ -24,7 +24,7 @@ public class Main extends Application {
 		// initial a background Thread
 		try {
 			new Thread(task).start();
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Background Muisc error");
 		}
 		// initial the Primary Stage and Game Controller
@@ -49,26 +49,17 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-	}	
-	
+	}
+
 	// Create a background Thread to play background Music
 	Task<Void> task = new Task<Void>() {
 		@Override
 		public Void call() {
-			while (true) {
-				if (res.debug)
-					System.out.println("BackGround Music");
-				res.mediaPlayer.play();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException interrupted) {
-					break;
-				}
-
-			}
+			if (res.debug)
+				System.out.println("BackGround Music");
+			res.backgoundMediaPlayer.play();
 			return null;
 		}
-
 	};
-	
+
 }

@@ -44,6 +44,7 @@ public class NewPlayerUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_OK.setGraphic(res.btn_OK_Image1);
+					res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_OK.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -60,19 +61,21 @@ public class NewPlayerUI {
 					controller.setNewPlayer(textField.getText());
 					textField.clear();
 					controller.loadLevelUI();
+					res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 
 			textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent e) {
+					res.mouseClickedFXmediaPlayer.play();
 					if (e.getCode() == KeyCode.ENTER) {
 						System.out.println("Enter Released!");
 						controller.setNewPlayer(textField.getText());
 						textField.clear();
 						controller.loadLevelUI();
 						if (res.debug)
-							System.out.println(controller.getLastPlayer());
+							System.out.println(controller.getLastPlayer());	
 						e.consume();
 					}
 

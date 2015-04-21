@@ -1,5 +1,5 @@
 /**
- * This is a interface of Completed Game
+ * This is a interface of Dialog
  * this class is controlled by GameController
  * 
  * this class only allocates all labels and buttons on the Panel
@@ -31,7 +31,7 @@ public class DialogUI {
 		this.controller = controller;
 
 		try {
-			title.setText("You Win!\n");
+			title.setText("This is an empty dialog!\n");
 			title.setFont(res.minecrafter_font_title);
 			title.setTranslateX(160);
 			title.setTranslateY(175);
@@ -46,6 +46,7 @@ public class DialogUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_OK.setGraphic(res.mainUI_start_Image1);
+					res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_OK.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -59,6 +60,7 @@ public class DialogUI {
 				public void handle(ActionEvent e) {
 					controller.loadGame(controller.getLastPlayer()
 							.getCurrentLevel());
+					res.mouseClickedFXmediaPlayer.play();
 					e.consume();
 				}
 			});
@@ -68,6 +70,7 @@ public class DialogUI {
 				public void handle(KeyEvent e) {
 					if (e.getCode() == KeyCode.ENTER) {
 						controller.loadMainUI();
+						res.mouseClickedFXmediaPlayer.play();
 						e.consume();
 					}
 				}
@@ -75,7 +78,7 @@ public class DialogUI {
 			root.getChildren().addAll(title, btn_OK);
 
 		} catch (Exception e) {
-			System.out.println("Initial About US UI error: " + e);
+			System.out.println("Initial Dialog UI error: " + e);
 		}
 	}
 

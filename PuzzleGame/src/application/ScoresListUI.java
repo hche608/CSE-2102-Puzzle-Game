@@ -94,7 +94,7 @@ public class ScoresListUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					rbtn.setGraphic(res.btn_Return_Image1);
-
+					res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			rbtn.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -108,6 +108,7 @@ public class ScoresListUI {
 				@Override
 				public void handle(ActionEvent e) {
 					controller.loadMainUI();
+					res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 			root.getChildren().addAll(table, rbtn);

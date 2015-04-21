@@ -287,6 +287,7 @@ public class ShapesManger {
 	private void setMatchedPieces(Piece test_polygon, Piece target_polygon) {
 		test_polygon.setTranslateX(target_polygon.getTranslateX());
 		test_polygon.setTranslateY(target_polygon.getTranslateY());
+		res.shapesMatchedFXmediaPlayer.play();
 	}
 
 	/**

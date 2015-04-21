@@ -63,6 +63,7 @@ public class CompletedGameUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_OK.setGraphic(res.btn_OK_Image1);
+					res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_OK.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -76,6 +77,7 @@ public class CompletedGameUI {
 				public void handle(ActionEvent e) {
 					controller.loadGame(controller.getLastPlayer()
 							.getCurrentLevel());
+					res.mouseClickedFXmediaPlayer.play();
 					e.consume();
 				}
 			});
@@ -90,6 +92,7 @@ public class CompletedGameUI {
 						} else {
 							controller.loadScoresUI();
 						}
+						res.mouseClickedFXmediaPlayer.play();
 						e.consume();
 					}
 				}

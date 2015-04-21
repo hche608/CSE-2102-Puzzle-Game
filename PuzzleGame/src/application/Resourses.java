@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 
@@ -103,26 +103,31 @@ public class Resourses {
 	public ImageView gamePanelUI_pause_Image;
 
 	// Background Music
-	MediaPlayer mediaPlayer;
-	MediaPlayer FXmediaPlayer;
+	AudioClip backgoundMediaPlayer;
+	AudioClip mouseEnterFXmediaPlayer;
+	AudioClip mouseClickedFXmediaPlayer;
+	AudioClip shapesMatchedFXmediaPlayer;
 
 	public Resourses() {
 		// Background music
 		try {
-			MediaPlayer mediaPlayer = new MediaPlayer(new Media(Main.class
-					.getResource("/application/resourses/music/music.wav")
-					.toString()));
-			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+			backgoundMediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/background.mp3").toURI().toString());
+			backgoundMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+			backgoundMediaPlayer.setVolume(0.1);
 		} catch (Exception e) {
 			System.out.println("Load background music error");
 		}
 
 		// FX music
 		try {
-			MediaPlayer FXmediaPlayer = new MediaPlayer(new Media(Main.class
-					.getResource("/application/resourses/music/music.wav")
-					.toString()));
-			FXmediaPlayer.setCycleCount(1);
+			mouseEnterFXmediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/mouseEnterFX.wav").toURI().toString());
+			mouseEnterFXmediaPlayer.setCycleCount(1);
+			
+			mouseClickedFXmediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/mouseClickedFX.wav").toURI().toString());
+			mouseClickedFXmediaPlayer.setCycleCount(1);
+			
+			shapesMatchedFXmediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/matchedFX.wav").toURI().toString());
+			shapesMatchedFXmediaPlayer.setCycleCount(1);
 		} catch (Exception e) {
 			System.out.println("Load FX music error");
 		}
