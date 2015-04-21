@@ -41,13 +41,12 @@ public class GameTimer {
 
 	}
 
-	public Label getTimerLabel() {
-		return timerLabel;
+	public int getCountDown() {
+		return timeSeconds.getValue();
 	}
 
-	public void playTimer() {
-		if (timeline.getStatus() != Status.RUNNING)
-			timeline.play();
+	public Label getTimerLabel() {
+		return timerLabel;
 	}
 
 	public void pauseORresumeTimer() {
@@ -58,22 +57,23 @@ public class GameTimer {
 		}
 	}
 
-	public void stopTimer() {
-		if (timeline.getStatus() == Status.RUNNING) {
-			timeline.stop();
-		}
+	public void playTimer() {
+		if (timeline.getStatus() != Status.RUNNING)
+			timeline.play();
 	}
 
 	public void setCountDown(int v) {
 		timeSeconds.setValue(v);
 	}
 
-	public int getCountDown() {
-		return timeSeconds.getValue();
-	}
-
 	public void setTimerLabel(Label timerLabel) {
 		this.timerLabel = timerLabel;
+	}
+
+	public void stopTimer() {
+		if (timeline.getStatus() == Status.RUNNING) {
+			timeline.stop();
+		}
 	}
 
 }

@@ -7,8 +7,8 @@
 package application;
 
 public interface PieceInfo {
-	public void setPolygonInfo(String PolygonInfo);
-
 	public String getPolygonInfo();
+
+	public void setPolygonInfo(String PolygonInfo);
 
 }

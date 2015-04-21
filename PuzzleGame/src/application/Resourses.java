@@ -107,11 +107,15 @@ public class Resourses {
 	AudioClip mouseEnterFXmediaPlayer;
 	AudioClip mouseClickedFXmediaPlayer;
 	AudioClip shapesMatchedFXmediaPlayer;
+	AudioClip shapesRotatedFXmediaPlayer;
+	AudioClip completedFXmediaPlayer;
 
 	public Resourses() {
 		// Background music
 		try {
-			backgoundMediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/background.mp3").toURI().toString());
+			backgoundMediaPlayer = new AudioClip(getClass()
+					.getResource("/application/resourses/music/background.mp3")
+					.toURI().toString());
 			backgoundMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 			backgoundMediaPlayer.setVolume(0.1);
 		} catch (Exception e) {
@@ -120,14 +124,35 @@ public class Resourses {
 
 		// FX music
 		try {
-			mouseEnterFXmediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/mouseEnterFX.wav").toURI().toString());
+			mouseEnterFXmediaPlayer = new AudioClip(getClass()
+					.getResource(
+							"/application/resourses/music/mouseEnterFX.wav")
+					.toURI().toString());
 			mouseEnterFXmediaPlayer.setCycleCount(1);
-			
-			mouseClickedFXmediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/mouseClickedFX.wav").toURI().toString());
+
+			mouseClickedFXmediaPlayer = new AudioClip(getClass()
+					.getResource(
+							"/application/resourses/music/mouseClickedFX.wav")
+					.toURI().toString());
 			mouseClickedFXmediaPlayer.setCycleCount(1);
-			
-			shapesMatchedFXmediaPlayer = new AudioClip(getClass().getResource("/application/resourses/music/matchedFX.wav").toURI().toString());
+
+			shapesMatchedFXmediaPlayer = new AudioClip(getClass()
+					.getResource("/application/resourses/music/matchedFX.wav")
+					.toURI().toString());
 			shapesMatchedFXmediaPlayer.setCycleCount(1);
+
+			shapesRotatedFXmediaPlayer = new AudioClip(getClass()
+					.getResource(
+							"/application/resourses/music/shapeRotatedFX.wav")
+					.toURI().toString());
+			shapesRotatedFXmediaPlayer.setCycleCount(1);
+
+			completedFXmediaPlayer = new AudioClip(
+					getClass()
+							.getResource(
+									"/application/resourses/music/completedFX.wav")
+							.toURI().toString());
+			completedFXmediaPlayer.setCycleCount(1);
 		} catch (Exception e) {
 			System.out.println("Load FX music error");
 		}

@@ -26,36 +26,36 @@ public class Player {
 		this.highest_level_num = 1;
 	}
 
-	public void setScore(int score) {
-		this.score = score + score;
-	}
-
-	public void setCurrentLevel(int current_level_num) {
-		this.current_level_num = current_level_num;
-	}
-
 	public int getCurrentLevel() {
 		return current_level_num;
-	}
-
-	public void setHighestLevel(int highest_level_num) {
-		this.highest_level_num = highest_level_num;
 	}
 
 	public int getHighestLevel() {
 		return highest_level_num;
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public String getPlayerName() {
+		return playerName;
 	}
 
 	public int getScore() {
 		return score;
 	}
 
-	public String getPlayerName() {
-		return playerName;
+	public void setCurrentLevel(int current_level_num) {
+		this.current_level_num = current_level_num;
+	}
+
+	public void setHighestLevel(int highest_level_num) {
+		this.highest_level_num = highest_level_num;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public void setScore(int score) {
+		this.score = score + score;
 	}
 
 	@Override

@@ -32,6 +32,83 @@ public class ShapesManger {
 			triangle_Two_S_map, square_One_S_map, rhombus_One_S_map;
 	GameController controller;
 
+	/**
+	 * if Mouse is Pressed
+	 * 
+	 * get coordinates of the current point and store it for further use
+	 * 
+	 * 
+	 */
+	EventHandler<MouseEvent> polygonOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent t) {
+			orgSceneX = t.getSceneX();
+			orgSceneY = t.getSceneY();
+			orgTranslateX = ((Polygon) (t.getSource())).getTranslateX();
+			orgTranslateY = ((Polygon) (t.getSource())).getTranslateY();
+		}
+	};
+
+	/**
+	 * Dragged the polygon
+	 * 
+	 * 
+	 */
+	EventHandler<MouseEvent> polygonOnMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent t) {
+			controller.playTimer();
+			double offsetX = t.getSceneX() - orgSceneX;
+			double offsetY = t.getSceneY() - orgSceneY;
+			double newTranslateX = orgTranslateX + offsetX;
+			double newTranslateY = orgTranslateY + offsetY;
+
+			((Polygon) (t.getSource())).setTranslateX(newTranslateX);
+			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
+		}
+	};
+
+	/**
+	 * if Mouse is released
+	 * 
+	 * check if a pickable polygon moved
+	 * 
+	 * check is the game completed
+	 * 
+	 * 
+	 */
+	EventHandler<MouseEvent> polygonOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent t) {
+			// collision Detection
+			int MatchedIndex = checkPieceIntersection((Piece) (t.getSource()),
+					maps);
+			if (MatchedIndex != -1) {
+				boolean isTaken = false;
+				for (int i = 0; i < polygons.size(); i++) {
+					if (polygons.get(i).getMatchedIndex() == MatchedIndex) {
+						isTaken = true;
+					}
+				}
+				if (isTaken == false
+						|| ((Piece) (t.getSource())).getMatchedIndex() == MatchedIndex) {
+					setMatchedPieces((Piece) (t.getSource()),
+							maps.get(MatchedIndex));
+					((Piece) (t.getSource())).setMatchedIndex(MatchedIndex);
+				}
+			} else {
+				((Piece) (t.getSource())).setMatchedIndex(-1);
+			}
+			if (isCompleted()) {
+				System.out.println("Win");
+				controller.completed();
+			}
+		}
+	};
+
 	public ShapesManger(GameController controller, int level) {
 		this.controller = controller;
 		polygons = new ArrayList<Piece>();
@@ -154,91 +231,6 @@ public class ShapesManger {
 		}
 	}
 
-	public ArrayList<Piece> getCube() {
-		return polygons;
-	}
-
-	public ArrayList<Piece> getMaps() {
-		return maps;
-	}
-
-	/**
-	 * if Mouse is Pressed
-	 * 
-	 * get coordinates of the current point and store it for further use
-	 * 
-	 * 
-	 */
-	EventHandler<MouseEvent> polygonOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent t) {
-			orgSceneX = t.getSceneX();
-			orgSceneY = t.getSceneY();
-			orgTranslateX = ((Polygon) (t.getSource())).getTranslateX();
-			orgTranslateY = ((Polygon) (t.getSource())).getTranslateY();
-		}
-	};
-
-	/**
-	 * Dragged the polygon
-	 * 
-	 * 
-	 */
-	EventHandler<MouseEvent> polygonOnMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent t) {
-			controller.playTimer();
-			double offsetX = t.getSceneX() - orgSceneX;
-			double offsetY = t.getSceneY() - orgSceneY;
-			double newTranslateX = orgTranslateX + offsetX;
-			double newTranslateY = orgTranslateY + offsetY;
-
-			((Polygon) (t.getSource())).setTranslateX(newTranslateX);
-			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
-		}
-	};
-
-	/**
-	 * if Mouse is released
-	 * 
-	 * check if a pickable polygon moved
-	 * 
-	 * check is the game completed
-	 * 
-	 * 
-	 */
-	EventHandler<MouseEvent> polygonOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent t) {
-			// collision Detection
-			int MatchedIndex = checkPieceIntersection((Piece) (t.getSource()),
-					maps);
-			if (MatchedIndex != -1) {
-				boolean isTaken = false;
-				for (int i = 0; i < polygons.size(); i++) {
-					if (polygons.get(i).getMatchedIndex() == MatchedIndex) {
-						isTaken = true;
-					}
-				}
-				if (isTaken == false
-						|| ((Piece) (t.getSource())).getMatchedIndex() == MatchedIndex) {
-					setMatchedPieces((Piece) (t.getSource()),
-							maps.get(MatchedIndex));
-					((Piece) (t.getSource())).setMatchedIndex(MatchedIndex);
-				}
-			} else {
-				((Piece) (t.getSource())).setMatchedIndex(-1);
-			}
-			if (isCompleted()) {
-				System.out.println("Win");
-				controller.completed();
-			}
-		}
-	};
-
 	/**
 	 * if a pickable polygon intersects a unpickable polygon
 	 * 
@@ -277,17 +269,12 @@ public class ShapesManger {
 		return collisionDetected;
 	}
 
-	/**
-	 * if a pickable polygon is matched to a unpickable polygon
-	 * 
-	 * set the coordinates of the pickable polygon
-	 * 
-	 */
+	public ArrayList<Piece> getCube() {
+		return polygons;
+	}
 
-	private void setMatchedPieces(Piece test_polygon, Piece target_polygon) {
-		test_polygon.setTranslateX(target_polygon.getTranslateX());
-		test_polygon.setTranslateY(target_polygon.getTranslateY());
-		res.shapesMatchedFXmediaPlayer.play();
+	public ArrayList<Piece> getMaps() {
+		return maps;
 	}
 
 	/**
@@ -303,5 +290,19 @@ public class ShapesManger {
 			}
 		}
 		return isCompleted;
+	}
+
+	/**
+	 * if a pickable polygon is matched to a unpickable polygon
+	 * 
+	 * set the coordinates of the pickable polygon
+	 * 
+	 */
+
+	private void setMatchedPieces(Piece test_polygon, Piece target_polygon) {
+		test_polygon.setTranslateX(target_polygon.getTranslateX());
+		test_polygon.setTranslateY(target_polygon.getTranslateY());
+		test_polygon.setRotate(target_polygon.getRotate());
+		res.shapesMatchedFXmediaPlayer.play();
 	}
 }

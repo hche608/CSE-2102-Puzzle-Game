@@ -24,66 +24,6 @@ public class Piece extends Polygon implements PieceInfo {
 	double orgTranslateX, orgTranslateY;
 	int MatchedIndex = -1;
 
-	public Piece() {
-		super();
-		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
-		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
-	}
-
-	public Piece(double[] points, String PolygonInfo, double rotate_value) {
-		super(points);
-		this.PolygonInfo = PolygonInfo;
-		this.setStroke(Color.BLACK);
-		this.setFill(Color.WHITE);
-		this.setRotate(rotate_value);
-		this.PolygonInfo = PolygonInfo;
-	}
-
-	public Piece(double[] points, String PolygonInfo, double rotate_value,
-			javafx.scene.paint.Color color) {
-		super(points);
-		this.PolygonInfo = PolygonInfo;
-		this.setStroke(Color.BLACK);
-		this.setFill(color);
-		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
-		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
-		this.setRotate(rotate_value);
-		this.setCursor(Cursor.HAND);
-		this.PolygonInfo = PolygonInfo;
-	}
-
-	/**
-	 * Matched Index used to store info that tells which index of
-	 * white(unpickable) polygon matches with the colorful(pickable) polygon
-	 * 
-	 */
-	public void setMatchedIndex(int MatchedIndex) {
-		this.MatchedIndex = MatchedIndex;
-	}
-
-	public int getMatchedIndex() {
-		return MatchedIndex;
-	}
-
-	/**
-	 * Store the size and what type of polygon
-	 * 
-	 */
-	@Override
-	public void setPolygonInfo(String PolygonInfo) {
-		this.PolygonInfo = PolygonInfo;
-	}
-
-	/**
-	 * return the size and what type of polygon
-	 * 
-	 * @param PolygonInfo
-	 */
-	@Override
-	public String getPolygonInfo() {
-		return PolygonInfo;
-	}
-
 	/**
 	 * get coordinates when Mouse Pressed
 	 * 
@@ -118,6 +58,7 @@ public class Piece extends Polygon implements PieceInfo {
 				} else {
 					offset = (offset + 45.0) % 360;
 				}
+				res.shapesRotatedFXmediaPlayer.play();
 
 				((Polygon) (t.getSource())).setRotate(offset);
 				((Polygon) (t.getSource())).toFront();
@@ -137,4 +78,64 @@ public class Piece extends Polygon implements PieceInfo {
 			((Polygon) (t.getSource())).toFront();
 		}
 	};
+
+	public Piece() {
+		super();
+		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
+	}
+
+	public Piece(double[] points, String PolygonInfo, double rotate_value) {
+		super(points);
+		this.PolygonInfo = PolygonInfo;
+		this.setStroke(Color.BLACK);
+		this.setFill(Color.WHITE);
+		this.setRotate(rotate_value);
+		this.PolygonInfo = PolygonInfo;
+	}
+
+	public Piece(double[] points, String PolygonInfo, double rotate_value,
+			javafx.scene.paint.Color color) {
+		super(points);
+		this.PolygonInfo = PolygonInfo;
+		this.setStroke(Color.BLACK);
+		this.setFill(color);
+		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
+		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
+		this.setRotate(rotate_value);
+		this.setCursor(Cursor.HAND);
+		this.PolygonInfo = PolygonInfo;
+	}
+
+	public int getMatchedIndex() {
+		return MatchedIndex;
+	}
+
+	/**
+	 * return the size and what type of polygon
+	 * 
+	 * @param PolygonInfo
+	 */
+	@Override
+	public String getPolygonInfo() {
+		return PolygonInfo;
+	}
+
+	/**
+	 * Matched Index used to store info that tells which index of
+	 * white(unpickable) polygon matches with the colorful(pickable) polygon
+	 * 
+	 */
+	public void setMatchedIndex(int MatchedIndex) {
+		this.MatchedIndex = MatchedIndex;
+	}
+
+	/**
+	 * Store the size and what type of polygon
+	 * 
+	 */
+	@Override
+	public void setPolygonInfo(String PolygonInfo) {
+		this.PolygonInfo = PolygonInfo;
+	}
 }

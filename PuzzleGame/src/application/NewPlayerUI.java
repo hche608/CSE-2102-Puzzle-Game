@@ -75,7 +75,7 @@ public class NewPlayerUI {
 						textField.clear();
 						controller.loadLevelUI();
 						if (res.debug)
-							System.out.println(controller.getLastPlayer());	
+							System.out.println(controller.getLastPlayer());
 						e.consume();
 					}
 

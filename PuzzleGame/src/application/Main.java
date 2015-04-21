@@ -17,7 +17,23 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	public static Resourses res = new Resourses();
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 	GameController controller;
+
+	// Create a background Thread to play background Music
+	Task<Void> task = new Task<Void>() {
+		@Override
+		public Void call() {
+			if (res.debug)
+				System.out.println("BackGround Music is playing");
+			res.backgoundMediaPlayer.play();
+			return null;
+		}
+	};
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -46,20 +62,5 @@ public class Main extends Application {
 		}
 
 	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
-	// Create a background Thread to play background Music
-	Task<Void> task = new Task<Void>() {
-		@Override
-		public Void call() {
-			if (res.debug)
-				System.out.println("BackGround Music");
-			res.backgoundMediaPlayer.play();
-			return null;
-		}
-	};
 
 }

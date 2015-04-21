@@ -75,8 +75,12 @@ public class CompletedGameUI {
 			btn_OK.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					controller.loadGame(controller.getLastPlayer()
-							.getCurrentLevel());
+					if (controller.getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
+						controller.loadGame(controller.getLastPlayer()
+								.getCurrentLevel());
+					} else {
+						controller.loadScoresUI();
+					}
 					res.mouseClickedFXmediaPlayer.play();
 					e.consume();
 				}
@@ -86,7 +90,7 @@ public class CompletedGameUI {
 				@Override
 				public void handle(KeyEvent e) {
 					if (e.getCode() == KeyCode.ENTER) {
-						if (controller.getLastPlayer().getCurrentLevel() < res.numOfLevel) {
+						if (controller.getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
 							controller.loadGame(controller.getLastPlayer()
 									.getCurrentLevel());
 						} else {
