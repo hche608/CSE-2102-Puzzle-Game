@@ -69,13 +69,13 @@ public class CompletedGameUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_OK.setGraphic(res.btn_OK_Image);
-
 				}
 			});
 			btn_OK.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					controller.loadGame(controller.getLastPlayer().getCurrentLevel());
+					controller.loadGame(controller.getLastPlayer()
+							.getCurrentLevel());
 					e.consume();
 				}
 			});
@@ -84,7 +84,12 @@ public class CompletedGameUI {
 				@Override
 				public void handle(KeyEvent e) {
 					if (e.getCode() == KeyCode.ENTER) {
-						controller.loadGame(controller.getLastPlayer().getCurrentLevel());
+						if (controller.getLastPlayer().getCurrentLevel() < res.numOfLevel) {
+							controller.loadGame(controller.getLastPlayer()
+									.getCurrentLevel());
+						} else {
+							controller.loadScoresUI();
+						}
 						e.consume();
 					}
 				}

@@ -1,12 +1,12 @@
-	/**
-	 * This is a interface of Game Panel
-	 * this class is controlled by GameController
-	 * 
-	 * this class only allocates all labels and buttons on the Panel
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a interface of Game Panel
+ * this class is controlled by GameController
+ * 
+ * this class only allocates all labels and buttons on the Panel
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import javafx.event.ActionEvent;
@@ -36,8 +36,9 @@ public class GamePanelUI {
 			counter.setFill(Color.BLACK);
 			counter.setTranslateX(50);
 			counter.setTranslateY(50);
-			
-			Text level_name = new Text("Level " + controller.getLastPlayer().getCurrentLevel());
+
+			Text level_name = new Text("Level "
+					+ controller.getLastPlayer().getCurrentLevel());
 			level_name.setFont(res.minecrafter_font_label);
 			level_name.setFill(Color.BLACK);
 			level_name.setTranslateX(300);

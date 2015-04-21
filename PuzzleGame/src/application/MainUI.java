@@ -58,8 +58,9 @@ public class MainUI {
 			btn_Start.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					//controller.loadLevelUI();
-					controller.loadNewPlayerUI();;
+					// controller.loadLevelUI();
+					controller.loadNewPlayerUI();
+					;
 				}
 			});
 
@@ -88,10 +89,10 @@ public class MainUI {
 					controller.loadScoresUI();
 				}
 			});
-			
+
 			// about btn
-			final Button btn_About = new Button("About");
-			//btn_About.setGraphic(res.mainUI_exit_Image);
+			final Button btn_About = new Button();
+			btn_About.setGraphic(res.mainUI_about_Image);
 			btn_About.setBorder(null);
 			btn_About.setBackground(null);
 			btn_About.setCursor(Cursor.HAND);
@@ -99,14 +100,14 @@ public class MainUI {
 			btn_About.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					//btn_About.setGraphic(res.mainUI_exit_Image1);
+					btn_About.setGraphic(res.mainUI_about_Image1);
 
 				}
 			});
 			btn_About.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					//btn_About.setGraphic(res.mainUI_exit_Image);
+					btn_About.setGraphic(res.mainUI_about_Image);
 
 				}
 			});
@@ -144,7 +145,8 @@ public class MainUI {
 				}
 			});
 
-			final VBox btns = new VBox(btn_Start, btn_Scores, btn_About, btn_Exit);
+			final VBox btns = new VBox(btn_Start, btn_Scores, btn_About,
+					btn_Exit);
 			// btns.alignmentProperty();
 			btns.setAlignment(Pos.CENTER);
 			btns.setTranslateX((res.FRAME_WIDTH - res.BTNS_WIDTH) / 2);

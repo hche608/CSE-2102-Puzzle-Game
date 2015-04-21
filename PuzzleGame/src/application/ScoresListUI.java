@@ -1,12 +1,12 @@
-	/**
-	 * This is a interface of Score Panel
-	 * this class is controlled by GameController
-	 * 
-	 * this class only allocates all labels and buttons on the Panel
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a interface of Score Panel
+ * this class is controlled by GameController
+ * 
+ * this class only allocates all labels and buttons on the Panel
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class ScoresListUI {
 	Resourses res = Main.res;
 	Group root;
 	Text name, format, score;
-	VBox list1,list2,list3;
+	VBox list1, list2, list3;
 	HBox table;
 
 	public ScoresListUI(GameController controller, ArrayList<Player> players) {
@@ -38,8 +38,8 @@ public class ScoresListUI {
 		list3 = new VBox();
 		table = new HBox();
 		// name list
-		try{
-			for (int index = 0; index < players.size();index++){
+		try {
+			for (int index = 0; index < players.size(); index++) {
 				name = new Text(players.get(index).getPlayerName());
 				name.setFont(res.minecrafter_font_title);
 				name.setTextAlignment(TextAlignment.LEFT);
@@ -48,13 +48,13 @@ public class ScoresListUI {
 			}
 			list1.setAlignment(Pos.CENTER_LEFT);
 			table.getChildren().add(list1);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Initial Names in Scores UI error: " + e);
 		}
-		
+
 		// format list
-		try{
-			for (int index = 0; index < players.size();index++){
+		try {
+			for (int index = 0; index < players.size(); index++) {
 				format = new Text("    ....................    ");
 				format.setFont(res.minecrafter_font_title);
 				format.setTextAlignment(TextAlignment.CENTER);
@@ -63,13 +63,13 @@ public class ScoresListUI {
 			}
 			list2.setAlignment(Pos.CENTER);
 			table.getChildren().add(list2);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Initial format in Scores UI error: " + e);
 		}
-		
+
 		// score list
-		try{
-			for (int index = 0; index < players.size();index++){
+		try {
+			for (int index = 0; index < players.size(); index++) {
 				score = new Text("" + players.get(index).getScore());
 				score.setFont(res.minecrafter_font_title);
 				score.setTextAlignment(TextAlignment.RIGHT);
@@ -78,10 +78,10 @@ public class ScoresListUI {
 			}
 			list3.setAlignment(Pos.CENTER_RIGHT);
 			table.getChildren().add(list3);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Initial Scores in Scores UI error: " + e);
 		}
-		
+
 		try {
 			// return btn
 			final Button rbtn = new Button();

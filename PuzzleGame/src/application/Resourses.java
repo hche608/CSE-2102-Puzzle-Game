@@ -33,9 +33,9 @@ public class Resourses {
 	public final double Cube_Size = 150.0;
 
 	public final int countdown = 50;
-	
+
 	final int numOfLevel = 12;
-	
+
 	public final double title_size = 50.0;
 	public final double label_size = 25.0;
 
@@ -64,7 +64,7 @@ public class Resourses {
 	public ImageView btn_CANCEL_Image1;
 	public ImageView btn_Return_Image;
 	public ImageView btn_Return_Image1;
-	
+
 	public Font minecrafter_font_title;
 	public Font minecrafter_font_label;
 	/*
@@ -110,21 +110,23 @@ public class Resourses {
 		// Background music
 		try {
 			MediaPlayer mediaPlayer = new MediaPlayer(new Media(Main.class
-					.getResource("/application/resourses/music/music.wav").toString()));
+					.getResource("/application/resourses/music/music.wav")
+					.toString()));
 			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		} catch (Exception e) {
 			System.out.println("Load background music error");
 		}
-		
+
 		// FX music
 		try {
 			MediaPlayer FXmediaPlayer = new MediaPlayer(new Media(Main.class
-					.getResource("/application/resourses/music/music.wav").toString()));
+					.getResource("/application/resourses/music/music.wav")
+					.toString()));
 			FXmediaPlayer.setCycleCount(1);
 		} catch (Exception e) {
 			System.out.println("Load FX music error");
 		}
-		
+
 		// Fonts
 		try {
 			minecrafter_font_title = Font.loadFont(
@@ -144,26 +146,32 @@ public class Resourses {
 
 			background_Image = new ImageView(new Image(Main.class.getResource(
 					"/application/resourses/background.png").toString()));
-			
+
 			btn_OK_Image = new ImageView(new Image(Main.class.getResource(
 					"/application/resourses/Common_btns/OK.png").toString()));
-			
-			btn_OK_Image1 = new ImageView(new Image(Main.class.getResource(
-					"/application/resourses/Common_btns/OK_hover.png").toString()));
-			
-			btn_CANCEL_Image = new ImageView(new Image(Main.class.getResource(
-					"/application/resourses/Common_btns/Cancel.png").toString()));
-			
-			btn_CANCEL_Image1 = new ImageView(new Image(Main.class.getResource(
-					"/application/resourses/Common_btns/Cancel_hover.png").toString()));
 
-			btn_Return_Image = new ImageView(new Image(Main.class.getResource(
-					"/application/resourses/Common_btns/Return.png").toString()));
-			
+			btn_OK_Image1 = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/OK_hover.png")
+					.toString()));
+
+			btn_CANCEL_Image = new ImageView(
+					new Image(Main.class.getResource(
+							"/application/resourses/Common_btns/Cancel.png")
+							.toString()));
+
+			btn_CANCEL_Image1 = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/Common_btns/Cancel_hover.png")
+					.toString()));
+
+			btn_Return_Image = new ImageView(
+					new Image(Main.class.getResource(
+							"/application/resourses/Common_btns/Return.png")
+							.toString()));
+
 			btn_Return_Image1 = new ImageView(new Image(Main.class.getResource(
-					"/application/resourses/Common_btns/return_hover.png").toString()));
-			
-			
+					"/application/resourses/Common_btns/return_hover.png")
+					.toString()));
+
 			mainUI_start_Image = new ImageView(new Image(Main.class
 					.getResource("/application/resourses/mainUI/start.png")
 					.toString()));
@@ -172,15 +180,12 @@ public class Resourses {
 							"/application/resourses/mainUI/start_hover.png")
 					.toString()));
 			mainUI_about_Image = new ImageView(new Image(Main.class
-					.getResource(
-							"/application/resourses/mainUI/levelselect.png")
+					.getResource("/application/resourses/mainUI/about.png")
 					.toString()));
-			mainUI_about_Image1 = new ImageView(
-					new Image(
-							Main.class
-									.getResource(
-											"/application/resourses/mainUI/levelselect_hover.png")
-									.toString()));
+			mainUI_about_Image1 = new ImageView(new Image(Main.class
+					.getResource(
+							"/application/resourses/mainUI/about_hover.png")
+					.toString()));
 			mainUI_scores_Image = new ImageView(new Image(Main.class
 					.getResource("/application/resourses/mainUI/score.png")
 					.toString()));
@@ -195,9 +200,8 @@ public class Resourses {
 							"/application/resourses/mainUI/exit_hover.png")
 							.toString()));
 
-			level_lock_image = new Image(Main.class
-					.getResource(
-							"/application/resourses/LevelUI/level_lock.png").toString());
+			level_lock_image = new Image(Main.class.getResource(
+					"/application/resourses/LevelUI/level_lock.png").toString());
 			LevelUI_Images = new ArrayList<ImageView>();
 			LevelUI_Images1 = new ArrayList<ImageView>();
 			for (int i = 0; i < numOfLevel; i++) {

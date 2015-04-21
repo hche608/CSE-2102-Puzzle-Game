@@ -1,12 +1,12 @@
-	/**
-	 * This is a interface of Exit Game
-	 * this class is controlled by GameController
-	 * 
-	 * this class only allocates all labels and buttons on the Panel
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a interface of Exit Game
+ * this class is controlled by GameController
+ * 
+ * this class only allocates all labels and buttons on the Panel
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import javafx.event.ActionEvent;
@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 public class ExitUI {
 	Resourses res = Main.res;
 	Group root;
+
 	public ExitUI(GameController controller) {
 		root = new Group();
 		try {
@@ -31,7 +32,7 @@ public class ExitUI {
 			title.setTranslateX(160);
 			title.setTranslateY(175);
 			title.setFill(Color.BLACK);
-			
+
 			// OK btn
 			final Button btn_OK = new Button();
 			btn_OK.setBorder(null);
@@ -57,7 +58,7 @@ public class ExitUI {
 					System.exit(0);
 				}
 			});
-			
+
 			// Cancel btn
 			final Button btn_Cancel = new Button();
 			btn_Cancel.setBorder(null);
@@ -83,18 +84,18 @@ public class ExitUI {
 					controller.loadMainUI();
 				}
 			});
-			
+
 			HBox btns = new HBox(btn_OK, btn_Cancel);
 			btns.setTranslateX((res.FRAME_WIDTH - res.BTNS_WIDTH * 2 - 20.0) / 2);
 			btns.setTranslateY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 10 * 7);
-			
+
 			root.getChildren().addAll(title, btns);
 		} catch (Exception e) {
 			System.out.println("Initial Exit UI error: " + e);
 		}
 	}
-	
-	public Group getExitUI(){
+
+	public Group getExitUI() {
 		return root;
 	}
 

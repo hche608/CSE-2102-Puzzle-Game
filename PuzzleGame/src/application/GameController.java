@@ -1,10 +1,10 @@
-	/**
-	 * This is a Game Controller class
-	 * this class controls all UIs and interactions with UIs' buttons
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a Game Controller class
+ * this class controls all UIs and interactions with UIs' buttons
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import java.util.ArrayList;
@@ -33,13 +33,11 @@ public class GameController {
 
 	public GameController(Group root) throws Exception {
 		this.root = root;
-		players = new ArrayList<Player>();		
+		players = new ArrayList<Player>();
 	}
-	
+
 	/**
-	 * Initialed the main UI
-	 * Load MainUI into scene
-	 * Display 
+	 * Initialed the main UI Load MainUI into scene Display
 	 */
 	public void loadMainUI() {
 		mainUI = new MainUI(this);
@@ -48,9 +46,8 @@ public class GameController {
 	}
 
 	/**
-	 * remove previous object in the scene
-	 * Load the LevelUI into scene
-	 * unlock initial level 1
+	 * remove previous object in the scene Load the LevelUI into scene unlock
+	 * initial level 1
 	 * 
 	 */
 	public void loadLevelUI() {
@@ -61,63 +58,59 @@ public class GameController {
 	}
 
 	/**
-	 * remove previous object in the scene
-	 * Load the ScoresUI into scene
+	 * remove previous object in the scene Load the ScoresUI into scene
 	 */
 	public void loadScoresUI() {
 		scoresUI = new ScoresListUI(this, players);
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image, scoresUI.getScoresUI());
 	}
-	
+
 	/**
-	 * remove previous object in the scene
-	 * Load the ScoresUI into scene
+	 * remove previous object in the scene Load the ScoresUI into scene
 	 */
 	public void loadAboutUI() {
 		aboutUSUI = new AboutUSUI(this);
 		root.getChildren().clear();
-		root.getChildren().addAll(res.background_Image, aboutUSUI.getAboutUSUI());
+		root.getChildren().addAll(res.background_Image,
+				aboutUSUI.getAboutUSUI());
 	}
-	
+
 	/**
-	 * Initialed the new Player UI
-	 * Load MainUI into scene
-	 * Display 
+	 * Initialed the new Player UI Load MainUI into scene Display
 	 */
 	public void loadNewPlayerUI() {
 		newPlayerUI = new NewPlayerUI(this);
 		root.getChildren().clear();
-		root.getChildren().addAll(res.background_Image, newPlayerUI.getNewPlayerUI());
+		root.getChildren().addAll(res.background_Image,
+				newPlayerUI.getNewPlayerUI());
 	}
 
-
 	/**
-	 * remove previous object in the scene
-	 * Load the ExitUI into scene
+	 * remove previous object in the scene Load the ExitUI into scene
 	 */
 	public void loadExitUI() {
 		exitUI = new ExitUI(this);
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image, exitUI.getExitUI());
 	}
-	
+
 	/**
-	 * remove previous object in the scene
-	 * Load the ScoresUI into scene
+	 * remove previous object in the scene Load the ScoresUI into scene
 	 */
 	public void loadCompletedGameUI() {
 		root.getChildren().clear();
-		root.getChildren().addAll(res.background_Image, completedGameUI.getCompletedGameUI());
+		root.getChildren().addAll(res.background_Image,
+				completedGameUI.getCompletedGameUI());
 	}
-	
+
 	/**
-	 * remove previous object in the scene
-	 * Load the GameUI with para, then load is into scene
+	 * remove previous object in the scene Load the GameUI with para, then load
+	 * is into scene
 	 * 
 	 * @param level_num
 	 * 
-	 * initial a new timer and a new gameboard
+	 *            initial a new timer and a new gameboard
 	 */
 	public void loadGame(int current_level_num) {
 		gamePanelUI = new GamePanelUI(this);
@@ -141,8 +134,7 @@ public class GameController {
 		} catch (Exception e) {
 			System.out.println("Initial game board error: " + e);
 		}
-		
-		
+
 		root.getChildren().addAll(res.background_Image,
 				gamePanelUI.getGamePanelUI(), timerLabel);
 		if (gameBoard != null)
@@ -166,6 +158,7 @@ public class GameController {
 
 	/**
 	 * Set timer with
+	 * 
 	 * @param countdown
 	 * 
 	 */
@@ -178,13 +171,14 @@ public class GameController {
 	 * 
 	 */
 	public void previousLevel() {
-		if (getLastPlayer().getCurrentLevel() > 2){
+		if (getLastPlayer().getCurrentLevel() > 2) {
 			loadGame(getLastPlayer().getCurrentLevel() - 1);
-			getLastPlayer().setCurrentLevel(getLastPlayer().getCurrentLevel() - 1);
+			getLastPlayer().setCurrentLevel(
+					getLastPlayer().getCurrentLevel() - 1);
 		}
 		if (res.debug)
 			System.out.println(getLastPlayer());
-			
+
 	}
 
 	/**
@@ -192,9 +186,12 @@ public class GameController {
 	 * 
 	 */
 	public void nextLevel() {
-		if (getLastPlayer().getCurrentLevel() < getLastPlayer().getHighestLevel() && getLastPlayer().getCurrentLevel() < 20){
+		if (getLastPlayer().getCurrentLevel() < getLastPlayer()
+				.getHighestLevel()
+				&& getLastPlayer().getCurrentLevel() < res.numOfLevel) {
 			loadGame(getLastPlayer().getCurrentLevel() + 1);
-			getLastPlayer().setCurrentLevel(getLastPlayer().getCurrentLevel() + 1);
+			getLastPlayer().setCurrentLevel(
+					getLastPlayer().getCurrentLevel() + 1);
 		}
 		if (res.debug)
 			System.out.println(getLastPlayer());
@@ -207,37 +204,39 @@ public class GameController {
 	public void completed() {
 		timer.stopTimer();
 		System.out.println(timer.getCountDown());
-		if (timer.getCountDown() > 0){
+		if (timer.getCountDown() > 0) {
 			getLastPlayer().setScore(timer.getCountDown());
-			getLastPlayer().setCurrentLevel(getLastPlayer().getCurrentLevel() + 1);
-			if (getLastPlayer().getCurrentLevel() >= getLastPlayer().getHighestLevel()){
-				getLastPlayer().setHighestLevel(getLastPlayer().getCurrentLevel());
+			getLastPlayer().setCurrentLevel(
+					getLastPlayer().getCurrentLevel() + 1);
+			if (getLastPlayer().getCurrentLevel() >= getLastPlayer()
+					.getHighestLevel()) {
+				getLastPlayer().setHighestLevel(
+						getLastPlayer().getCurrentLevel());
 			}
-			
+
 		}
-		completedGameUI = new CompletedGameUI(this,getLastPlayer());
+		completedGameUI = new CompletedGameUI(this, getLastPlayer());
 		loadCompletedGameUI();
 		if (res.debug)
 			System.out.println(getLastPlayer());
 	}
-
 
 	/**
 	 * Returns a list of player info
 	 * 
 	 * @return list
 	 */
-	public Player getLastPlayer(){
+	public Player getLastPlayer() {
 		if (players.size() > 0)
 			player = players.get((players.size() - 1));
 		return player;
 	}
-	
+
 	/**
 	 * Add a player to the list
 	 * 
 	 */
-	public void setNewPlayer(String name){
+	public void setNewPlayer(String name) {
 		Player player = new Player(name);
 		players.add(player);
 	}

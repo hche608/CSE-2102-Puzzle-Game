@@ -1,12 +1,12 @@
-	/**
-	 * This is a interface of Level Section
-	 * this class is controlled by GameController
-	 * 
-	 * this class only allocates all labels and buttons on the Panel
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a interface of Level Section
+ * this class is controlled by GameController
+ * 
+ * this class only allocates all labels and buttons on the Panel
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import java.util.ArrayList;

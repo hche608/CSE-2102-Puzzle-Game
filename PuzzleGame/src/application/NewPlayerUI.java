@@ -75,7 +75,7 @@ public class NewPlayerUI {
 							System.out.println(controller.getLastPlayer());
 						e.consume();
 					}
-					
+
 				}
 			});
 

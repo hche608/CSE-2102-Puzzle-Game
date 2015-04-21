@@ -1,11 +1,11 @@
-	/**
-	 * This is a Timer
-	 * this class is controlled by GameController
-	 * 
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a Timer
+ * this class is controlled by GameController
+ * 
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import javafx.animation.Animation.Status;

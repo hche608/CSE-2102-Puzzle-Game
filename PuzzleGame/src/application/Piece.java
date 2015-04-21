@@ -1,14 +1,14 @@
-	/**
-	 * This is a Piece class, which extends Polygon, and implements PieceInfo
-	 * 
-	 * This class generates Polygon.
-	 * 
-	 * this class is controlled by GameController
-	 * 
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a Piece class, which extends Polygon, and implements PieceInfo
+ * 
+ * This class generates Polygon.
+ * 
+ * this class is controlled by GameController
+ * 
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import javafx.event.EventHandler;
@@ -51,9 +51,10 @@ public class Piece extends Polygon implements PieceInfo {
 		this.setCursor(Cursor.HAND);
 		this.PolygonInfo = PolygonInfo;
 	}
+
 	/**
-	 * Matched Index used to store info that tells 
-	 * which index of white(unpickable) polygon matches with the colorful(pickable) polygon
+	 * Matched Index used to store info that tells which index of
+	 * white(unpickable) polygon matches with the colorful(pickable) polygon
 	 * 
 	 */
 	public void setMatchedIndex(int MatchedIndex) {
@@ -99,7 +100,6 @@ public class Piece extends Polygon implements PieceInfo {
 		}
 	};
 
-	
 	/**
 	 * rotate the polygon when double clicked
 	 * 
@@ -121,11 +121,11 @@ public class Piece extends Polygon implements PieceInfo {
 
 				((Polygon) (t.getSource())).setRotate(offset);
 				((Polygon) (t.getSource())).toFront();
+				t.consume();
 			}
 		}
 	};
 
-	
 	/**
 	 * get the current polygon to front if it is covered by other polygon
 	 * 

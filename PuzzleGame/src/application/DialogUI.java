@@ -57,7 +57,8 @@ public class DialogUI {
 			btn_OK.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					controller.loadGame(controller.getLastPlayer().getCurrentLevel());
+					controller.loadGame(controller.getLastPlayer()
+							.getCurrentLevel());
 					e.consume();
 				}
 			});
