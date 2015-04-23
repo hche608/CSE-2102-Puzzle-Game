@@ -22,8 +22,6 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	GameController controller;
-
 	// Create a background Thread to play background Music
 	Task<Void> task = new Task<Void>() {
 		@Override

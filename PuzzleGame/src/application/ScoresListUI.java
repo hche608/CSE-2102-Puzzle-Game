@@ -25,11 +25,11 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class ScoresListUI {
-	Resourses res = Main.res;
-	Group root;
-	Text name, format, score;
-	VBox list1, list2, list3;
-	HBox table;
+	private Resourses res = Main.res;
+	private Group root;
+	private Text name, format, score;
+	private VBox list1, list2, list3;
+	private HBox table;
 
 	public ScoresListUI(GameController controller, ArrayList<Player> players) {
 		root = new Group();

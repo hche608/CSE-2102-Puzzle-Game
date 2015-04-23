@@ -20,17 +20,17 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 public class ShapesManger {
-	Resourses res = Main.res;
-	double orgSceneX, orgSceneY;
-	double orgTranslateX, orgTranslateY;
-	ArrayList<Piece> polygons;
-	ArrayList<Piece> maps;
+	private Resourses res = Main.res;
+	private double orgSceneX, orgSceneY;
+	private double orgTranslateX, orgTranslateY;
+	private ArrayList<Piece> polygons;
+	private ArrayList<Piece> maps;
 
-	Piece triangle_One_L, triangle_Two_L, triangle_One_M, triangle_One_S,
+	private Piece triangle_One_L, triangle_Two_L, triangle_One_M, triangle_One_S,
 			triangle_Two_S, square_One_S, rhombus_One_S, triangle_One_L_map,
 			triangle_Two_L_map, triangle_One_M_map, triangle_One_S_map,
 			triangle_Two_S_map, square_One_S_map, rhombus_One_S_map;
-	GameController controller;
+	private GameController controller;
 
 	/**
 	 * if Mouse is Pressed
@@ -47,6 +47,7 @@ public class ShapesManger {
 			orgSceneY = t.getSceneY();
 			orgTranslateX = ((Polygon) (t.getSource())).getTranslateX();
 			orgTranslateY = ((Polygon) (t.getSource())).getTranslateY();
+			t.consume();
 		}
 	};
 
@@ -64,9 +65,13 @@ public class ShapesManger {
 			double offsetY = t.getSceneY() - orgSceneY;
 			double newTranslateX = orgTranslateX + offsetX;
 			double newTranslateY = orgTranslateY + offsetY;
-
+			if(res.debug){
+				System.out.printf("I am %s,(%s,%s).\n", ((Piece) (t.getSource())).getPolygonInfo(), newTranslateX,newTranslateY);
+			}
 			((Polygon) (t.getSource())).setTranslateX(newTranslateX);
 			((Polygon) (t.getSource())).setTranslateY(newTranslateY);
+			
+			t.consume();
 		}
 	};
 
@@ -91,21 +96,27 @@ public class ShapesManger {
 				for (int i = 0; i < polygons.size(); i++) {
 					if (polygons.get(i).getMatchedIndex() == MatchedIndex) {
 						isTaken = true;
+						break;
 					}
 				}
 				if (isTaken == false
 						|| ((Piece) (t.getSource())).getMatchedIndex() == MatchedIndex) {
 					setMatchedPieces((Piece) (t.getSource()),
 							maps.get(MatchedIndex));
+					
 					((Piece) (t.getSource())).setMatchedIndex(MatchedIndex);
 				}
 			} else {
 				((Piece) (t.getSource())).setMatchedIndex(-1);
 			}
+			
 			if (isCompleted()) {
-				System.out.println("Win");
+				System.out.printf("(%s,%s)",((Piece) (t.getSource())).getTranslateX(),((Piece) (t.getSource())).getTranslateY());
+				System.out.printf("(%s,%s)",maps.get(MatchedIndex).getTranslateX(),maps.get(MatchedIndex).getTranslateY());
+				System.out.println("Index of the Last Polygon: " + MatchedIndex);
 				controller.completed();
 			}
+			t.consume();
 		}
 	};
 
@@ -116,33 +127,33 @@ public class ShapesManger {
 		try {
 
 			// initial a puzzle
-			triangle_One_L_map = new Piece(res.Triangle_L, "Triangle_L", 0.0);
-			triangle_One_L_map.setTranslateX(400);
-			triangle_One_L_map.setTranslateY(300);
+			triangle_One_L_map = new Piece(res.Triangle_L, "Triangle_L", 180.0);
+			triangle_One_L_map.setTranslateX(453);
+			triangle_One_L_map.setTranslateY(240);
 
-			triangle_Two_L_map = new Piece(res.Triangle_L, "Triangle_L", 90.0);
-			triangle_Two_L_map.setTranslateX(480);
-			triangle_Two_L_map.setTranslateY(200);
+			triangle_Two_L_map = new Piece(res.Triangle_L, "Triangle_L", 270.0);
+			triangle_Two_L_map.setTranslateX(415);
+			triangle_Two_L_map.setTranslateY(277.5);
 
-			triangle_One_M_map = new Piece(res.Triangle_M, "Triangle_M", 180.0);
-			triangle_One_M_map.setTranslateX(380);
-			triangle_One_M_map.setTranslateY(80);
+			triangle_One_M_map = new Piece(res.Triangle_M, "Triangle_M", 45.0);
+			triangle_One_M_map.setTranslateX(490);
+			triangle_One_M_map.setTranslateY(406);
 
-			triangle_One_S_map = new Piece(res.Triangle_S, "Triangle_S", 270.0);
-			triangle_One_S_map.setTranslateX(450);
-			triangle_One_S_map.setTranslateY(400);
+			triangle_One_S_map = new Piece(res.Triangle_S, "Triangle_S", 135.0);
+			triangle_One_S_map.setTranslateX(523.5);
+			triangle_One_S_map.setTranslateY(339);
 
 			triangle_Two_S_map = new Piece(res.Triangle_S, "Triangle_S", 90.0);
-			triangle_Two_S_map.setTranslateX(450);
-			triangle_Two_S_map.setTranslateY(450);
+			triangle_Two_S_map.setTranslateX(601.6);
+			triangle_Two_S_map.setTranslateY(218.6);
 
 			square_One_S_map = new Piece(res.Square_S, "Square_S", 0.0);
-			square_One_S_map.setTranslateX(500);
-			square_One_S_map.setTranslateY(200);
+			square_One_S_map.setTranslateX(470);
+			square_One_S_map.setTranslateY(276);
 
-			rhombus_One_S_map = new Piece(res.Rhombus_S, "Rhombus_S", 0.0);
-			rhombus_One_S_map.setTranslateX(500);
-			rhombus_One_S_map.setTranslateY(230);
+			rhombus_One_S_map = new Piece(res.Rhombus_S, "Rhombus_S", 90.0);
+			rhombus_One_S_map.setTranslateX(546);
+			rhombus_One_S_map.setTranslateY(163);
 
 			maps.add(triangle_One_L_map);
 			maps.add(triangle_Two_L_map);
@@ -287,6 +298,7 @@ public class ShapesManger {
 		for (int i = 0; i < polygons.size(); i++) {
 			if (polygons.get(i).getMatchedIndex() == -1) {
 				isCompleted = false;
+				break;
 			}
 		}
 		return isCompleted;
@@ -302,7 +314,6 @@ public class ShapesManger {
 	private void setMatchedPieces(Piece test_polygon, Piece target_polygon) {
 		test_polygon.setTranslateX(target_polygon.getTranslateX());
 		test_polygon.setTranslateY(target_polygon.getTranslateY());
-		test_polygon.setRotate(target_polygon.getRotate());
 		res.shapesMatchedFXmediaPlayer.play();
 	}
 }

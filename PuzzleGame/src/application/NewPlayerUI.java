@@ -22,8 +22,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class NewPlayerUI {
-	Resourses res = Main.res;
-	Group root;
+	private Resourses res = Main.res;
+	private Group root;
 
 	public NewPlayerUI(GameController controller) {
 		root = new Group();

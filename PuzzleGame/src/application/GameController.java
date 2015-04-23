@@ -28,9 +28,9 @@ public class GameController {
 	private Label timerLabel;
 	private Group gameBoard;
 
-	ArrayList<Player> players;
-	Player player;
-	GameTimer timer;
+	private ArrayList<Player> players;
+	private Player player;
+	private GameTimer timer;
 
 	public GameController(Group root) throws Exception {
 		this.root = root;
@@ -42,8 +42,9 @@ public class GameController {
 	 * 
 	 */
 	public void completed() {
-		timer.stopTimer();
-		System.out.println(timer.getCountDown());
+		timer.stopTimer();	
+		if (res.debug)
+			System.out.println("Time remainder:" + timer.getCountDown());
 		if (timer.getCountDown() > 0) {
 			getLastPlayer().setScore(timer.getCountDown());
 			if (getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
@@ -58,10 +59,10 @@ public class GameController {
 					getLastPlayer().setHighestLevel(res.numOfLevel);
 				}
 			}
-		}
-		res.completedFXmediaPlayer.play();
-		completedGameUI = new CompletedGameUI(this, getLastPlayer());
-		loadCompletedGameUI();
+		}	
+		
+		res.completedFXmediaPlayer.play();		
+		loadCompletedGameUI();		
 		if (res.debug)
 			System.out.println(getLastPlayer());
 	}
@@ -91,6 +92,7 @@ public class GameController {
 	 * remove previous object in the scene Load the ScoresUI into scene
 	 */
 	public void loadCompletedGameUI() {
+		completedGameUI = new CompletedGameUI(this, getLastPlayer());
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image,
 				completedGameUI.getCompletedGameUI());

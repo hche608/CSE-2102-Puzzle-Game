@@ -21,8 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class MainUI {
-	Resourses res = Main.res;
-	Group root;
+	private Resourses res = Main.res;
+	private Group root;
 
 	public MainUI(GameController controller) {
 		root = new Group();

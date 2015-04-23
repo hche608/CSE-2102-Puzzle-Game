@@ -25,10 +25,10 @@ import javafx.scene.layout.VBox;
 
 public class LevelUI {
 
-	Resourses res = Main.res;
-	Group root;
-	ArrayList<Button> btns_list;
-	final GameController controller;
+	private Resourses res = Main.res;
+	private Group root;
+	private ArrayList<Button> btns_list;
+	private GameController controller;
 
 	public LevelUI(GameController controller) {
 		this.controller = controller;

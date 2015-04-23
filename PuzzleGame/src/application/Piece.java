@@ -18,11 +18,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class Piece extends Polygon implements PieceInfo {
-	Resourses res = Main.res;
-	String PolygonInfo;
+	private Resourses res = Main.res;
+	private String PolygonInfo;
 	double orgSceneX, orgSceneY;
 	double orgTranslateX, orgTranslateY;
-	int MatchedIndex = -1;
+	private int MatchedIndex = -1;
 
 	/**
 	 * get coordinates when Mouse Pressed
@@ -37,6 +37,7 @@ public class Piece extends Polygon implements PieceInfo {
 			orgSceneY = t.getSceneY();
 			orgTranslateX = ((Polygon) (t.getSource())).getTranslateX();
 			orgTranslateY = ((Polygon) (t.getSource())).getTranslateY();
+			t.consume();
 		}
 	};
 
@@ -49,7 +50,7 @@ public class Piece extends Polygon implements PieceInfo {
 
 		@Override
 		public void handle(MouseEvent t) {
-			if (t.getClickCount() >= 2) {
+			if (t.getClickCount() > 1 || t.isControlDown()) {
 				double offset = ((Polygon) (t.getSource())).getRotate();
 				if (PolygonInfo.equals("Square_S")) {
 					offset = (offset + 45.0) % 90;
@@ -76,6 +77,7 @@ public class Piece extends Polygon implements PieceInfo {
 		@Override
 		public void handle(MouseEvent t) {
 			((Polygon) (t.getSource())).toFront();
+			t.consume();
 		}
 	};
 

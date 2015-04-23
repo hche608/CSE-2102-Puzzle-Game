@@ -21,9 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class AboutUSUI {
-	Resourses res = Main.res;
-	Group root;
-	final GameController controller;
+	private Resourses res = Main.res;
+	private Group root;
+	GameController controller;
 
 	public AboutUSUI(GameController controller) {
 		root = new Group();

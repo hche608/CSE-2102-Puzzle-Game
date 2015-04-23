@@ -21,12 +21,10 @@ import javafx.util.Duration;
 public class GameTimer {
 	private Timeline timeline;
 	private Label timerLabel;
-	Resourses res = Main.res;
-	int countdown;
-	IntegerProperty timeSeconds;
+	private Resourses res = Main.res;
+	private IntegerProperty timeSeconds;
 
 	public GameTimer(int countdown) {
-		this.countdown = countdown;
 		setTimerLabel(new Label());
 		timeSeconds = new SimpleIntegerProperty(countdown);
 		timeSeconds.set(countdown);

@@ -20,8 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class ExitUI {
-	Resourses res = Main.res;
-	Group root;
+	private Resourses res = Main.res;
+	private Group root;
 
 	public ExitUI(GameController controller) {
 		root = new Group();

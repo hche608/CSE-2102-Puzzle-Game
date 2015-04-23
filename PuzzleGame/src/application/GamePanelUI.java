@@ -18,8 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class GamePanelUI {
-	Resourses res = Main.res;
-	Group root;
+	private Resourses res = Main.res;
+	private Group root;
 	GameController controller;
 
 	public GamePanelUI(GameController controller) {
