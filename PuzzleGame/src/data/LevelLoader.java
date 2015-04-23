@@ -18,10 +18,10 @@ import java.util.List;
  *
  */
 
-public class levelLoader extends loaderFile
+public class LevelLoader extends LoaderFile
 {
 
-	public levelLoader(String name) 
+	public LevelLoader(String name) 
 	{
 		super(name);
 	}
@@ -33,7 +33,7 @@ public class levelLoader extends loaderFile
 	@Override
 	public ArrayList<Level> getLevels() throws IOException
 	{
-		List<String> lines = Files.readAllLines(Paths.get("path to file"), StandardCharsets.UTF_8);
+		List<String> lines = Files.readAllLines(Paths.get(_levelFilePath));
 		ArrayList<Level> levels = new ArrayList<Level>();
 		Level currentLevel = new Level();
 		for(int n = 0; n < lines.size(); n++)
@@ -47,11 +47,13 @@ public class levelLoader extends loaderFile
 				{	
 					currentLevel = new Level();
 					currentLevel.setName(secondWord);
+					System.out.println("level: " + secondWord);
 					levels.add(currentLevel);
 				}
 				else if(firstWord.equalsIgnoreCase("Time:"))
 				{
 					int time = Integer.valueOf(secondWord);
+					System.out.println("time: " + time);
 					currentLevel.setTime(time);
 				}
 				else if(firstWord.equalsIgnoreCase("Polygon:"))
@@ -112,6 +114,7 @@ public class levelLoader extends loaderFile
 			}
 		}
 		poly = new PolygonWrapper(ID, point, rotation);
+		System.out.println(poly);
 
 		return poly;
 	}

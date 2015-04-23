@@ -1,11 +1,11 @@
-	/**
-	 * This is a Timer
-	 * this class is controlled by GameController
-	 * 
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a Timer
+ * this class is controlled by GameController
+ * 
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import javafx.animation.Animation.Status;
@@ -21,12 +21,10 @@ import javafx.util.Duration;
 public class GameTimer {
 	private Timeline timeline;
 	private Label timerLabel;
-	Resourses res = Main.res;
-	int countdown;
-	IntegerProperty timeSeconds;
+	private Resourses res = Main.res;
+	private IntegerProperty timeSeconds;
 
 	public GameTimer(int countdown) {
-		this.countdown = countdown;
 		setTimerLabel(new Label());
 		timeSeconds = new SimpleIntegerProperty(countdown);
 		timeSeconds.set(countdown);
@@ -41,13 +39,12 @@ public class GameTimer {
 
 	}
 
-	public Label getTimerLabel() {
-		return timerLabel;
+	public int getCountDown() {
+		return timeSeconds.getValue();
 	}
 
-	public void playTimer() {
-		if (timeline.getStatus() != Status.RUNNING)
-			timeline.play();
+	public Label getTimerLabel() {
+		return timerLabel;
 	}
 
 	public void pauseORresumeTimer() {
@@ -58,22 +55,23 @@ public class GameTimer {
 		}
 	}
 
-	public void stopTimer() {
-		if (timeline.getStatus() == Status.RUNNING) {
-			timeline.stop();
-		}
+	public void playTimer() {
+		if (timeline.getStatus() != Status.RUNNING)
+			timeline.play();
 	}
 
 	public void setCountDown(int v) {
 		timeSeconds.setValue(v);
 	}
 
-	public int getCountDown() {
-		return timeSeconds.getValue();
-	}
-
 	public void setTimerLabel(Label timerLabel) {
 		this.timerLabel = timerLabel;
+	}
+
+	public void stopTimer() {
+		if (timeline.getStatus() == Status.RUNNING) {
+			timeline.stop();
+		}
 	}
 
 }

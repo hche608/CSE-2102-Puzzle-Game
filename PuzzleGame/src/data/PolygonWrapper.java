@@ -36,5 +36,9 @@ public class PolygonWrapper
 		return _name;
 	}
 	
+	public String toString()
+	{
+		return "PolyID: " + _name + "  Coordinate: " + _coordinate.toString() + "  Angle: " + _rotation;
+	}
 
 }

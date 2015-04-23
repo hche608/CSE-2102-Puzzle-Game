@@ -29,5 +29,10 @@ public class Coordinate extends Point2D
 		this.y = y;
 		
 	}
+	
+	public String toString()
+	{
+		return "( " + x + ", " + y + " )";
+	}
 
 }

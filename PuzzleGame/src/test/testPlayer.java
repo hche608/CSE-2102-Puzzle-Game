@@ -18,17 +18,17 @@ public class testPlayer {
 	}
 
 	@Test
+	public void testGetScore() {
+		assertEquals(p1.getScore(), 0);
+		assertEquals(p2.getScore(), 0);
+	}
+
+	@Test
 	public void testSetPlayerName() {
 		p1.setPlayerName("TestName");
 		p2.setPlayerName("TestName");
 		assertEquals(p1.getPlayerName(), "TestName");
 		assertEquals(p2.getPlayerName(), "TestName");
-	}
-
-	@Test
-	public void testGetScore() {
-		assertEquals(p1.getScore(), 0);
-		assertEquals(p2.getScore(), 0);
 	}
 
 	@Test

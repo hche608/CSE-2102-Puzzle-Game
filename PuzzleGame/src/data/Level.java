@@ -55,4 +55,17 @@ public class Level
 	{
 		return _name;
 	}
+	
+	public String toString()
+	{
+		String returnThis = "Level: " + _name + "\n";
+		for (int n = 0; n < _polyData.size(); n++)
+		{
+			PolygonWrapper poly = _polyData.get(n);
+			if(poly != null)
+				returnThis += "Polygon " + n + "  " + _polyData.toString() + "\n";
+		}
+		returnThis += "Level Length: " + _time + "s";
+		return returnThis;
+	}
 }

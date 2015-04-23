@@ -13,26 +13,26 @@ import jeff.ini.Ini;
  *
  */
 
-public abstract class loaderFile 
+public abstract class LoaderFile 
 {
 	protected Ini _loader;
-	protected String _levelFile;
+	protected String _levelFilePath;
 	
-	public loaderFile(String name)
+	public LoaderFile(String name)
 	{
-		_levelFile = name;
+		_levelFilePath = name;
 	}
 	
 	public abstract ArrayList<Level> getLevels() throws IOException;
 	
 	public void setFileName(String newName)
 	{
-		_levelFile = newName;
+		_levelFilePath = newName;
 	}
 	
-	protected String getFirstWord(String string)
+	public String getFirstWord(String string)
 	{
-		if (string == null | string.equals(""))
+		if (string == null || string.equals(""))
 		{
 			return null;
 		}
@@ -47,14 +47,14 @@ public abstract class loaderFile
 			startIndex++;
 			endIndex = string.substring(startIndex).indexOf(" ");
 		}
-		if (startIndex != string.length())
+		if (startIndex == string.length())
 		{
 			return null;
 		}
 		return string.substring(startIndex, endIndex);
 	}
 	
-	protected String afterFirstWord(String string)
+	public String afterFirstWord(String string)
 	{
 		String firstWord = getFirstWord(string);
 		if(firstWord == null)

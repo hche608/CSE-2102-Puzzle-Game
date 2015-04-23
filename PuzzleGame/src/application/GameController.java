@@ -1,94 +1,133 @@
-	/**
-	 * This is a Game Controller class
-	 * this class controls all UIs and interactions with UIs' buttons
-	 * 
-	 * @author hche608
-	 * 
-	 */
+/**
+ * This is a Game Controller class
+ * this class controls all UIs and interactions with UIs' buttons
+ * 
+ * @author hche608
+ * 
+ */
 package application;
 
 import java.util.ArrayList;
+
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 
 public class GameController {
-	public MainUI mainUI;
-	public LevelUI levelUI;
-	public ScoresListUI scoresUI;
-	public GamePanelUI gamePanelUI;
-	Resourses res = Main.res;
-	Group root;
-	ShapesManger shapesManger;
-	ArrayList<Piece> polygons, maps;
-	Label timerLabel;
-	Group gameBoard;
-	int level_num = 1;
+	private MainUI mainUI;
+	private LevelUI levelUI;
+	private ScoresListUI scoresUI;
+	private AboutUSUI aboutUSUI;
+	private GamePanelUI gamePanelUI;
+	private ExitUI exitUI;
+	private NewPlayerUI newPlayerUI;
+	private CompletedGameUI completedGameUI;
+	private Resourses res = Main.res;
+	private Group root;
+	private ShapesManger shapesManger;
+	private ArrayList<Piece> polygons, maps;
+	private Label timerLabel;
+	private Group gameBoard;
 
-	ArrayList<Player> players = new ArrayList<Player>();
-
-	GameTimer timer;
+	private ArrayList<Player> players;
+	private Player player;
+	private GameTimer timer;
 
 	public GameController(Group root) throws Exception {
 		this.root = root;
-		mainUI = new MainUI(this);
-		levelUI = new LevelUI(this);
-		scoresUI = new ScoresListUI(this);
-		gamePanelUI = new GamePanelUI(this);
-	}
-	
-	/**
-	 * Initialed the main UI
-	 * Load MainUI into scene
-	 * Display 
-	 */
-	public void loadMainUI() {
-		root.getChildren().clear();
-		root.getChildren().addAll(res.background_Image, mainUI.getMainUI());
+		players = new ArrayList<Player>();
 	}
 
 	/**
-	 * remove previous object in the scene
-	 * Load the LevelUI into scene
-	 * unlock initial level 1
+	 * Check is completed
 	 * 
 	 */
-	public void loadLevelUI() {
-		root.getChildren().clear();
-		root.getChildren().addAll(res.background_Image, levelUI.getLevelUI());
-		levelUI.unlock(1);
+	public void completed() {
+		timer.stopTimer();	
+		if (res.debug)
+			System.out.println("Time remainder:" + timer.getCountDown());
+		if (timer.getCountDown() > 0) {
+			getLastPlayer().setScore(timer.getCountDown());
+			if (getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
+				getLastPlayer().setCurrentLevel(
+						getLastPlayer().getCurrentLevel() + 1);
+				if (getLastPlayer().getCurrentLevel() >= getLastPlayer()
+						.getHighestLevel()) {
+					getLastPlayer().setHighestLevel(
+							getLastPlayer().getCurrentLevel());
+				}
+				if (getLastPlayer().getCurrentLevel() > res.numOfLevel) {
+					getLastPlayer().setHighestLevel(res.numOfLevel);
+				}
+			}
+		}	
+		
+		res.completedFXmediaPlayer.play();		
+		loadCompletedGameUI();		
+		if (res.debug)
+			System.out.println(getLastPlayer());
 	}
 
 	/**
-	 * remove previous object in the scene
-	 * Load the ScoresUI into scene
+	 * Returns a list of player info
+	 * 
+	 * @return list
 	 */
-	public void loadScoresUI() {
-		root.getChildren().clear();
-		root.getChildren().addAll(res.background_Image, scoresUI.getScoresUI());
+	public Player getLastPlayer() {
+		if (players.size() > 0)
+			player = players.get((players.size() - 1));
+		return player;
 	}
 
 	/**
-	 * remove previous object in the scene
-	 * Load the GameUI with para, then laod is into scene
+	 * remove previous object in the scene Load the ScoresUI into scene
+	 */
+	public void loadAboutUI() {
+		aboutUSUI = new AboutUSUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image,
+				aboutUSUI.getAboutUSUI());
+	}
+
+	/**
+	 * remove previous object in the scene Load the ScoresUI into scene
+	 */
+	public void loadCompletedGameUI() {
+		completedGameUI = new CompletedGameUI(this, getLastPlayer());
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image,
+				completedGameUI.getCompletedGameUI());
+	}
+
+	/**
+	 * remove previous object in the scene Load the ExitUI into scene
+	 */
+	public void loadExitUI() {
+		exitUI = new ExitUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, exitUI.getExitUI());
+	}
+
+	/**
+	 * remove previous object in the scene Load the GameUI with para, then load
+	 * is into scene
 	 * 
 	 * @param level_num
 	 * 
-	 * initial a new timer and a new gameboard
+	 *            initial a new timer and a new gameboard
 	 */
-	public void loadGame(int level_num) {
-		this.level_num = level_num;
-		levelUI.unlock(level_num);
+	public void loadGame(int current_level_num) {
+		gamePanelUI = new GamePanelUI(this);
+		levelUI.unlock(getLastPlayer().getHighestLevel());
 		root.getChildren().clear();
-		shapesManger = new ShapesManger(this, level_num);
+		shapesManger = new ShapesManger(this, current_level_num);
 
 		// Set Timer
 		timer = new GameTimer(res.countdown);
 		timerLabel = timer.getTimerLabel();
-		timerLabel.setLayoutX(100);
-		timerLabel.setLayoutY(res.FRAME_HEIGHT - 50);
+		timerLabel.setTranslateX(50);
+		timerLabel.setTranslateY(40);
 		gameBoard = new Group();
 		try {
-
 			polygons = new ArrayList<Piece>();
 			polygons = shapesManger.getCube();
 			maps = new ArrayList<Piece>();
@@ -98,10 +137,74 @@ public class GameController {
 		} catch (Exception e) {
 			System.out.println("Initial game board error: " + e);
 		}
+
 		root.getChildren().addAll(res.background_Image,
 				gamePanelUI.getGamePanelUI(), timerLabel);
 		if (gameBoard != null)
 			root.getChildren().add(gameBoard);
+	}
+
+	/**
+	 * remove previous object in the scene Load the LevelUI into scene unlock
+	 * initial level 1
+	 * 
+	 */
+	public void loadLevelUI() {
+		levelUI = new LevelUI(this);
+		levelUI.unlock(getLastPlayer().getHighestLevel());
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, levelUI.getLevelUI());
+	}
+
+	/**
+	 * Initialed the main UI Load MainUI into scene Display
+	 */
+	public void loadMainUI() {
+		mainUI = new MainUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, mainUI.getMainUI());
+	}
+
+	/**
+	 * Initialed the new Player UI Load MainUI into scene Display
+	 */
+	public void loadNewPlayerUI() {
+		newPlayerUI = new NewPlayerUI(this);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image,
+				newPlayerUI.getNewPlayerUI());
+	}
+
+	/**
+	 * remove previous object in the scene Load the ScoresUI into scene
+	 */
+	public void loadScoresUI() {
+		scoresUI = new ScoresListUI(this, players);
+		root.getChildren().clear();
+		root.getChildren().addAll(res.background_Image, scoresUI.getScoresUI());
+	}
+
+	/**
+	 * go to previous level
+	 * 
+	 */
+	public void nextLevel() {
+		if (getLastPlayer().getCurrentLevel() < getLastPlayer()
+				.getHighestLevel()
+				&& getLastPlayer().getCurrentLevel() < res.numOfLevel) {
+			loadGame(getLastPlayer().getCurrentLevel() + 1);
+			getLastPlayer().setCurrentLevel(
+					getLastPlayer().getCurrentLevel() + 1);
+		}
+		if (res.debug)
+			System.out.println(getLastPlayer());
+	}
+
+	/**
+	 * Pause or Resume the timer
+	 */
+	public void pauseORresumeTimer() {
+		timer.pauseORresumeTimer();
 	}
 
 	/**
@@ -113,14 +216,23 @@ public class GameController {
 	}
 
 	/**
-	 * Pause or Resume the timer
+	 * go to next level
+	 * 
 	 */
-	public void pauseORresumeTimer() {
-		timer.pauseORresumeTimer();
+	public void previousLevel() {
+		if (getLastPlayer().getCurrentLevel() > 2) {
+			loadGame(getLastPlayer().getCurrentLevel() - 1);
+			getLastPlayer().setCurrentLevel(
+					getLastPlayer().getCurrentLevel() - 1);
+		}
+		if (res.debug)
+			System.out.println(getLastPlayer());
+
 	}
 
 	/**
 	 * Set timer with
+	 * 
 	 * @param countdown
 	 * 
 	 */
@@ -129,52 +241,12 @@ public class GameController {
 	}
 
 	/**
-	 * go to next level
+	 * Add a player to the list
 	 * 
 	 */
-	public void previousLevel() {
-		if (level_num > 2)
-			loadGame(level_num - 1);
-	}
-
-	/**
-	 * go to previous level
-	 * 
-	 */
-	public void nextLevel() {
-		if (level_num < 20)
-			loadGame(level_num + 1);
-	}
-
-	/**
-	 * Check is completed
-	 * 
-	 */
-	public void completed() {
-		timer.stopTimer();
-
-		System.out.println(timer.getCountDown());
-	}
-
-	/**
-	 * Reset UI
-	 * 
-	 */
-	public void reset() {
-		timer = new GameTimer(res.countdown);
-		shapesManger = new ShapesManger(this, 1);
-	}
-
-
-	/**
-	 * Returns a list of player info
-	 * 
-	 * @return list
-	 */
-	public String[] showList() {
-
-		return null;
-
+	public void setNewPlayer(String name) {
+		Player player = new Player(name);
+		players.add(player);
 	}
 
 }
