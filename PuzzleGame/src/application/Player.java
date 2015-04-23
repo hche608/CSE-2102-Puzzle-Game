@@ -16,13 +16,41 @@ public class Player {
 		this.score = 0;
 		this.level_num = 1;
 	}
+	/**
+	 * Creates player with a given name
+	 * @param playerName
+	 */
 
 	public Player(String playerName) {
 		this.playerName = playerName;
 		this.score = 0;
 		this.level_num = 1;
 	}
-
+	
+	/**
+	 * Creates player with given name, score and max level
+	 * @param playerName, score, maxLevel
+	 * @Author Christian
+	 */
+	public Player(String playerName, int score, int maxLevel)
+	{
+		this.playerName = playerName;
+		this.score = score;
+		this.level_num = maxLevel;
+	}
+	
+	/**
+	 * Increments given score to player's total.
+	 * @param score
+	 * @Author Christian
+	 */
+	
+	public void updateScore(int score)
+	{
+		this.score += score;
+	}
+	
+	
 	public void setScore(int score) {
 		this.score = score;
 	}
@@ -32,7 +60,7 @@ public class Player {
 	}
 
 	public int getLevel() {
-		return level_num;
+		return this.level_num;
 	}
 
 	public void setPlayerName(String playerName) {
@@ -40,10 +68,10 @@ public class Player {
 	}
 
 	public int getScore() {
-		return score;
+		return this.score;
 	}
 
 	public String getPlayerName() {
-		return playerName;
+		return this.playerName;
 	}
 }

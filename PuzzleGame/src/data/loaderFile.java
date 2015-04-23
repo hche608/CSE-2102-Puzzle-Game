@@ -32,12 +32,24 @@ public abstract class loaderFile
 	
 	protected String getFirstWord(String string)
 	{
+		if (string == null | string.equals(""))
+		{
+			return null;
+		}
 		int startIndex = 0;
 		int endIndex = string.indexOf(" ");
-		if (startIndex == endIndex)
+		if(endIndex == -1)
+		{
+			return string;
+		}
+		while (startIndex == endIndex && startIndex != string.length())
 		{
 			startIndex++;
 			endIndex = string.substring(startIndex).indexOf(" ");
+		}
+		if (startIndex != string.length())
+		{
+			return null;
 		}
 		return string.substring(startIndex, endIndex);
 	}
@@ -45,6 +57,8 @@ public abstract class loaderFile
 	protected String afterFirstWord(String string)
 	{
 		String firstWord = getFirstWord(string);
+		if(firstWord == null)
+			return null;
 		String after = string.substring(firstWord.length() + 1);
 		return after;
 	}

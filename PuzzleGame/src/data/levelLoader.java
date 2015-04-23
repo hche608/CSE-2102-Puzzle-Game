@@ -41,25 +41,28 @@ public class levelLoader extends loaderFile
 			String currentLine = lines.get(n);
 			String firstWord = getFirstWord(currentLine);
 			String secondWord = getFirstWord(afterFirstWord(currentLine));
-			if (firstWord.equalsIgnoreCase("Level:"))
-			{	
-				currentLevel = new Level();
-				currentLevel.setName(secondWord);
-				levels.add(currentLevel);
-			}
-			else if(firstWord.equalsIgnoreCase("time:"))
+			if (firstWord != null && !secondWord.equals(""))
 			{
-				int time = Integer.valueOf(secondWord);
-				currentLevel.setTime(time);
-			}
-			else if(firstWord.equalsIgnoreCase("Polygon:"))
-			{
-				String polyInfo = afterFirstWord(currentLine);
-				currentLevel.addPolygon(parseToPoly(polyInfo));
-			}
-			else
-			{
-				System.out.println("Problem in save file, bad ID found. Data may be corrupt.");
+				if (firstWord.equalsIgnoreCase("Level:"))
+				{	
+					currentLevel = new Level();
+					currentLevel.setName(secondWord);
+					levels.add(currentLevel);
+				}
+				else if(firstWord.equalsIgnoreCase("Time:"))
+				{
+					int time = Integer.valueOf(secondWord);
+					currentLevel.setTime(time);
+				}
+				else if(firstWord.equalsIgnoreCase("Polygon:"))
+				{
+					String polyInfo = afterFirstWord(currentLine);
+					currentLevel.addPolygon(parseToPoly(polyInfo));
+				}
+				else
+				{
+					System.out.println("Problem in save file, bad ID found. Data may be corrupt.");
+				}
 			}
 		}
 		return levels;		
@@ -109,10 +112,10 @@ public class levelLoader extends loaderFile
 			}
 		}
 		poly = new PolygonWrapper(ID, point, rotation);
-		
+
 		return poly;
 	}
-	
-	
+
+
 
 }
