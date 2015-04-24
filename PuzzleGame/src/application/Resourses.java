@@ -6,11 +6,9 @@
  */
 package application;
 
-import java.net.URI;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import data.Level;
-import data.LevelLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
@@ -60,7 +58,7 @@ public class Resourses {
 	 * Resources for common area
 	 */
 
-	public LevelLoader level_load;
+	public BufferedReader br;
 	
 	public ImageView background_Image;
 	public ImageView btn_OK_Image;
@@ -179,10 +177,7 @@ public class Resourses {
 
 		// Load levels
 		try {
-			level_load = new LevelLoader("/Volumes/Personal DATA/hche608/Dropbox/GitHub/CSE-2102-Puzzle-Game/PuzzleGame/src/application/resourses/LevelInfo.ini");
-			ArrayList<Level> levels = new ArrayList<Level>();
-			levels = level_load.getLevels();
-			System.out.println(levels);
+			br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/application/resourses/LevelInfo.ini")));
 		} catch (Exception e){
 			System.out.println("Load levels error: "  + e);
 		}

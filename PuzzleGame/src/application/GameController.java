@@ -7,10 +7,15 @@
  */
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import data.Level;
+import data.LevelLoader;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class GameController {
 	private MainUI mainUI;
@@ -27,7 +32,9 @@ public class GameController {
 	private ArrayList<Piece> polygons, maps;
 	private Label timerLabel;
 	private Group gameBoard;
+	private LevelLoader levelLoader = new LevelLoader("Nothing");
 
+	private ArrayList<Level> levels;
 	private ArrayList<Player> players;
 	private Player player;
 	private GameTimer timer;
@@ -35,6 +42,16 @@ public class GameController {
 	public GameController(Group root) throws Exception {
 		this.root = root;
 		players = new ArrayList<Player>();
+		try {
+			setLevels(levelLoader.getLevels());
+			if (res.debug){
+				System.out.println(getLevels().get(0));
+				System.out.println(getLevels().size());
+			}
+				
+		} catch (IOException e){
+			System.out.println("Load levels error: " + e);
+		}
 	}
 
 	/**
@@ -116,13 +133,22 @@ public class GameController {
 	 *            initial a new timer and a new gameboard
 	 */
 	public void loadGame(int current_level_num) {
+		Level level = getLevels().get((current_level_num - 1));
+		if (res.debug)
+			System.out.println(level);
 		gamePanelUI = new GamePanelUI(this);
 		levelUI.unlock(getLastPlayer().getHighestLevel());
 		root.getChildren().clear();
-		shapesManger = new ShapesManger(this, current_level_num);
+		shapesManger = new ShapesManger(this, level);
 
+		// name label
+		Text level_name = new Text(level.getName());
+		level_name.setFont(res.minecrafter_font_label);
+		level_name.setFill(Color.BLACK);
+		level_name.setTranslateX(300);
+		level_name.setTranslateY(100);
 		// Set Timer
-		timer = new GameTimer(res.countdown);
+		timer = new GameTimer(level.getTime());
 		timerLabel = timer.getTimerLabel();
 		timerLabel.setTranslateX(50);
 		timerLabel.setTranslateY(40);
@@ -139,7 +165,7 @@ public class GameController {
 		}
 
 		root.getChildren().addAll(res.background_Image,
-				gamePanelUI.getGamePanelUI(), timerLabel);
+				gamePanelUI.getGamePanelUI(), timerLabel, level_name);
 		if (gameBoard != null)
 			root.getChildren().add(gameBoard);
 	}
@@ -247,6 +273,22 @@ public class GameController {
 	public void setNewPlayer(String name) {
 		Player player = new Player(name);
 		players.add(player);
+	}
+
+	public LevelLoader getLevelLoader() {
+		return levelLoader;
+	}
+
+	public void setLevelLoader(LevelLoader levelLoader) {
+		this.levelLoader = levelLoader;
+	}
+
+	public ArrayList<Level> getLevels() {
+		return levels;
+	}
+
+	public void setLevels(ArrayList<Level> levels) {
+		this.levels = levels;
 	}
 
 }

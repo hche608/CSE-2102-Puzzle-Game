@@ -12,6 +12,7 @@
 package application;
 
 import java.util.ArrayList;
+import data.Level;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -120,42 +121,56 @@ public class ShapesManger {
 		}
 	};
 
-	public ShapesManger(GameController controller, int level) {
+	public ShapesManger(GameController controller, Level level) {
 		this.controller = controller;
+
 		
 		polygons = new ArrayList<Piece>();
 		maps = new ArrayList<Piece>();
 		
 		try {
-
+			int i = 0;
 			// initial a puzzle
-			triangle_One_L_map = new Piece(res.Triangle_L, "Triangle_L", 180.0);
-			triangle_One_L_map.setTranslateX(453);
-			triangle_One_L_map.setTranslateY(240);
+			triangle_One_L_map = new Piece(res.Triangle_L, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			triangle_One_L_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			triangle_One_L_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			triangle_One_L_map.setStroke(Color.WHITE);
+			
+			i++;
+			triangle_Two_L_map = new Piece(res.Triangle_L, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			triangle_Two_L_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			triangle_Two_L_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			triangle_Two_L_map.setStroke(Color.WHITE);
+			
+			i++;
+			triangle_One_M_map = new Piece(res.Triangle_M, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			triangle_One_M_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			triangle_One_M_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			triangle_One_M_map.setStroke(Color.WHITE);
 
-			triangle_Two_L_map = new Piece(res.Triangle_L, "Triangle_L", 270.0);
-			triangle_Two_L_map.setTranslateX(415);
-			triangle_Two_L_map.setTranslateY(277.5);
+			i++;
+			triangle_One_S_map = new Piece(res.Triangle_S, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			triangle_One_S_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			triangle_One_S_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			triangle_One_S_map.setStroke(Color.WHITE);
 
-			triangle_One_M_map = new Piece(res.Triangle_M, "Triangle_M", 45.0);
-			triangle_One_M_map.setTranslateX(490);
-			triangle_One_M_map.setTranslateY(406);
+			i++;
+			triangle_Two_S_map = new Piece(res.Triangle_S, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			triangle_Two_S_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			triangle_Two_S_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			triangle_Two_S_map.setStroke(Color.WHITE);
+			
+			i++;
+			square_One_S_map = new Piece(res.Square_S, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			square_One_S_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			square_One_S_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			square_One_S_map.setStroke(Color.WHITE);
 
-			triangle_One_S_map = new Piece(res.Triangle_S, "Triangle_S", 135.0);
-			triangle_One_S_map.setTranslateX(523.5);
-			triangle_One_S_map.setTranslateY(339);
-
-			triangle_Two_S_map = new Piece(res.Triangle_S, "Triangle_S", 90.0);
-			triangle_Two_S_map.setTranslateX(601.6);
-			triangle_Two_S_map.setTranslateY(218.6);
-
-			square_One_S_map = new Piece(res.Square_S, "Square_S", 0.0);
-			square_One_S_map.setTranslateX(470);
-			square_One_S_map.setTranslateY(276);
-
-			rhombus_One_S_map = new Piece(res.Rhombus_S, "Rhombus_S", 90.0);
-			rhombus_One_S_map.setTranslateX(546);
-			rhombus_One_S_map.setTranslateY(163);
+			i++;
+			rhombus_One_S_map = new Piece(res.Rhombus_S, level.getLevelPolys().get(i).getType(), level.getLevelPolys().get(i).getRotation());
+			rhombus_One_S_map.setTranslateX(level.getLevelPolys().get(i).getCoord().getX());
+			rhombus_One_S_map.setTranslateY(level.getLevelPolys().get(i).getCoord().getY());
+			rhombus_One_S_map.setStroke(Color.WHITE);
 
 			maps.add(triangle_One_L_map);
 			maps.add(triangle_Two_L_map);
@@ -231,7 +246,7 @@ public class ShapesManger {
 			polygons.add(square_One_S);
 			polygons.add(rhombus_One_S);
 
-			for (int i = 0; i < 7; i++) {
+			for (i = 0; i < 7; i++) {
 				polygons.get(i).setOnMousePressed(
 						polygonOnMousePressedEventHandler);
 				polygons.get(i).setOnMouseDragged(

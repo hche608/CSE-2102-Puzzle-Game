@@ -37,12 +37,6 @@ public class GamePanelUI {
 			counter.setTranslateX(50);
 			counter.setTranslateY(50);
 
-			Text level_name = new Text("Level "
-					+ controller.getLastPlayer().getCurrentLevel());
-			level_name.setFont(res.minecrafter_font_label);
-			level_name.setFill(Color.BLACK);
-			level_name.setTranslateX(300);
-			level_name.setTranslateY(100);
 
 			final Button btn_pre = new Button();
 			btn_pre.setGraphic(res.gamePanelUI_previous_Image);
@@ -108,7 +102,7 @@ public class GamePanelUI {
 			});
 
 			Group lowBTNs = new Group(btn_pre, btn_pause, btn_next, btn_mute);
-			root.getChildren().addAll(lowBTNs, counter, level_name);
+			root.getChildren().addAll(lowBTNs, counter);
 
 		} catch (Exception e) {
 			System.out.println("Initial game panel error: " + e);

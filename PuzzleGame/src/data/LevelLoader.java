@@ -5,12 +5,11 @@ package data;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import application.Main;
 
 
 /**
@@ -34,34 +33,47 @@ public class LevelLoader extends LoaderFile
 	@Override
 	public ArrayList<Level> getLevels() throws IOException
 	{
-		List<String> lines = Files.readAllLines(Paths.get(_levelFile));
+		
+		Scanner s = new Scanner(Main.res.br);
+		
+		//List<String> lines = Files.readAllLines(Paths.get(_levelFile));
+		List<String> lines = new ArrayList<String>();
+		while (s.hasNext()){
+			lines.add(s.nextLine());
+		}
+		s.close();
+		
 		ArrayList<Level> levels = new ArrayList<Level>();
 		Level currentLevel = new Level();
 		for(String currentLine : lines)
 		{
-			String firstWord = getFirstWord(currentLine);
-			String secondWord = getFirstWord(afterFirstWord(currentLine));
-			if (firstWord != null && !secondWord.equals(""))
+			if (currentLine != null)
 			{
-				if (firstWord.equalsIgnoreCase("Level:"))
-				{	
-					currentLevel = new Level();
-					currentLevel.setName(secondWord);
-					levels.add(currentLevel);
-				}
-				else if(firstWord.equalsIgnoreCase("Time:"))
+				String firstWord = getFirstWord(currentLine);
+
+				String secondWord = getFirstWord(afterFirstWord(currentLine));
+				if (firstWord != null && !secondWord.equals(""))
 				{
-					int time = Integer.valueOf(secondWord);
-					currentLevel.setTime(time);
-				}
-				else if(firstWord.equalsIgnoreCase("Polygon:"))
-				{
-					String polyInfo = afterFirstWord(currentLine);
-					currentLevel.addPolygon(parseToPoly(polyInfo));
-				}
-				else
-				{
-					System.out.println("Problem in save file, bad ID found. Data may be corrupt.");
+					if (firstWord.equalsIgnoreCase("Level:"))
+					{	
+						currentLevel = new Level();
+						currentLevel.setName(secondWord);
+						levels.add(currentLevel);
+					}
+					else if(firstWord.equalsIgnoreCase("Time:"))
+					{
+						int time = Integer.valueOf(secondWord);
+						currentLevel.setTime(time);
+					}
+					else if(firstWord.equalsIgnoreCase("Polygon:"))
+					{
+						String polyInfo = afterFirstWord(currentLine);
+						currentLevel.addPolygon(parseToPoly(polyInfo));
+					}
+					else
+					{
+						System.out.println("Problem in save file, bad ID found. Data may be corrupt.");
+					}
 				}
 			}
 		}

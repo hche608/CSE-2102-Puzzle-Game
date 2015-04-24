@@ -1,12 +1,7 @@
 package data;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
-
-import javafx.scene.shape.Polygon;
-import jeff.ini.Ini;
 /**
  * Used to create level data and store possible levels.
  * jeff.Ini is made by Jeff Meunier and used with his permission
