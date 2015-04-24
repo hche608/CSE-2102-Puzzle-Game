@@ -50,7 +50,7 @@ public class Piece extends Polygon implements PieceInfo {
 
 		@Override
 		public void handle(MouseEvent t) {
-			if (t.getClickCount() > 1 || t.isControlDown()) {
+			if (t.isSecondaryButtonDown()== true) {
 				double offset = ((Polygon) (t.getSource())).getRotate();
 				if (PolygonInfo.equals("Square_S")) {
 					offset = (offset + 45.0) % 90;

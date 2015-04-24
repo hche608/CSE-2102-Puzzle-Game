@@ -6,8 +6,11 @@
  */
 package application;
 
+import java.net.URI;
 import java.util.ArrayList;
 
+import data.Level;
+import data.LevelLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
@@ -57,6 +60,8 @@ public class Resourses {
 	 * Resources for common area
 	 */
 
+	public LevelLoader level_load;
+	
 	public ImageView background_Image;
 	public ImageView btn_OK_Image;
 	public ImageView btn_OK_Image1;
@@ -172,6 +177,17 @@ public class Resourses {
 			System.out.println("Load Font error");
 		}
 
+		// Load levels
+		try {
+			level_load = new LevelLoader("/Volumes/Personal DATA/hche608/Dropbox/GitHub/CSE-2102-Puzzle-Game/PuzzleGame/src/application/resourses/LevelInfo.ini");
+			ArrayList<Level> levels = new ArrayList<Level>();
+			levels = level_load.getLevels();
+			System.out.println(levels);
+		} catch (Exception e){
+			System.out.println("Load levels error: "  + e);
+		}
+		
+		// Images
 		try {
 
 			background_Image = new ImageView(new Image(Main.class.getResource(

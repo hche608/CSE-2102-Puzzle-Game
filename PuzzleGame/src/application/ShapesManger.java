@@ -12,7 +12,6 @@
 package application;
 
 import java.util.ArrayList;
-
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -25,6 +24,7 @@ public class ShapesManger {
 	private double orgTranslateX, orgTranslateY;
 	private ArrayList<Piece> polygons;
 	private ArrayList<Piece> maps;
+	
 
 	private Piece triangle_One_L, triangle_Two_L, triangle_One_M, triangle_One_S,
 			triangle_Two_S, square_One_S, rhombus_One_S, triangle_One_L_map,
@@ -122,8 +122,10 @@ public class ShapesManger {
 
 	public ShapesManger(GameController controller, int level) {
 		this.controller = controller;
+		
 		polygons = new ArrayList<Piece>();
 		maps = new ArrayList<Piece>();
+		
 		try {
 
 			// initial a puzzle

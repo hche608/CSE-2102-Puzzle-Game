@@ -5,6 +5,7 @@ package data;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,7 +34,7 @@ public class LevelLoader extends LoaderFile
 	@Override
 	public ArrayList<Level> getLevels() throws IOException
 	{
-		List<String> lines = Files.readAllLines(Paths.get(_levelFilePath));
+		List<String> lines = Files.readAllLines(Paths.get(_levelFile));
 		ArrayList<Level> levels = new ArrayList<Level>();
 		Level currentLevel = new Level();
 		for(String currentLine : lines)

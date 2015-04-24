@@ -2,6 +2,7 @@ package data;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 
 import javafx.scene.shape.Polygon;
@@ -15,19 +16,18 @@ import jeff.ini.Ini;
 
 public abstract class LoaderFile 
 {
-	protected Ini _loader;
-	protected String _levelFilePath;
+	protected String _levelFile;
 	
-	public LoaderFile(String name)
+	public LoaderFile(String file)
 	{
-		_levelFilePath = name;
+		_levelFile = file;
 	}
 	
 	public abstract ArrayList<Level> getLevels() throws IOException;
 	
-	public void setFileName(String newName)
+	public void setFileName(String newFile)
 	{
-		_levelFilePath = newName;
+		_levelFile = newFile;
 	}
 	
 	public String getFirstWord(String string)
