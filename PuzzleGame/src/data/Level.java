@@ -63,9 +63,9 @@ public class Level
 		{
 			PolygonWrapper poly = _polyData.get(n);
 			if(poly != null)
-				returnThis += "Polygon " + n + "  " + _polyData.toString() + "\n";
+				returnThis += "Polygon " + n + "  " + poly.toString() + "\n";
 		}
-		returnThis += "Level Length: " + _time + "s";
+		returnThis += "Level Length: " + _time + "s" + "\n";
 		return returnThis;
 	}
 }

@@ -38,28 +38,31 @@ public abstract class LoaderFile
 		}
 		int startIndex = 0;
 		int endIndex = string.indexOf(" ");
-		if(endIndex == -1)
-		{
-			return string;
-		}
-		while (startIndex == endIndex && startIndex != string.length())
+		while (startIndex == endIndex && startIndex < string.length())
 		{
 			startIndex++;
-			endIndex = string.substring(startIndex).indexOf(" ");
+			endIndex = string.substring(startIndex).indexOf(" ") + startIndex;
 		}
-		if (startIndex == string.length())
+		if (startIndex >= string.length())
 		{
 			return null;
+		}
+		if (endIndex < 0)
+		{
+			return string;
 		}
 		return string.substring(startIndex, endIndex);
 	}
 	
 	public String afterFirstWord(String string)
 	{
-		String firstWord = getFirstWord(string);
-		if(firstWord == null)
+		if (string == null || string.equals(""))
 			return null;
-		String after = string.substring(firstWord.length() + 1);
+		String firstWord = getFirstWord(string);
+		if(firstWord == null || firstWord.equals("") || firstWord.equals(string))
+			return null;
+		int offset = string.indexOf(firstWord.charAt(0));
+		String after = string.substring(firstWord.length() + offset + 1);
 		return after;
 	}
 	

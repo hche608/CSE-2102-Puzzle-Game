@@ -1,0 +1,8 @@
+Level: Level1
+Polygon: ID Shape_S Coordinate 13.3,56.4 Rotation 45
+Polygon: ID Shape_Rhombus Coordinate 15.4,12.2 rotation 56
+Time: 45
+
+Level: Level2
+Polygon ID Shape_Triangle Coordinate 14.4,58687.5 rotation 180
+Time: 43

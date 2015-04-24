@@ -36,9 +36,8 @@ public class LevelLoader extends LoaderFile
 		List<String> lines = Files.readAllLines(Paths.get(_levelFilePath));
 		ArrayList<Level> levels = new ArrayList<Level>();
 		Level currentLevel = new Level();
-		for(int n = 0; n < lines.size(); n++)
+		for(String currentLine : lines)
 		{
-			String currentLine = lines.get(n);
 			String firstWord = getFirstWord(currentLine);
 			String secondWord = getFirstWord(afterFirstWord(currentLine));
 			if (firstWord != null && !secondWord.equals(""))
@@ -47,13 +46,11 @@ public class LevelLoader extends LoaderFile
 				{	
 					currentLevel = new Level();
 					currentLevel.setName(secondWord);
-					System.out.println("level: " + secondWord);
 					levels.add(currentLevel);
 				}
 				else if(firstWord.equalsIgnoreCase("Time:"))
 				{
 					int time = Integer.valueOf(secondWord);
-					System.out.println("time: " + time);
 					currentLevel.setTime(time);
 				}
 				else if(firstWord.equalsIgnoreCase("Polygon:"))
@@ -87,7 +84,7 @@ public class LevelLoader extends LoaderFile
 			System.out.println("Error, passed an empty polyInfo index");
 			System.exit(1);
 		}
-		while (polyInfo != null)
+		while (polyInfo != null && !polyInfo.equals(""))
 		{
 			String dataID = getFirstWord(polyInfo);
 			String data = getFirstWord(afterFirstWord(polyInfo));
@@ -99,22 +96,22 @@ public class LevelLoader extends LoaderFile
 			{
 				int commaIndex = data.indexOf(",");
 				int spaceIndex = data.indexOf(" ");
-				if (commaIndex < 0 | spaceIndex < 0 | spaceIndex > commaIndex)
+				if (commaIndex < 0 || spaceIndex >= commaIndex)
 				{
 					System.out.println("Bad parse, file may be corrupt");
 					System.exit(1);
 				}
 				double x = Double.parseDouble(data.substring(0, commaIndex));
-				double y = Double.parseDouble(data.substring(commaIndex + 1, spaceIndex));
+				double y = Double.parseDouble(data.substring(commaIndex + 1, data.length()));
 				point = new Coordinate(x, y);
 			}
 			else if(dataID.equalsIgnoreCase("Rotation:"))
 			{
 				rotation = Integer.parseInt(data);
 			}
+			polyInfo = afterFirstWord(afterFirstWord(polyInfo));
 		}
 		poly = new PolygonWrapper(ID, point, rotation);
-		System.out.println(poly);
 
 		return poly;
 	}
