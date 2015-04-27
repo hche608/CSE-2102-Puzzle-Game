@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import application.Player;
+import application.Data.Player;
 
 public class testPlayer {
 

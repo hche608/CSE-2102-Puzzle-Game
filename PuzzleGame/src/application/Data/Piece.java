@@ -9,8 +9,10 @@
  * @author hche608
  * 
  */
-package application;
+package application.Data;
 
+import application.Main;
+import application.Resourses;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;

@@ -4,7 +4,7 @@
  * @author hche608
  *
  */
-package application;
+package application.Data;
 
 public interface PieceInfo {
 	public String getPolygonInfo();

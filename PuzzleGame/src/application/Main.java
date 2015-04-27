@@ -9,6 +9,7 @@
  */
 package application;
 
+import application.Controllers.GameController;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.scene.Group;

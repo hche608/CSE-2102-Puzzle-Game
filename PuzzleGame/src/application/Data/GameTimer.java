@@ -6,8 +6,10 @@
  * @author hche608
  * 
  */
-package application;
+package application.Data;
 
+import application.Main;
+import application.Resourses;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

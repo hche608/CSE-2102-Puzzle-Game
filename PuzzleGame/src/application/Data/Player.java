@@ -4,7 +4,7 @@
  * @author hche608
  * 
  */
-package application;
+package application.Data;
 
 public class Player {
 	private String playerName;
@@ -20,6 +20,8 @@ public class Player {
 	}
 
 	public Player(String playerName) {
+		if (playerName.length() >= 6)
+			playerName = playerName.substring(0, 5);
 		this.playerName = playerName;
 		this.score = 0;
 		this.current_level_num = 1;

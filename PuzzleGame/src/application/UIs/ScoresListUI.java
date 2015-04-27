@@ -7,10 +7,14 @@
  * @author hche608
  * 
  */
-package application;
+package application.UIs;
 
 import java.util.ArrayList;
 
+import application.Main;
+import application.Resourses;
+import application.Controllers.GameController;
+import application.Data.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -90,6 +94,8 @@ public class ScoresListUI {
 			rbtn.setCursor(Cursor.HAND);
 			rbtn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
 			rbtn.setGraphic(res.btn_Return_Image);
+			rbtn.setTranslateX((res.FRAME_WIDTH - 3 * res.BTN_MINWIDTH));
+			rbtn.setTranslateY((res.FRAME_HEIGHT - 2 * res.BTN_MINHEIGHT));
 			rbtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
@@ -111,6 +117,8 @@ public class ScoresListUI {
 					res.mouseClickedFXmediaPlayer.play();
 				}
 			});
+			table.setTranslateX(res.FRAME_WIDTH * 1 / 10);
+			table.setTranslateY(res.FRAME_HEIGHT * 1 / 20);
 			root.getChildren().addAll(table, rbtn);
 		} catch (Exception e) {
 			System.out.println("Initial Scores UI error: " + e);

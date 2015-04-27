@@ -7,14 +7,16 @@
  * @author hche608
  * 
  */
-package application;
+package application.UIs;
 
 import java.util.ArrayList;
 
+import application.Main;
+import application.Resourses;
+import application.Controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -56,9 +58,8 @@ public class LevelUI {
 			}
 
 			final VBox btns = new VBox(level_btns);
-			btns.setAlignment(Pos.CENTER);
-			btns.setLayoutX((res.FRAME_WIDTH - (res.BTN_MINWIDTH + 30) * 5) / 2);
-			btns.setLayoutY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 2);
+			btns.setTranslateX(res.FRAME_WIDTH * 7 / 30);
+			btns.setTranslateY((res.FRAME_HEIGHT - res.BTNS_HEIGHT) / 2);
 
 			// return btn
 			final Button rbtn = new Button();
@@ -67,6 +68,8 @@ public class LevelUI {
 			rbtn.setCursor(Cursor.HAND);
 			rbtn.setMinSize(res.BTN_MINWIDTH, res.BTN_MINHEIGHT);
 			rbtn.setGraphic(res.btn_Return_Image);
+			rbtn.setTranslateX((res.FRAME_WIDTH - 3 * res.BTN_MINWIDTH));
+			rbtn.setTranslateY((res.FRAME_HEIGHT - 2 * res.BTN_MINHEIGHT));
 			rbtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
@@ -89,13 +92,7 @@ public class LevelUI {
 				}
 			});
 
-			final VBox btm_btn = new VBox(rbtn);
-
-			btm_btn.setAlignment(Pos.CENTER);
-			btm_btn.setLayoutX((res.FRAME_WIDTH - 3 * res.BTN_MINWIDTH));
-			btm_btn.setLayoutY((res.FRAME_HEIGHT - 2 * res.BTN_MINHEIGHT));
-
-			root.getChildren().addAll(btns, btm_btn);
+			root.getChildren().addAll(btns, rbtn);
 		} catch (Exception e) {
 			System.out.println("Initial Level UI error: " + e);
 		}

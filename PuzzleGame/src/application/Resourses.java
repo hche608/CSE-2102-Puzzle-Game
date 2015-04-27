@@ -35,7 +35,7 @@ public class Resourses {
 
 	public final int countdown = 50;
 
-	final int numOfLevel = 12;
+	public final int numOfLevel = 12;
 
 	public final double title_size = 50.0;
 	public final double label_size = 25.0;
@@ -106,12 +106,12 @@ public class Resourses {
 	public ImageView gamePanelUI_pause_Image;
 
 	// Background Music
-	AudioClip backgoundMediaPlayer;
-	AudioClip mouseEnterFXmediaPlayer;
-	AudioClip mouseClickedFXmediaPlayer;
-	AudioClip shapesMatchedFXmediaPlayer;
-	AudioClip shapesRotatedFXmediaPlayer;
-	AudioClip completedFXmediaPlayer;
+	public AudioClip backgoundMediaPlayer;
+	public AudioClip mouseEnterFXmediaPlayer;
+	public AudioClip mouseClickedFXmediaPlayer;
+	public AudioClip shapesMatchedFXmediaPlayer;
+	public AudioClip shapesRotatedFXmediaPlayer;
+	public AudioClip completedFXmediaPlayer;
 
 	public Resourses() {
 		// Background music

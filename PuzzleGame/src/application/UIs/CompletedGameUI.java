@@ -1,5 +1,5 @@
 /**
- * This is a interface of Dialog
+ * This is a interface of Completed Game
  * this class is controlled by GameController
  * 
  * this class only allocates all labels and buttons on the Panel
@@ -7,8 +7,12 @@
  * @author hche608
  * 
  */
-package application;
+package application.UIs;
 
+import application.Main;
+import application.Resourses;
+import application.Controllers.GameController;
+import application.Data.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -20,46 +24,67 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class DialogUI {
+public class CompletedGameUI {
 	private Resourses res = Main.res;
 	private Group root;
 	GameController controller;
 
-	public DialogUI(GameController controller) {
+	public CompletedGameUI(GameController controller, Player player) {
 		root = new Group();
 		Text title = new Text();
 		this.controller = controller;
-
 		try {
-			title.setText("This is an empty dialog!\n");
+			if (player.getScore() > 0) {
+				try {
+					title.setText("You Win!\n" + player.getPlayerName());
+
+				} catch (Exception e) {
+					System.out
+							.println("Initial Player in Completed Game UI error: "
+									+ e);
+				}
+			} else {
+				try {
+					title.setText("TRY AGAIN!\n" + player.getPlayerName());
+
+				} catch (Exception e) {
+					System.out
+							.println("Initial TRY AGAIN in Completed Game UI error: "
+									+ e);
+				}
+			}
 			title.setFont(res.minecrafter_font_title);
 			title.setTranslateX(160);
 			title.setTranslateY(175);
 			title.setFill(Color.BLACK);
 
 			final Button btn_OK = new Button();
-			btn_OK.setGraphic(res.mainUI_start_Image);
+			btn_OK.setGraphic(res.btn_OK_Image);
 			btn_OK.setBorder(null);
 			btn_OK.setBackground(null);
 			btn_OK.setCursor(Cursor.HAND);
 			btn_OK.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn_OK.setGraphic(res.mainUI_start_Image1);
+					btn_OK.setGraphic(res.btn_OK_Image1);
 					res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_OK.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					btn_OK.setGraphic(res.mainUI_start_Image);
+					btn_OK.setGraphic(res.btn_OK_Image);
 				}
 			});
 			btn_OK.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					controller.loadGame(controller.getLastPlayer()
-							.getCurrentLevel());
+					if (controller.getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
+						controller.loadGame(controller.getLastPlayer()
+								.getCurrentLevel());
+					} else {
+						controller.loadScoresUI();
+					}
 					res.mouseClickedFXmediaPlayer.play();
 					e.consume();
 				}
@@ -69,16 +94,21 @@ public class DialogUI {
 				@Override
 				public void handle(KeyEvent e) {
 					if (e.getCode() == KeyCode.ENTER) {
-						controller.loadMainUI();
+						if (controller.getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
+							controller.loadGame(controller.getLastPlayer()
+									.getCurrentLevel());
+						} else {
+							controller.loadScoresUI();
+						}
 						res.mouseClickedFXmediaPlayer.play();
 						e.consume();
 					}
 				}
 			});
 			root.getChildren().addAll(title, btn_OK);
-
 		} catch (Exception e) {
-			System.out.println("Initial Dialog UI error: " + e);
+			System.out.println("Initial Player in Completed Game UI error: "
+					+ e);
 		}
 	}
 

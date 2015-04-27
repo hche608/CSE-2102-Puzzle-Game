@@ -9,10 +9,14 @@
  * @author hche608
  * 
  */
-package application;
+package application.Controllers;
 
 import java.util.ArrayList;
-import data.Level;
+
+import application.Main;
+import application.Resourses;
+import application.Data.Level;
+import application.Data.Piece;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -123,7 +127,8 @@ public class ShapesManger {
 
 	public ShapesManger(GameController controller, Level level) {
 		this.controller = controller;
-
+		if (res.debug)
+			System.out.println(level);
 		
 		polygons = new ArrayList<Piece>();
 		maps = new ArrayList<Piece>();

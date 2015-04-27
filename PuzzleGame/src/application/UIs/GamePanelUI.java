@@ -7,8 +7,11 @@
  * @author hche608
  * 
  */
-package application;
+package application.UIs;
 
+import application.Main;
+import application.Resourses;
+import application.Controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;

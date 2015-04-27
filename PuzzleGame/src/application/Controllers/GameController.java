@@ -5,13 +5,25 @@
  * @author hche608
  * 
  */
-package application;
+package application.Controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import data.Level;
-import data.LevelLoader;
+import application.Main;
+import application.Resourses;
+import application.Data.GameTimer;
+import application.Data.Level;
+import application.Data.LevelLoader;
+import application.Data.Piece;
+import application.Data.Player;
+import application.UIs.AboutUSUI;
+import application.UIs.CompletedGameUI;
+import application.UIs.ExitUI;
+import application.UIs.GamePanelUI;
+import application.UIs.LevelUI;
+import application.UIs.MainUI;
+import application.UIs.NewPlayerUI;
+import application.UIs.ScoresListUI;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -44,12 +56,7 @@ public class GameController {
 		players = new ArrayList<Player>();
 		try {
 			setLevels(levelLoader.getLevels());
-			if (res.debug){
-				System.out.println(getLevels().get(0));
-				System.out.println(getLevels().size());
-			}
-				
-		} catch (IOException e){
+		} catch (Exception e){
 			System.out.println("Load levels error: " + e);
 		}
 	}
@@ -134,8 +141,6 @@ public class GameController {
 	 */
 	public void loadGame(int current_level_num) {
 		Level level = getLevels().get((current_level_num - 1));
-		if (res.debug)
-			System.out.println(level);
 		gamePanelUI = new GamePanelUI(this);
 		levelUI.unlock(getLastPlayer().getHighestLevel());
 		root.getChildren().clear();
@@ -272,6 +277,12 @@ public class GameController {
 	 */
 	public void setNewPlayer(String name) {
 		Player player = new Player(name);
+		if (res.debug){
+			player.setHighestLevel(res.numOfLevel);
+			System.out.println(player);
+		}
+			
+		
 		players.add(player);
 	}
 
