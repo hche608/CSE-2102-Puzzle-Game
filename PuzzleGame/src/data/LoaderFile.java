@@ -9,20 +9,19 @@ import java.util.ArrayList;
  *
  */
 
-public abstract class LoaderFile 
+public abstract class LoaderFile
 {
-	protected String _levelFile;
+	protected String _dataFile;
 	
 	public LoaderFile(String file)
 	{
-		_levelFile = file;
+		_dataFile = file;
 	}
 	
-	public abstract ArrayList<Level> getLevels() throws IOException;
 	
 	public void setFileName(String newFile)
 	{
-		_levelFile = newFile;
+		_dataFile = newFile;
 	}
 	
 	public String getFirstWord(String string)
