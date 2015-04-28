@@ -23,6 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class CompletedGameUI {
 	private Resourses res = Main.res;
@@ -33,10 +34,11 @@ public class CompletedGameUI {
 		root = new Group();
 		Text title = new Text();
 		this.controller = controller;
+		System.out.println("Score: " + controller.getCountDown());
 		try {
-			if (player.getScore() > 0) {
+			if (controller.getCountDown() > 0) {
 				try {
-					title.setText("You Win!\n" + player.getPlayerName());
+					title.setText("You Win!\n Click OK move to next level!" + player.getPlayerName());
 
 				} catch (Exception e) {
 					System.out
@@ -54,8 +56,9 @@ public class CompletedGameUI {
 				}
 			}
 			title.setFont(res.minecrafter_font_title);
-			title.setTranslateX(160);
-			title.setTranslateY(175);
+			//title.setTranslateX(res.FRAME_WIDTH * 3 / 10);
+			title.setTranslateY(res.FRAME_HEIGHT * 1 / 4);
+			title.setTextAlignment(TextAlignment.CENTER);
 			title.setFill(Color.BLACK);
 
 			final Button btn_OK = new Button();
@@ -63,6 +66,8 @@ public class CompletedGameUI {
 			btn_OK.setBorder(null);
 			btn_OK.setBackground(null);
 			btn_OK.setCursor(Cursor.HAND);
+			btn_OK.setTranslateX(res.FRAME_WIDTH * 3 / 10);
+			btn_OK.setTranslateY(res.FRAME_HEIGHT * 2 / 3);
 			btn_OK.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {

@@ -15,6 +15,7 @@ import application.Main;
 import application.Resourses;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -52,7 +53,7 @@ public class Piece extends Polygon implements PieceInfo {
 
 		@Override
 		public void handle(MouseEvent t) {
-			if (t.isSecondaryButtonDown()== true || t.isControlDown()) {
+			if (t.getButton()== MouseButton.SECONDARY || t.isControlDown()) {
 				double offset = ((Polygon) (t.getSource())).getRotate();
 				if (PolygonInfo.equals("Square_S")) {
 					offset = (offset + 45.0) % 90;

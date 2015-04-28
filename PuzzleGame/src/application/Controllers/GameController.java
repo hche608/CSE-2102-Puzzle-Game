@@ -66,11 +66,12 @@ public class GameController {
 	 * 
 	 */
 	public void completed() {
-		timer.stopTimer();	
+		timer.stopTimer();
+		//root.getChildren().clear();
 		if (res.debug)
-			System.out.println("Time remainder:" + timer.getCountDown());
+			System.out.println("Time remainder:" + getCountDown());
 		if (timer.getCountDown() > 0) {
-			getLastPlayer().setScore(timer.getCountDown());
+			getLastPlayer().setScore(getCountDown());
 			if (getLastPlayer().getCurrentLevel() < res.numOfLevel + 1) {
 				getLastPlayer().setCurrentLevel(
 						getLastPlayer().getCurrentLevel() + 1);
@@ -201,6 +202,10 @@ public class GameController {
 	 */
 	public void loadNewPlayerUI() {
 		newPlayerUI = new NewPlayerUI(this);
+		// only stores 5 players info
+		while (players.size() >= 5){
+			players.remove(0);
+		}
 		root.getChildren().clear();
 		root.getChildren().addAll(res.background_Image,
 				newPlayerUI.getNewPlayerUI());
@@ -269,6 +274,10 @@ public class GameController {
 	 */
 	public void setCountDown(int countdown) {
 		timer.setCountDown(countdown);
+	}
+	
+	public int getCountDown(){
+		return timer.getCountDown();
 	}
 
 	/**
