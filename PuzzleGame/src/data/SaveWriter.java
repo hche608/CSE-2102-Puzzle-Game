@@ -14,7 +14,7 @@ public class SaveWriter
 	private static final String SCORE = "Score: ";
 	public static void writeSaves(ArrayList<Player> players, String fileName) throws IOException
 	{
-		PrintWriter write = new PrintWriter("PlayerSaves.ini");
+		PrintWriter write = new PrintWriter(fileName);
 		for (Player p : players)
 		{
 			String writeData = PLAYER + p.getPlayerName();
