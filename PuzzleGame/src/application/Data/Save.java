@@ -1,7 +1,6 @@
-package data;
+package application.Data;
 
 
-import application.Data.Player;
 
 
 public interface Save 

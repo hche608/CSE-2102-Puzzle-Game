@@ -1,11 +1,10 @@
-package data;
+package application.Data;
 /**
  * Used to create and describe player saves
  * @Author Christian Kuntz
  */
 
 
-import application.Data.Player;
 
 class PlayerSave implements Save
 {
