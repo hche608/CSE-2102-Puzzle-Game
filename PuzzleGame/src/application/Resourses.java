@@ -9,6 +9,7 @@ package application;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
@@ -84,9 +85,16 @@ public class Resourses {
 	public ImageView mainUI_exit_Image1;
 
 	/*
-	 * Resources for Level_Selevt UI
+	 * Resources for new_Player UI
 	 */
-	public Image level_lock_image;
+	public ImageView last_Player_Image;
+	public ImageView last_Player_Image1;
+	
+	
+	/*
+	 * Resources for Level_Select UI
+	 */
+	public Image level_lock_Image;
 	public ArrayList<ImageView> LevelUI_Images;
 	public ArrayList<ImageView> LevelUI_Images1;
 
@@ -94,16 +102,28 @@ public class Resourses {
 	 * Resources for GamePanel UI
 	 */
 
-	public ImageView gamePanelUI_undo_Image;
-	public ImageView gamePanelUI_redo_Image;
-	public ImageView gamePanelUI_clockwise_rotate_Image;
-	public ImageView gamePanelUI_counterclockwise_rotate_Image;
-	public ImageView gamePanelUI_flip_Image;
+	public ImageView gamePanelUI_main_menu_Image;
+	public ImageView gamePanelUI_main_menu_Image1;
 
-	public ImageView gamePanelUI_mute_Image;
 	public ImageView gamePanelUI_next_Image;
+	public ImageView gamePanelUI_next_Image1;
 	public ImageView gamePanelUI_previous_Image;
+	public ImageView gamePanelUI_previous_Image1;
 	public ImageView gamePanelUI_pause_Image;
+	public ImageView gamePanelUI_pause_Image1;
+	public ImageView gamePanelUI_continue_Image;
+	public ImageView gamePanelUI_continue_Image1;
+
+	public ImageView gamePanelUI_music_Image;
+	public ImageView gamePanelUI_music_Image1;
+	public ImageView gamePanelUI_stopped_music_Image;
+	public ImageView gamePanelUI_stopped_music_Image1;
+	
+	public ImageView gamePanelUI_soundFX_Image;
+	public ImageView gamePanelUI_soundFX_Image1;
+	public ImageView gamePanelUI_stopped_soundFX_Image;
+	public ImageView gamePanelUI_stopped_soundFX_Image1;
+
 
 	// Background Music
 	public AudioClip backgoundMediaPlayer;
@@ -120,7 +140,6 @@ public class Resourses {
 					.getResource("/application/resourses/music/background.mp3")
 					.toURI().toString());
 			backgoundMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-			backgoundMediaPlayer.setVolume(0.1);
 		} catch (Exception e) {
 			System.out.println("Load background music error");
 		}
@@ -131,31 +150,27 @@ public class Resourses {
 					.getResource(
 							"/application/resourses/music/mouseEnterFX.wav")
 					.toURI().toString());
-			mouseEnterFXmediaPlayer.setCycleCount(1);
 
 			mouseClickedFXmediaPlayer = new AudioClip(getClass()
 					.getResource(
 							"/application/resourses/music/mouseClickedFX.wav")
 					.toURI().toString());
-			mouseClickedFXmediaPlayer.setCycleCount(1);
 
 			shapesMatchedFXmediaPlayer = new AudioClip(getClass()
 					.getResource("/application/resourses/music/matchedFX.wav")
 					.toURI().toString());
-			shapesMatchedFXmediaPlayer.setCycleCount(1);
 
 			shapesRotatedFXmediaPlayer = new AudioClip(getClass()
 					.getResource(
 							"/application/resourses/music/shapeRotatedFX.wav")
 					.toURI().toString());
-			shapesRotatedFXmediaPlayer.setCycleCount(1);
 
 			completedFXmediaPlayer = new AudioClip(
 					getClass()
 							.getResource(
 									"/application/resourses/music/completedFX.wav")
 							.toURI().toString());
-			completedFXmediaPlayer.setCycleCount(1);
+
 		} catch (Exception e) {
 			System.out.println("Load FX music error");
 		}
@@ -241,7 +256,20 @@ public class Resourses {
 							"/application/resourses/mainUI/exit_hover.png")
 							.toString()));
 
-			level_lock_image = new Image(Main.class.getResource(
+			/*
+			 *  new PlayerUI
+			 */
+			
+			last_Player_Image = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/newPlayerUI/lastplay.png").toString()));
+			last_Player_Image1 = new ImageView(new Image(Main.class.getResource(
+					"/application/resourses/newPlayerUI/lastplay_hover.png").toString()));
+			
+			/*
+			 * level select UI
+			 */
+			
+			level_lock_Image = new Image(Main.class.getResource(
 					"/application/resourses/LevelUI/level_lock.png").toString());
 			LevelUI_Images = new ArrayList<ImageView>();
 			LevelUI_Images1 = new ArrayList<ImageView>();
@@ -259,33 +287,121 @@ public class Resourses {
 			}
 
 			/*
-			 * 
+			 * game board UI
 			 */
-
-			gamePanelUI_mute_Image = new ImageView(
+			gamePanelUI_main_menu_Image = new ImageView(
 					new Image(
 							Main.class
 									.getResource(
-											"/application/resourses/GamePanelUI/Lower_Buttons/Mute.png")
+											"/application/resourses/GamePanelUI/Lower_Buttons/Main_menu.png")
 									.toString()));
+			gamePanelUI_main_menu_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/Main_menu_hover.png")
+									.toString()));
+
 			gamePanelUI_next_Image = new ImageView(
 					new Image(
 							Main.class
 									.getResource(
-											"/application/resourses/GamePanelUI/Lower_Buttons/Next.png")
+											"/application/resourses/GamePanelUI/Lower_Buttons/next.png")
+									.toString()));
+			gamePanelUI_next_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/next_hover.png")
 									.toString()));
 			gamePanelUI_previous_Image = new ImageView(
 					new Image(
 							Main.class
 									.getResource(
-											"/application/resourses/GamePanelUI/Lower_Buttons/Previous.png")
+											"/application/resourses/GamePanelUI/Lower_Buttons/previous.png")
+									.toString()));
+			gamePanelUI_previous_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/previous_hover.png")
 									.toString()));
 			gamePanelUI_pause_Image = new ImageView(
 					new Image(
 							Main.class
 									.getResource(
-											"/application/resourses/GamePanelUI/Lower_Buttons/Pause.png")
+											"/application/resourses/GamePanelUI/Lower_Buttons/pause.png")
 									.toString()));
+			gamePanelUI_pause_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/pause_hover.png")
+									.toString()));
+			gamePanelUI_continue_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/continue.png")
+									.toString()));
+			gamePanelUI_continue_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/continue_hover.png")
+									.toString()));
+
+			gamePanelUI_music_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/music.png")
+									.toString()));
+			gamePanelUI_music_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/music_hover.png")
+									.toString()));
+			gamePanelUI_stopped_music_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/stopmusic.png")
+									.toString()));
+			gamePanelUI_stopped_music_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/stopmusic_hover.png")
+									.toString()));
+			
+			gamePanelUI_soundFX_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/soundFX.png")
+									.toString()));
+			gamePanelUI_soundFX_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/soundFX_hover.png")
+									.toString()));
+			gamePanelUI_stopped_soundFX_Image = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/stopsoundFX.png")
+									.toString()));
+			gamePanelUI_stopped_soundFX_Image1 = new ImageView(
+					new Image(
+							Main.class
+									.getResource(
+											"/application/resourses/GamePanelUI/Lower_Buttons/stopsoundFX_hover.png")
+									.toString()));
+
+
 
 		} catch (Exception e) {
 			System.out.println("Loading content error" + e);

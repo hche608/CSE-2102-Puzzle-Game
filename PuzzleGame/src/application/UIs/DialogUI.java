@@ -49,7 +49,8 @@ public class DialogUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_OK.setGraphic(res.mainUI_start_Image1);
-					res.mouseEnterFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_OK.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -63,7 +64,8 @@ public class DialogUI {
 				public void handle(ActionEvent e) {
 					controller.loadGame(controller.getLastPlayer()
 							.getCurrentLevel());
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 					e.consume();
 				}
 			});
@@ -73,7 +75,8 @@ public class DialogUI {
 				public void handle(KeyEvent e) {
 					if (e.getCode() == KeyCode.ENTER) {
 						controller.loadMainUI();
-						res.mouseClickedFXmediaPlayer.play();
+						if(controller.isSoundFXPlaying())
+							res.mouseClickedFXmediaPlayer.play();
 						e.consume();
 					}
 				}

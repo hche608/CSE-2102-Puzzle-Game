@@ -48,14 +48,14 @@ public class MainUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_Start.setGraphic(res.mainUI_start_Image1);
-					res.mouseEnterFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_Start.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_Start.setGraphic(res.mainUI_start_Image);
-
 				}
 			});
 
@@ -64,7 +64,8 @@ public class MainUI {
 				public void handle(ActionEvent e) {
 					// controller.loadLevelUI();
 					controller.loadNewPlayerUI();
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 
@@ -78,7 +79,8 @@ public class MainUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_Scores.setGraphic(res.mainUI_scores_Image1);
-					res.mouseEnterFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_Scores.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -92,7 +94,8 @@ public class MainUI {
 				@Override
 				public void handle(ActionEvent e) {
 					controller.loadScoresUI();
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 
@@ -107,7 +110,8 @@ public class MainUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_About.setGraphic(res.mainUI_about_Image1);
-					res.mouseEnterFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_About.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -121,7 +125,8 @@ public class MainUI {
 				@Override
 				public void handle(ActionEvent e) {
 					controller.loadAboutUI();
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 
@@ -135,7 +140,8 @@ public class MainUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_Exit.setGraphic(res.mainUI_exit_Image1);
-					res.mouseEnterFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_Exit.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -149,7 +155,8 @@ public class MainUI {
 				@Override
 				public void handle(ActionEvent e) {
 					controller.loadExitUI();
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 

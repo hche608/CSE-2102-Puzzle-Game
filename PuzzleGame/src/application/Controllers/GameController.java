@@ -24,6 +24,7 @@ import application.UIs.LevelUI;
 import application.UIs.MainUI;
 import application.UIs.NewPlayerUI;
 import application.UIs.ScoresListUI;
+import javafx.animation.Animation.Status;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -50,9 +51,14 @@ public class GameController {
 	private ArrayList<Player> players;
 	private Player player;
 	private GameTimer timer;
+	
+	private boolean musicPlaying,soundFXPlaying;
 
 	public GameController(Group root) throws Exception {
 		this.root = root;
+		this.setMusicPlaying(true);
+		this.setSoundFXPlaying(true);
+		
 		players = new ArrayList<Player>();
 		try {
 			setLevels(levelLoader.getLevels());
@@ -142,7 +148,7 @@ public class GameController {
 	 */
 	public void loadGame(int current_level_num) {
 		Level level = getLevels().get((current_level_num - 1));
-		gamePanelUI = new GamePanelUI(this);
+		
 		levelUI.unlock(getLastPlayer().getHighestLevel());
 		root.getChildren().clear();
 		shapesManger = new ShapesManger(this, level);
@@ -158,6 +164,11 @@ public class GameController {
 		timerLabel = timer.getTimerLabel();
 		timerLabel.setTranslateX(50);
 		timerLabel.setTranslateY(40);
+		
+		
+		gamePanelUI = new GamePanelUI(this);
+		
+		
 		gameBoard = new Group();
 		try {
 			polygons = new ArrayList<Piece>();
@@ -256,7 +267,7 @@ public class GameController {
 	 * 
 	 */
 	public void previousLevel() {
-		if (getLastPlayer().getCurrentLevel() > 2) {
+		if (getLastPlayer().getCurrentLevel() >= 2) {
 			loadGame(getLastPlayer().getCurrentLevel() - 1);
 			getLastPlayer().setCurrentLevel(
 					getLastPlayer().getCurrentLevel() - 1);
@@ -279,7 +290,11 @@ public class GameController {
 	public int getCountDown(){
 		return timer.getCountDown();
 	}
-
+	
+	public Status getCountDownStatus(){
+		return timer.getStatus();
+	}
+	
 	/**
 	 * Add a player to the list
 	 * 
@@ -309,6 +324,34 @@ public class GameController {
 
 	public void setLevels(ArrayList<Level> levels) {
 		this.levels = levels;
+	}
+
+	/**
+	 * @return the music
+	 */
+	public boolean isMusicPlaying() {
+		return musicPlaying;
+	}
+
+	/**
+	 * @param music the music to set
+	 */
+	public void setMusicPlaying(boolean musicPlaying) {
+		this.musicPlaying = musicPlaying;
+	}
+
+	/**
+	 * @return the soundFX
+	 */
+	public boolean isSoundFXPlaying() {
+		return soundFXPlaying;
+	}
+
+	/**
+	 * @param soundFX the soundFX to set
+	 */
+	public void setSoundFXPlaying(boolean soundFXPlaying) {
+		this.soundFXPlaying = soundFXPlaying;
 	}
 
 }

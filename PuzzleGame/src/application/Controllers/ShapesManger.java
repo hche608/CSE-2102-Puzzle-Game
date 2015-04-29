@@ -190,7 +190,7 @@ public class ShapesManger {
 			 * RED TRIANGLE
 			 */
 			triangle_One_L = new Piece(res.Triangle_L, "Triangle_L", 0.0,
-					Color.RED);
+					Color.RED, controller);
 			triangle_One_L.setTranslateX(res.O_pointX);
 			triangle_One_L.setTranslateY(res.O_pointY);
 
@@ -198,7 +198,7 @@ public class ShapesManger {
 			 * BLUE TRIANGLE
 			 */
 			triangle_Two_L = new Piece(res.Triangle_L, "Triangle_L", 90.0,
-					Color.BLUE);
+					Color.BLUE, controller);
 			triangle_Two_L.setTranslateX(res.O_pointX + res.Cube_Size / 4);
 			triangle_Two_L.setTranslateY(res.O_pointY - res.Cube_Size / 4);
 
@@ -206,7 +206,7 @@ public class ShapesManger {
 			 * 
 			 */
 			triangle_One_M = new Piece(res.Triangle_M, "Triangle_M", 180.0,
-					Color.YELLOW);
+					Color.YELLOW, controller);
 			triangle_One_M.setTranslateX(res.O_pointX + res.Cube_Size / 2);
 			triangle_One_M.setTranslateY(res.O_pointY + res.Cube_Size / 2);
 
@@ -214,7 +214,7 @@ public class ShapesManger {
 			 * 
 			 */
 			triangle_One_S = new Piece(res.Triangle_S, "Triangle_S", 180.0,
-					Color.PINK);
+					Color.PINK, controller);
 			triangle_One_S.setTranslateX(res.O_pointX + res.Cube_Size / 4 * 3);
 			triangle_One_S.setTranslateY(res.O_pointY);
 
@@ -222,7 +222,7 @@ public class ShapesManger {
 			 * 
 			 */
 			triangle_Two_S = new Piece(res.Triangle_S, "Triangle_S", 270.0,
-					Color.CORNFLOWERBLUE);
+					Color.CORNFLOWERBLUE, controller);
 			triangle_Two_S
 					.setTranslateX(res.O_pointX + res.Cube_Size / 53 * 20);
 			triangle_Two_S
@@ -231,7 +231,7 @@ public class ShapesManger {
 			/*
 			 * 
 			 */
-			square_One_S = new Piece(res.Square_S, "Square_S", 0, Color.GREEN);
+			square_One_S = new Piece(res.Square_S, "Square_S", 0, Color.GREEN, controller);
 			square_One_S.setTranslateX(res.O_pointX);
 			square_One_S.setTranslateY(res.O_pointY);
 
@@ -239,7 +239,7 @@ public class ShapesManger {
 			 * 
 			 */
 			rhombus_One_S = new Piece(res.Rhombus_S, "Rhombus_S", 0.0,
-					Color.BROWN);
+					Color.BROWN, controller);
 			rhombus_One_S.setTranslateX(res.O_pointX);
 			rhombus_One_S.setTranslateY(res.O_pointY);
 
@@ -336,6 +336,7 @@ public class ShapesManger {
 	private void setMatchedPieces(Piece test_polygon, Piece target_polygon) {
 		test_polygon.setTranslateX(target_polygon.getTranslateX());
 		test_polygon.setTranslateY(target_polygon.getTranslateY());
-		res.shapesMatchedFXmediaPlayer.play();
+		if(controller.isSoundFXPlaying())
+			res.shapesMatchedFXmediaPlayer.play();
 	}
 }

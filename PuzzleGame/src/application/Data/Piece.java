@@ -13,6 +13,7 @@ package application.Data;
 
 import application.Main;
 import application.Resourses;
+import application.Controllers.GameController;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
@@ -26,6 +27,7 @@ public class Piece extends Polygon implements PieceInfo {
 	double orgSceneX, orgSceneY;
 	double orgTranslateX, orgTranslateY;
 	private int MatchedIndex = -1;
+	private GameController controller;
 
 	/**
 	 * get coordinates when Mouse Pressed
@@ -62,7 +64,8 @@ public class Piece extends Polygon implements PieceInfo {
 				} else {
 					offset = (offset + 45.0) % 360;
 				}
-				res.shapesRotatedFXmediaPlayer.play();
+				if(controller.isSoundFXPlaying())
+					res.shapesRotatedFXmediaPlayer.play();
 
 				((Polygon) (t.getSource())).setRotate(offset);
 				((Polygon) (t.getSource())).toFront();
@@ -84,8 +87,9 @@ public class Piece extends Polygon implements PieceInfo {
 		}
 	};
 
-	public Piece() {
+	public Piece(GameController controller) {
 		super();
+		this.controller = controller;
 		this.setOnMouseEntered(polygonOnMouseEnteredEventHandler);
 		this.setOnMouseClicked(polygonOnMouseClickedEventHandler);
 	}
@@ -100,8 +104,9 @@ public class Piece extends Polygon implements PieceInfo {
 	}
 
 	public Piece(double[] points, String PolygonInfo, double rotate_value,
-			javafx.scene.paint.Color color) {
+			javafx.scene.paint.Color color, GameController controller) {
 		super(points);
+		this.controller = controller;
 		this.PolygonInfo = PolygonInfo;
 		this.setStroke(Color.BLACK);
 		this.setFill(color);

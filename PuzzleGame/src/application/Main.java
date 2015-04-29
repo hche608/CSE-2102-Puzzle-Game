@@ -29,7 +29,7 @@ public class Main extends Application {
 		public Void call() {
 			if (res.debug)
 				System.out.println("BackGround Music is playing");
-			res.backgoundMediaPlayer.play();
+			res.backgoundMediaPlayer.play(0.1);
 			return null;
 		}
 	};

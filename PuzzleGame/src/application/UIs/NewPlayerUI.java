@@ -49,7 +49,8 @@ public class NewPlayerUI {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					btn_OK.setGraphic(res.btn_OK_Image1);
-					res.mouseEnterFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
 				}
 			});
 			btn_OK.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -66,14 +67,50 @@ public class NewPlayerUI {
 					controller.setNewPlayer(textField.getText());
 					textField.clear();
 					controller.loadLevelUI();
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 				}
 			});
 
+			final Button btn_lastPlayer = new Button();
+			btn_lastPlayer.setGraphic(res.last_Player_Image);
+			btn_lastPlayer.setBorder(null);
+			btn_lastPlayer.setBackground(null);
+			btn_lastPlayer.setCursor(Cursor.HAND);
+			btn_lastPlayer.setTranslateX(res.FRAME_WIDTH * 3 / 10);
+			btn_lastPlayer.setTranslateY(res.FRAME_HEIGHT * 2 / 3);
+			btn_lastPlayer.setOnMouseEntered(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					btn_lastPlayer.setGraphic(res.last_Player_Image1);
+					if(controller.isSoundFXPlaying())
+						res.mouseEnterFXmediaPlayer.play();
+				}
+			});
+			btn_lastPlayer.setOnMouseExited(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					btn_lastPlayer.setGraphic(res.last_Player_Image);
+
+				}
+			});
+			btn_lastPlayer.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e) {
+					// controller.loadLevelUI();
+					controller.loadLevelUI();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
+				}
+			});
+			
+			
+			
 			textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent e) {
-					res.mouseClickedFXmediaPlayer.play();
+					if(controller.isSoundFXPlaying())
+						res.mouseClickedFXmediaPlayer.play();
 					if (e.getCode() == KeyCode.ENTER) {
 						if (res.debug)
 							System.out.println("Enter Released!");
@@ -91,6 +128,9 @@ public class NewPlayerUI {
 			hb.setTranslateY(res.FRAME_HEIGHT * 1 / 10);
 			hb.setSpacing(10);
 			root.getChildren().addAll(hb,btn_OK);
+			if (controller.getLastPlayer() != null){
+				root.getChildren().add(btn_lastPlayer);
+			}
 		} catch (Exception e) {
 			System.out.println("Initial New Player UI error: " + e);
 		}

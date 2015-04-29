@@ -75,5 +75,9 @@ public class GameTimer {
 			timeline.stop();
 		}
 	}
+	
+	public Status getStatus(){
+		return timeline.getStatus();
+	}
 
 }
