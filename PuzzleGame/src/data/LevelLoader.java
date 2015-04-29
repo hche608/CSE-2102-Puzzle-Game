@@ -26,8 +26,8 @@ public class LevelLoader extends LoaderFile {
 	 * 
 	 * @Author Christian
 	 */
-	@Override
-	public ArrayList<Level> getLevels() throws IOException {
+	
+	public ArrayList<Level> getData() throws IOException {
 		Scanner s = new Scanner(Main.res.br);
 		List<String> lines = new ArrayList<String>();
 		while (s.hasNext()) {

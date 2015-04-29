@@ -5,33 +5,38 @@ package data;
  */
 
 
-import application.Player;
+import application.Data.Player;
 
-public class PlayerSave implements Save
+class PlayerSave implements Save
 {
-	private String _saveName, _playerName;
-	private int _score, _level;
+	private String _playerName;
+	private int _score, _maxLevel, _currentLevel;
 	
-	public PlayerSave(String saveName, String playerName, int score, int level)
+	public PlayerSave( String playerName, int score, int levelMax, int currentLevel)
 	{
-		_saveName = saveName;
 		_playerName = playerName;
 		_score = score;
-		_level = level;
+		_maxLevel = levelMax;
+		_currentLevel = currentLevel;
 	}
 	
-	public PlayerSave(String saveName, String playerName)
+	public PlayerSave(String playerName)
 	{
-		_saveName = saveName;
 		_playerName = playerName;
 		_score = 0;
-		_level = 1;
+		_maxLevel = 1;
+		_currentLevel = 1;
+	}
+	
+	public PlayerSave()
+	{
+		
 	}
 
 	@Override
 	public int getLevel() {
 
-		return _level;
+		return _currentLevel;
 	}
 
 	@Override
@@ -43,13 +48,15 @@ public class PlayerSave implements Save
 	@Override
 	public void updateSave(int score, int level) {
 		_score = score;
-		_level = level;
+		_maxLevel = level;
 		
 	}
 
 	@Override
 	public Player getPlayer() {
-		return new Player(_playerName, _score, _level);
+		Player p = new Player(_playerName, _score, _currentLevel);
+		p.setHighestLevel(_maxLevel);
+		return p;
 	}
 
 	@Override
@@ -57,9 +64,25 @@ public class PlayerSave implements Save
 		return _playerName;
 	}
 
-	@Override
-	public String getSaveName() {
-		return _saveName;
+	public void setName(String name) 
+	{
+		_playerName = name;		
 	}
+	
+	public void setMaxLevel(int level)
+	{
+		_maxLevel = level;
+	}
+
+	public void setCurrentLevel(int level)
+	{
+		_currentLevel = level;
+	}
+
+	public void setScore(int score) 
+	{
+		_score = score;		
+	}
+	
 	
 }

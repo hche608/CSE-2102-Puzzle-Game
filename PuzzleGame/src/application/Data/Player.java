@@ -36,7 +36,7 @@ public class Player {
 	}
 
 	public void setScore(int score) {
-		this.score = score + score;
+		this.score += score;
 	}
 
 	public void setCurrentLevel(int current_level_num) {
