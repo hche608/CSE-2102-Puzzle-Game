@@ -120,7 +120,7 @@ public class ScoresListUI {
 				}
 			});
 			table.setTranslateX(res.FRAME_WIDTH * 1 / 10);
-			table.setTranslateY(res.FRAME_HEIGHT * 1 / 20);
+			table.setTranslateY(res.FRAME_HEIGHT * 1 / 30);
 			root.getChildren().addAll(table, rbtn);
 		} catch (Exception e) {
 			System.out.println("Initial Scores UI error: " + e);

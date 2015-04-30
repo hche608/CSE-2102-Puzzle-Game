@@ -36,7 +36,7 @@ public class GamePanelUI {
 			 * Bottom Line
 			 */
 
-			Text counter = new Text("Time: ");
+			Text counter = new Text("Time");
 			counter.setFont(res.minecrafter_font_label);
 			counter.setFill(Color.BLACK);
 			counter.setTranslateX(50);
