@@ -43,7 +43,11 @@ public class NewPlayerUI {
 			btn_OK.setBorder(null);
 			btn_OK.setBackground(null);
 			btn_OK.setCursor(Cursor.HAND);
-			btn_OK.setTranslateX(res.FRAME_WIDTH * 3 / 10);
+			if (controller.getLastPlayer() != null){
+				btn_OK.setTranslateX(res.FRAME_WIDTH * 1 / 10);
+			} else {
+				btn_OK.setTranslateX(res.FRAME_WIDTH * 3 / 10);
+			}
 			btn_OK.setTranslateY(res.FRAME_HEIGHT * 2 / 3);
 			btn_OK.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
@@ -77,7 +81,7 @@ public class NewPlayerUI {
 			btn_lastPlayer.setBorder(null);
 			btn_lastPlayer.setBackground(null);
 			btn_lastPlayer.setCursor(Cursor.HAND);
-			btn_lastPlayer.setTranslateX(res.FRAME_WIDTH * 3 / 10);
+			btn_lastPlayer.setTranslateX(res.FRAME_WIDTH * 5 / 10);
 			btn_lastPlayer.setTranslateY(res.FRAME_HEIGHT * 2 / 3);
 			btn_lastPlayer.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override

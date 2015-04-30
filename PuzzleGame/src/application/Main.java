@@ -9,12 +9,12 @@
  */
 package application;
 
-import application.Controllers.GameController;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import application.Controllers.GameController;
 
 public class Main extends Application {
 	public static Resourses res = new Resourses();

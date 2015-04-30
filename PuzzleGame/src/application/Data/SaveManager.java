@@ -2,7 +2,6 @@ package application.Data;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import jeff.ini.Ini;
 
 public class SaveManager 
