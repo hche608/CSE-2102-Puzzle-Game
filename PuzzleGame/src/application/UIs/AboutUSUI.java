@@ -9,6 +9,8 @@
  */
 package application.UIs;
 
+import java.awt.Font;
+
 import application.Main;
 import application.Resourses;
 import application.Controllers.GameController;
@@ -34,11 +36,14 @@ public class AboutUSUI {
 		this.controller = controller;
 		try {
 
-			title.setText("About US!\n");
+			title.setText("About US!\n"
+					+ "Composed by Hao Chen, \n"
+					+ "Christian Kuntz, \n"
+					+ "Erming Gao\n");
 
-			title.setFont(res.minecrafter_font_title);
-			title.setTranslateX(160);
-			title.setTranslateY(175);
+			title.setFont(res.minecrafter_font_label);
+			title.setTranslateX(30);
+			title.setTranslateY(60);
 			title.setFill(Color.BLACK);
 
 			final Button btn_OK = new Button();

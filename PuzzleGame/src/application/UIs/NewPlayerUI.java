@@ -22,6 +22,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class NewPlayerUI {
@@ -31,7 +32,17 @@ public class NewPlayerUI {
 	public NewPlayerUI(GameController controller) {
 		root = new Group();
 		HBox hb = new HBox();
+		Text instruction = new Text();
 		try {
+			instruction.setText("Instruction: \n"
+					+ "Drag the pieces form square,\n fill out the white diagams in time to win the game. \n"
+					+ "left click and hold on the piece to drag, \n press Ctrl while click on the piece to rotate.");
+
+			instruction.setFont(res.minecrafter_font_label);
+			instruction.setTranslateX(30);
+			instruction.setTranslateY(150);
+			instruction.setFill(Color.BLACK);
+			
 			Text label1 = new Text("Player Name:");
 			label1.setFont(res.minecrafter_font_label);
 			TextField textField = new TextField();
@@ -131,7 +142,7 @@ public class NewPlayerUI {
 			hb.setTranslateX(res.FRAME_WIDTH * 1 / 10);
 			hb.setTranslateY(res.FRAME_HEIGHT * 1 / 10);
 			hb.setSpacing(10);
-			root.getChildren().addAll(hb,btn_OK);
+			root.getChildren().addAll(hb,instruction,btn_OK);
 			if (controller.getLastPlayer() != null){
 				root.getChildren().add(btn_lastPlayer);
 			}

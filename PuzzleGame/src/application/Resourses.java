@@ -137,7 +137,7 @@ public class Resourses {
 		// Background music
 		try {
 			backgoundMediaPlayer = new AudioClip(getClass()
-					.getResource("/application/resourses/music/background.wav")
+					.getResource("/application/resourses/music/background.mp3")
 					.toURI().toString());
 			backgoundMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		} catch (Exception e) {
