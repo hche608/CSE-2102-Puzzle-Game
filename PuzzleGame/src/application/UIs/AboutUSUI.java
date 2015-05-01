@@ -9,8 +9,6 @@
  */
 package application.UIs;
 
-import java.awt.Font;
-
 import application.Main;
 import application.Resourses;
 import application.Controllers.GameController;
