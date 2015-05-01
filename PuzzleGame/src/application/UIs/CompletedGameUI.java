@@ -55,9 +55,9 @@ public class CompletedGameUI {
 									+ e);
 				}
 			}
-			title.setFont(res.minecrafter_font_title);
-			//title.setTranslateX(res.FRAME_WIDTH * 3 / 10);
-			title.setTranslateY(res.FRAME_HEIGHT * 1 / 4);
+			title.setFont(res.minecrafter_font_label);
+			title.setTranslateX(res.FRAME_WIDTH * 1 / 4);
+			title.setTranslateY(res.FRAME_HEIGHT * 1 / 3);
 			title.setTextAlignment(TextAlignment.CENTER);
 			title.setFill(Color.BLACK);
 
