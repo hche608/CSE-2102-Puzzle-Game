@@ -2,6 +2,8 @@ package data;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,12 +30,7 @@ public class LevelLoader extends LoaderFile {
 	 */
 	
 	public ArrayList<Level> getData() throws IOException {
-		Scanner s = new Scanner(Main.res.br);
-		List<String> lines = new ArrayList<String>();
-		while (s.hasNext()) {
-			lines.add(s.nextLine());
-		}
-		s.close();
+		List<String> lines = Files.readAllLines(Paths.get("LevelReadTest.ini"));
 		ArrayList<Level> levels = new ArrayList<Level>();
 		Level currentLevel = new Level();
 		for (String currentLine : lines) {
@@ -43,7 +40,7 @@ public class LevelLoader extends LoaderFile {
 
 				String secondWord = getFirstWord(afterFirstWord(currentLine));
 
-				if (firstWord != null && !secondWord.equals("")) {
+				if (firstWord != null && secondWord != null && !secondWord.equals("")) {
 
 					if (firstWord.equalsIgnoreCase("Level:")) {
 						currentLevel = new Level();

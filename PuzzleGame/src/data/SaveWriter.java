@@ -15,6 +15,7 @@ public class SaveWriter
 	public static void writeSaves(ArrayList<Player> players, String fileName) throws IOException
 	{
 		PrintWriter write = new PrintWriter(fileName);
+		write.println(PLAYER);
 		for (Player p : players)
 		{
 			String writeData = PLAYER + p.getPlayerName();
