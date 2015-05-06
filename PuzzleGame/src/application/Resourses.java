@@ -18,7 +18,7 @@ import javafx.scene.text.Font;
 
 public class Resourses {
 
-	public final boolean debug = true;
+	public final boolean debug = false;
 
 	public final double FRAME_WIDTH = 800.0;
 	public final double FRAME_HEIGHT = 600.0;
