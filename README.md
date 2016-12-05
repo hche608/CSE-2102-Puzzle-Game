@@ -48,7 +48,8 @@ public final boolean debug = true;
 to unlock all the levels.
 
 
-
+![alt text](https://github.com/hche608/CSE-2102-Puzzle-Game/raw/master/pics/main.webp "Main")
+![alt text](https://github.com/hche608/CSE-2102-Puzzle-Game/raw/master/pics/level1.webp "Level 1")
 
 
 
